@@ -13,9 +13,11 @@
 
 <button type="button" onclick="alert('Hello world!')">Vorige week</button>
 <button type="button" onclick="alert('Hello world!')">Volgende week</button>
-<table id="agenda" style="width:80%">
+    <!-- <table id="agenda" style="width:100px"> -->
+<table id="agenda">
     <tr>
-        <th style="width: 12%">
+        <!--  <th style="width: 300px">   -->
+        <th>
             <form action="/action_page.php">
                 Kapper:
                 <select name="kappers" id="kappers">
@@ -27,14 +29,14 @@
                 </select>
             </form>
         </th>
-        <th>Dinsdag</th>
-        <th>Woensdag</th>
-        <th>Donderdag</th>
-        <th>Vrijdag</th>
-        <th>Zaterdag</th>
+        <th class="headerrow">17/11/2020 <div class="days">Dinsdag</div></th>
+        <th class="headerrow">18/11/2020 <div class="days">Woensdag</div></th>
+        <th class="headerrow">19/11/2020 <div class="days">Donderdag</div></th>
+        <th class="headerrow">20/11/2020 <div class="days">Vrijdag</div></th>
+        <th class="headerrow">21/11/2020 <div class="days">Zaterdag</div></th>
     </tr>
     <tr>
-        <th rowspan="2">9:00 - 10:00</th>
+        <th class="headercolumn" rowspan="2">9:00</th>
         <td>1</td>
         <td>2</td>
         <td>3</td>
@@ -49,7 +51,7 @@
         <td>10</td>
     </tr>
     <tr>
-        <th rowspan="2">10:00 - 11:00</th>
+        <th class="headercolumn" rowspan="2">10:00</th>
         <td>11</td>
         <td>12</td>
         <td>13</td>
@@ -64,7 +66,7 @@
         <td>20</td>
     </tr>
     <tr>
-        <th rowspan="2">11:00 - 12:00</th>
+        <th class="headercolumn" rowspan="2">11:00</th>
         <td>21</td>
         <td>22</td>
         <td>23</td>
@@ -79,7 +81,7 @@
         <td>30</td>
     </tr>
     <tr>
-        <th rowspan="2">12:00 - 13:00</th>
+        <th class="headercolumn" rowspan="2">12:00</th>
         <td>31</td>
         <td>32</td>
         <td>33</td>
@@ -89,12 +91,12 @@
     <tr>
         <td>36</td>
         <td>37</td>
-        <td>38</td>
+        <td class="busy">Bezig</td>
         <td>39</td>
         <td>40</td>
     </tr>
     <tr>
-        <th rowspan="2">13:00 - 14:00</th>
+        <th class="headercolumn" rowspan="2">13:00</th>
         <td>41</td>
         <td>42</td>
         <td>43</td>
@@ -105,11 +107,11 @@
         <td>46</td>
         <td>47</td>
         <td>48</td>
-        <td>49</td>
+        <td class="free">49</td>
         <td>50</td>
     </tr>
     <tr>
-        <th rowspan="2">14:00 - 15:00</th>
+        <th class="headercolumn" rowspan="2">14:00</th>
         <td>51</td>
         <td>52</td>
         <td>53</td>
@@ -124,7 +126,7 @@
         <td>60</td>
     </tr>
     <tr>
-        <th rowspan="2">15:00 - 16:00</th>
+        <th class="headercolumn" rowspan="2">15:00</th>
         <td>61</td>
         <td>62</td>
         <td>63</td>
@@ -139,7 +141,7 @@
         <td>70</td>
     </tr>
     <tr>
-        <th rowspan="2">16:00 - 17:00</th>
+        <th class="headercolumn" rowspan="2">16:00</th>
         <td>71</td>
         <td>72</td>
         <td>73</td>
@@ -151,7 +153,7 @@
         <td>77</td>
         <td>78</td>
         <td>79</td>
-        <td>80</td>
+        <td onclick="makeAppointment(80)">80</td>
     </tr>
 
 </table>
@@ -160,17 +162,23 @@
 </body>
 <style>
     table, th, td {
-        border: 1px solid #C0C0C0;
+        border: 1px solid #DDDDDD;
         border-collapse: collapse;
     }
     th, td {
         padding: 5px;
-        text-align: left;
+        text-align: center;
     }
     #agenda th {
         background-color: #F3F3F3;
+        border: 1px solid #C0C0C0;
         text-align: center;
+        font-weight: normal;
     }
+    td:hover {
+       background-color: #eee;
+    }
+
     #reserveringsknop {
         background-color: deepskyblue;
         border: none;
@@ -188,9 +196,32 @@
         padding: 16px 33px;
         transition: 0.5s;
     }
+    .busy {
+        background-color: red;
+    }
+    .free {
+        background-color: green;
+    }
+    .days {
+        font-size: 18px;
+    }
+    .headerrow {
+        width: 80px;
+        height: 50px;
+        font-size: 13px;
+    }
+    .headercolumn {
+        width: 70px;
+        font-size: 18px;
+    }
 </style>
 <script>
     //toggleDisplay();
+// Ik geef 80 ik krijg terug: zaterdag 16:30
+
+    //TODO: afspraken van database in de agenda zetten. INPUT
+    //TODO: VAN NUMMER NAAR AFSPRAAK EN VAN AFSPRAAK NAAR NUMMER
+
     function toggleDisplay() {
         var x = document.getElementById("reserveringsdiv");
         if (x.style.display === "none") {
@@ -198,6 +229,9 @@
         } else {
             x.style.display = "none";
         }
+    }
+    function makeAppointment(i){
+        console.log("number: " + i);
     }
 </script>
 </html>
