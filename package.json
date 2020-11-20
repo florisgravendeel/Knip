@@ -1,0 +1,26 @@
+{
+  "name": "knip",
+  "version": "1.0.0",
+  "description": "Knip is de naam van ons kappersproject dat wij doen op de Hogeschool Utrecht.",
+  "main": "calendar.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "dayjs": "^1.9.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/florisgravendeel/Knip.git"
+  },
+  "author": "Floris G",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/florisgravendeel/Knip/issues"
+  },
+  "homepage": "https://github.com/florisgravendeel/Knip#readme"
+}

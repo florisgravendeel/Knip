@@ -13,8 +13,8 @@
 
     <!-- <table id="agenda" style="width:100px"> -->
 <table id="agenda">
-    <tr>
-        <th colspan="2" class="days" style="text-align: left">
+    <tr id="tableheader">
+        <th colspan="2" class="days" style="text-align: center">
             <form action="/action_page.php">
                 Kapper:
                 <select name="kappers" id="kappers">
@@ -30,7 +30,7 @@
             <button type="button" onclick="alert('Hello world!')">Vorige week</button>
             <button type="button" onclick="alert('Hello world!')">Deze week</button>
             <button type="button" onclick="alert('Hello world!')">Volgende week</button>
-            &#10005
+            <img src="images/closeicon.png" id="closeButton" onclick="toggleDisplay()">
 
         </th>
     </tr>
@@ -47,123 +47,126 @@
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">9:00</th>
-        <td>1</td>
-        <td>9:00 - 9:30</td>
-        <td>3</td>
-        <td>4</td>
-        <td>5</td>
+        <td id="cell0"></td>
+        <td id="cell1"></td>
+        <td id="cell2"></td>
+        <td id="cell3"></td>
+        <td id="cell4"></td>
     </tr>
     <tr>
-        <td>6</td>
-        <td>7</td>
-        <td>8</td>
-        <td>9</td>
-        <td>10</td>
+        <td id="cell5"></td>
+        <td id="cell6"></td>
+        <td id="cell7"></td>
+        <td id="cell8"></td>
+        <td id="cell9"></td>
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">10:00</th>
-        <td>11</td>
-        <td>12</td>
-        <td>13</td>
-        <td>14</td>
-        <td>15</td>
+        <td id="cell10"></td>
+        <td id="cell11"></td>
+        <td id="cell12"></td>
+        <td id="cell13"></td>
+        <td id="cell14"></td>
     </tr>
     <tr>
-        <td>16</td>
-        <td>17</td>
-        <td>18</td>
-        <td>19</td>
-        <td>20</td>
+        <td id="cell15"></td>
+        <td id="cell16"></td>
+        <td id="cell17"></td>
+        <td id="cell18"></td>
+        <td id="cell19"></td>
+
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">11:00</th>
-        <td>21</td>
-        <td>22</td>
-        <td>23</td>
-        <td>24</td>
-        <td>25</td>
+        <td id="cell20"></td>
+        <td id="cell21"></td>
+        <td id="cell22"></td>
+        <td id="cell23"></td>
+        <td id="cell24"></td>
+
     </tr>
     <tr>
-        <td>26</td>
-        <td>27</td>
-        <td>28</td>
-        <td>29</td>
-        <td>30</td>
+        <td id="cell25"></td>
+        <td id="cell26"></td>
+        <td id="cell27"></td>
+        <td id="cell28"></td>
+        <td id="cell29"></td>
+
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">12:00</th>
-        <td>31</td>
-        <td>32</td>
-        <td>33</td>
-        <td>34</td>
-        <td>35</td>
+        <td id="cell30"></td>
+        <td id="cell31"></td>
+        <td id="cell32"></td>
+        <td id="cell33"></td>
+        <td id="cell34"></td>
     </tr>
     <tr>
-        <td>36</td>
-        <td>37</td>
-        <td class="busy">Bezig</td>
-        <td>39</td>
-        <td>40</td>
+        <td id="cell35"></td>
+        <td id="cell36"></td>
+        <td id="cell37"></td>
+        <td id="cell38"></td>
+        <td id="cell39"></td>
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">13:00</th>
-        <td>41</td>
-        <td>42</td>
-        <td>43</td>
-        <td>44</td>
-        <td>45</td>
+        <td id="cell40"></td>
+        <td id="cell41"></td>
+        <td id="cell42"></td>
+        <td id="cell43"></td>
+        <td id="cell44"></td>
     </tr>
     <tr>
-        <td>46</td>
-        <td>47</td>
-        <td>48</td>
-        <td class="free">49</td>
-        <td>50</td>
+        <td id="cell45"></td>
+        <td id="cell46"></td>
+        <td id="cell47"></td>
+        <td id="cell48"></td>
+        <td id="cell49"></td>
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">14:00</th>
-        <td>51</td>
-        <td>52</td>
-        <td>53</td>
-        <td>54</td>
-        <td>55</td>
+        <td id="cell50"></td>
+        <td id="cell51"></td>
+        <td id="cell52"></td>
+        <td id="cell53"></td>
+        <td id="cell54"></td>
     </tr>
     <tr>
-        <td>56</td>
-        <td>57</td>
-        <td>58</td>
-        <td>59</td>
-        <td>60</td>
+        <td id="cell55"></td>
+        <td id="cell56"></td>
+        <td id="cell57"></td>
+        <td id="cell58"></td>
+        <td id="cell59"></td>
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">15:00</th>
-        <td>61</td>
-        <td>62</td>
-        <td>63</td>
-        <td>64</td>
-        <td>65</td>
+        <td id="cell60"></td>
+        <td id="cell61"></td>
+        <td id="cell62"></td>
+        <td id="cell63"></td>
+        <td id="cell64"></td>
     </tr>
     <tr>
-        <td>66</td>
-        <td>67</td>
-        <td>68</td>
-        <td>69</td>
-        <td>70</td>
+        <td id="cell65"></td>
+        <td id="cell66"></td>
+        <td id="cell67"></td>
+        <td id="cell68"></td>
+        <td id="cell69"></td>
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">16:00</th>
-        <td>71</td>
-        <td>72</td>
-        <td>73</td>
-        <td>74</td>
-        <td>75</td>
+        <td id="cell70"></td>
+        <td id="cell71"></td>
+        <td id="cell72"></td>
+        <td id="cell73"></td>
+        <td id="cell74"></td>
     </tr>
     <tr>
-        <td>76</td>
-        <td>77</td>
-        <td>78</td>
-        <td>79</td>
-        <td onclick="makeAppointment(80)">80</td>
+        <td id="cell75"></td>
+        <td id="cell76"></td>
+        <td id="cell77"></td>
+        <td id="cell78"></td>
+        <td id="cell79"></td>
     </tr>
 
 </table>
@@ -187,6 +190,19 @@
     }
     td:hover {
        background-color: #eee;
+    }
+    #closeButton {
+        margin-left: 62px;
+        text-align: start;
+        width: 15px;
+    }
+    #closeButton:hover {
+        cursor: pointer;
+    }
+    #tableheader th {
+        background-color: #dfdfdf;
+        border-bottom: 2px solid #18314F;
+        border-right: 1px solid #dfdfdf;
     }
     #reserveringsdiv {
         width: max-content;
@@ -219,7 +235,7 @@
         font-size: 18px;
     }
     .headerrow {
-        width: 80px;
+        width: 90px;
         height: 50px;
         font-size: 13px;
     }
@@ -230,11 +246,162 @@
 </style>
 <script>
     //toggleDisplay();
-// Ik geef 80 ik krijg terug: zaterdag 16:30
-
     //TODO: afspraken van database in de agenda zetten. INPUT
     //TODO: VAN NUMMER NAAR AFSPRAAK EN VAN AFSPRAAK NAAR NUMMER
+    const timetable = ["9:00  -  9:30",  "9:30 - 10:00",
+                     "10:00 - 10:30", "10:30 - 11:00",
+                     "11:00 - 11:30", "11:30 - 12:00",
+                     "12:00 - 12:30", "12:30 - 13:00",
+                     "13:00 - 13:30", "13:30 - 14:00",
+                     "14:00 - 14:30", "14:30 - 15:00",
+                     "15:00 - 15:30", "15:30 - 16:00",
+                     "16:00 - 16:30", "16:30 - 17:00"];
+    var index = -1;
+    for (var i = 0; i < 80; i++){
+        if (i % 5 === 0){
+            index += 1;
+        }
+        // Alle tijden worden in de tabel gezet:
+        document.getElementById("cell" + i).innerText = timetable[index];
+    }
+    initialiseCalendar(1);
+    var today = new Date();
+    function initialiseCalendar(i) {
+        switch (i) {
+            case -1: // Vorige week.
+               // today.setDate(today.getDate() - 7);
+                break;
+            case 0: // Deze week.
+             //   today = new Date();
+                break;
+            case 1: // Volgende week.
+              //  today.setDate(today.getDate() + 7);
+                break;
+        }
 
+
+        today = new Date(2020, 10, 23, 16, 37, 10, 10);
+        console.log(today);
+        let three_days_before_yesterday = new Date(today.getTime());
+        let two_days_before_yesterday = new Date(today.getTime());
+        let day_before_yesterday = new Date(today.getTime());
+        let yesterday = new Date(today.getTime());
+        let tomorrow = new Date(today.getTime());
+        let day_after_tomorrow = new Date(today.getTime());
+        let two_days_after_tomorrow = new Date(today.getTime());
+        let three_days_after_tomorrow = new Date(today.getTime());
+        let four_days_after_tomorrow = new Date(today.getTime());
+        let five_days_after_tomorrow = new Date(today.getTime());
+
+        three_days_before_yesterday.setDate(today.getDate() - 4);
+        two_days_before_yesterday.setDate(today.getDate() - 3);
+        day_before_yesterday.setDate(today.getDate() - 2);
+        yesterday.setDate(today.getDate() - 1);
+        tomorrow.setDate(today.getDate() + 1);
+        day_after_tomorrow.setDate(today.getDate() + 2);
+        two_days_after_tomorrow.setDate(today.getDate() + 3);
+        three_days_after_tomorrow.setDate(today.getDate() + 4);
+        four_days_after_tomorrow.setDate(today.getDate() + 5);
+        five_days_after_tomorrow.setDate(today.getDate() + 6);
+
+        var dates = ["1 November", "1 Januari", "1 November", "1 November", "0 November"];
+        var days = ["Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
+        // 0/2        1/3            2/4        3/5        4/6
+        switch (today.getDay()) {
+            case 0: // zondag: dus laat de volgende week zien.
+                dates[0] = day_after_tomorrow.getDate() + " " + getMonth(day_after_tomorrow.getMonth());
+                dates[1] = two_days_after_tomorrow.getDate() + " " + getMonth(two_days_after_tomorrow.getMonth());
+                dates[2] = three_days_after_tomorrow.getDate() + " " + getMonth(three_days_after_tomorrow.getMonth());
+                dates[3] = four_days_after_tomorrow.getDate() + " " + getMonth(four_days_after_tomorrow.getMonth());
+                dates[4] = five_days_after_tomorrow.getDate() + " " + getMonth(five_days_after_tomorrow.getMonth());
+                break;
+            case 1: // maandag
+                dates[0] = tomorrow.getDate() + " " + getMonth(tomorrow.getMonth());
+                dates[1] = day_after_tomorrow.getDate() + " " + getMonth(day_after_tomorrow.getMonth());
+                dates[2] = two_days_after_tomorrow.getDate() + " " + getMonth(two_days_after_tomorrow.getMonth());
+                dates[3] = three_days_after_tomorrow.getDate() + " " + getMonth(three_days_after_tomorrow.getMonth());
+                dates[4] = four_days_after_tomorrow.getDate() + " " + getMonth(four_days_after_tomorrow.getMonth());
+                break;
+            case 2: // dinsdag
+                dates[0] = today.getDate() + " " + getMonth(today.getMonth());
+                dates[1] = tomorrow.getDate() + " " + getMonth(tomorrow.getMonth());
+                dates[2] = day_after_tomorrow.getDate() + " " + getMonth(day_after_tomorrow.getMonth());
+                dates[3] = two_days_after_tomorrow.getDate() + " " + getMonth(two_days_after_tomorrow.getMonth());
+                dates[4] = three_days_after_tomorrow.getDate() + " " + getMonth(three_days_after_tomorrow.getMonth());
+                break;
+            case 3: // woensdag
+                dates[0] = yesterday.getDate() + " " + getMonth(yesterday.getMonth());
+                dates[1] = today.getDate() + " " + getMonth(today.getMonth());
+                dates[2] = tomorrow.getDate() + " " + getMonth(tomorrow.getMonth());
+                dates[3] = day_after_tomorrow.getDate() + " " + getMonth(day_after_tomorrow.getMonth());
+                dates[4] = two_days_after_tomorrow.getDate() + " " + getMonth(two_days_after_tomorrow.getMonth());
+                break;
+            case 4: // donderdag
+                dates[0] = day_before_yesterday.getDate() + " " + getMonth(day_before_yesterday.getMonth());
+                dates[1] = yesterday.getDate() + " " + getMonth(yesterday.getMonth());
+                dates[2] = today.getDate() + " " + getMonth(today.getMonth());
+                dates[3] = tomorrow.getDate() + " " + getMonth(tomorrow.getMonth());
+                dates[4] = day_after_tomorrow.getDate() + " " + getMonth(day_after_tomorrow.getMonth());
+                break;
+            case 5: // vrijdag
+                console.log("Hi!");
+                dates[0] = two_days_before_yesterday.getDate() + " " + getMonth(two_days_before_yesterday.getMonth());
+                dates[1] = day_before_yesterday.getDate() + " " + getMonth(day_before_yesterday.getMonth());
+                dates[2] = yesterday.getDate() + " " + getMonth(yesterday.getMonth());
+                dates[3] = today.getDate() + " " + getMonth(today.getMonth());
+                dates[4] = tomorrow.getDate() + " " + getMonth(today.getMonth());
+                break;
+            case 6: // zaterdag
+                dates[0] = three_days_before_yesterday.getDate() + " " + getMonth(three_days_before_yesterday.getMonth());
+                dates[1] = two_days_before_yesterday.getDate() + " " + getMonth(two_days_before_yesterday.getMonth());
+                dates[2] = day_before_yesterday.getDate() + " " + getMonth(day_before_yesterday.getMonth());
+                dates[3] = yesterday.getDate() + " " + getMonth(yesterday.getMonth());
+                dates[4] = today.getDate() + " " + getMonth(today.getMonth());
+                break;
+        }
+    }
+
+    setDay(dates);
+    function setDay(){
+        list = document.getElementsByClassName("headerrow");
+        for (var i = 0; i < list.length; i++){
+            list.item(i).innerHTML = dates[i] + "<div class=\"days\">" + days[i] +"</div>";
+        }
+    }
+
+    /**
+     * Maakt van de maand als getal een tekst output.
+     * @param i
+     * @returns {string}
+     */
+    function getMonth(i) {
+        switch (i) {
+            case 0:
+                return "Januari";
+            case 1:
+                return "Februari";
+            case 2:
+                return "Maart";
+            case 3:
+                return "April";
+            case 4:
+                return "Mei"
+            case 5:
+                return "Juni";
+            case 6:
+                return "Juli";
+            case 7:
+                return "Augustus";
+            case 8:
+                return "September";
+            case 9:
+                return "Oktober";
+            case 10:
+                return "November";
+            case 11:
+                return "December";
+        }
+    }
     function toggleDisplay() {
         var x = document.getElementById("reserveringsdiv");
         if (x.style.display === "none") {
@@ -243,17 +410,22 @@
             x.style.display = "none";
         }
     }
+    function getCurrentWeek(){
+
+    }
+
+    function loadAppointments(){
+
+    }
+
     function makeAppointment(i){
+        // 2007-05-08 12:35:29 florisgra@gmail.com
+
         console.log("number: " + i);
     }
 </script>
 </html>
 <!---
-De kapper is open van 9:00 - 17:00.
-In elk halfuur kan een afspraak gepland worden.
-17-9=6
 
-12 halve uur vakken. verticaal +1 voor de dag. = 13 hoog
-5 dagen waarin de kapper open is. +1 = 6
 
 -->
