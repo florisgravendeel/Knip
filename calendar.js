@@ -13,15 +13,28 @@ for (var i = 0; i < 80; i++){
     if (i % 5 === 0){
         index += 1;
     }
-    // Alle tijden worden in de tabel gezet:
+    // Alle tijden worden in de tabel gezet ->
     document.getElementById("cell" + i).innerText = timetable[index];
 }
-var dates = ["1 November", "1 Januari", "92 Februari", "1 November", "0 Maart"];
-// 0/2        1/3            2/4        3/5        4/6
+//TODO: dit laden vanuit een server
+var dates = ["1 November", "1 Januari", "1 Februari", "1 November", "0 Maart",
+             "2 November", "2 Januari", "2 Februari", "2 November", "2 Maart",
+             "3 November", "3 Januari", "3 Februari", "3 November", "3 Maart"];
+
 const days = ["Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
 
-updateDates(dates);
-function updateDates(){
+updateDates(0);
+function updateDates(x){
+    switch (x){
+        case -1:
+            break;
+        case 0:
+            break;
+        case 1:
+            break;
+        default:
+            break;
+    }
     list = document.getElementsByClassName("headerrow");
     for (var i = 0; i < list.length; i++){
         list.item(i).innerHTML = dates[i] + "<div class=\"days\">" + days[i] +"</div>";

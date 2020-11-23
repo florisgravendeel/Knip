@@ -1,13 +1,23 @@
 var dayjs = require('dayjs');
-//import dayjs from 'dayjs' // ES 2015
 dayjs().format()
 
-var now = new Date();
-var today = dayjs(now);
+var http = require('http');
 
-var today = dayjs();
-date1 = today.add(7, 'day');
+http.createServer(function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
 
-document.getElementById("text1").innerText = today;
-document.getElementById("text2").innerText = date1;
+    var now = new Date();
+    var today = dayjs(now);
+    res.end(today);
+}).listen(8080);
+
+
+
+//import dayjs from 'dayjs' // ES 2015
+
+
+//date1 = today.add(7, 'day');
+
+//document.getElementById("text1").innerText = today;
+//document.getElementById("text2").innerText = date1;*/
 
