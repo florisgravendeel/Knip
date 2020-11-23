@@ -1,3 +1,6 @@
+body {
+    font-family: Calibri;
+}
 table, th, td {
     border: 1px solid #DDDDDD;
     border-collapse: collapse;
@@ -14,6 +17,8 @@ th, td {
 }
 td:hover {
     background-color: #eee;
+    color: red;
+    cursor: pointer;
 }
 #closeButton {
     margin-left: 62px;
@@ -49,12 +54,25 @@ td:hover {
     padding: 16px 33px;
     transition: 0.5s;
 }
+/*TODO: De primaire kleur van de website bepaald de kleur van de agenda! */
 .busy {
+    background-color: #333333;
+    text-decoration: line-through;
+    border: 2px solid #222222;
+}
+.busy:hover {
     background-color: red;
+    cursor: not-allowed;
 }
-.free {
+.selected {
+    border: 2px solid green;
+    background-color: #03AC13;
+}
+.selected:hover {
     background-color: green;
+    color: green;
 }
+        /*#3CB043;*/
 .days {
     font-size: 18px;
 }

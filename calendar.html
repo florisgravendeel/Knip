@@ -26,9 +26,9 @@
             </form>
         </th>
         <th colspan="4">
-            <button type="button" onclick="alert('Hello world!')">Vorige week</button>
-            <button type="button" onclick="alert('Hello world!')">Deze week</button>
-            <button type="button" onclick="alert('Hello world!')">Volgende week</button>
+            <button id="button1" type="button" onclick="selectWeek('Vorige week')" disabled>Vorige week</button>
+            <button id="button2" type="button" onclick="selectWeek('Volgende week')">Volgende week</button>
+            <button id="button3" type="button"  disabled>Reserveer nu</button>
             <img src="images/closeicon.png" id="closeButton" onclick="toggleDisplay()">
 
         </th>
@@ -47,21 +47,21 @@
         <th class="headercolumn" rowspan="2">9:00</th>
         <td id="cell0"></td>
         <td id="cell1"></td>
-        <td id="cell2"></td>
-        <td id="cell3"></td>
-        <td id="cell4"></td>
+        <td class="busy" id="cell2"></td>
+        <td class="busy" id="cell3"></td>
+        <td class="busy" id="cell4"></td>
     </tr>
     <tr>
         <td id="cell5"></td>
-        <td id="cell6"></td>
-        <td id="cell7"></td>
-        <td id="cell8"></td>
+        <td class="busy" id="cell6"></td>
+        <td class="busy" id="cell7"></td>
+        <td class="busy" id="cell8"></td>
         <td id="cell9"></td>
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">10:00</th>
         <td id="cell10"></td>
-        <td id="cell11"></td>
+        <td class="selected" id="cell11"></td>
         <td id="cell12"></td>
         <td id="cell13"></td>
         <td id="cell14"></td>
@@ -78,7 +78,7 @@
         <th class="headercolumn" rowspan="2">11:00</th>
         <td id="cell20"></td>
         <td id="cell21"></td>
-        <td id="cell22"></td>
+        <td class="busy" id="cell22"></td>
         <td id="cell23"></td>
         <td id="cell24"></td>
 
@@ -86,7 +86,7 @@
     <tr>
         <td id="cell25"></td>
         <td id="cell26"></td>
-        <td id="cell27"></td>
+        <td class="busy" id="cell27"></td>
         <td id="cell28"></td>
         <td id="cell29"></td>
 
@@ -95,14 +95,14 @@
         <th class="headercolumn" rowspan="2">12:00</th>
         <td id="cell30"></td>
         <td id="cell31"></td>
-        <td id="cell32"></td>
+        <td class="busy" id="cell32"></td>
         <td id="cell33"></td>
         <td id="cell34"></td>
     </tr>
     <tr>
         <td id="cell35"></td>
         <td id="cell36"></td>
-        <td id="cell37"></td>
+        <td class="busy" id="cell37"></td>
         <td id="cell38"></td>
         <td id="cell39"></td>
     </tr>
@@ -116,9 +116,9 @@
     </tr>
     <tr>
         <td id="cell45"></td>
-        <td id="cell46"></td>
-        <td id="cell47"></td>
-        <td id="cell48"></td>
+        <td class="busy" id="cell46"></td>
+        <td class="busy" id="cell47"></td>
+        <td class="busy" id="cell48"></td>
         <td id="cell49"></td>
     </tr>
     <tr>
@@ -130,9 +130,9 @@
         <td id="cell54"></td>
     </tr>
     <tr>
-        <td id="cell55"></td>
-        <td id="cell56"></td>
-        <td id="cell57"></td>
+        <td class="busy" id="cell55"></td>
+        <td class="busy" id="cell56"></td>
+        <td class="busy" id="cell57"></td>
         <td id="cell58"></td>
         <td id="cell59"></td>
     </tr>
