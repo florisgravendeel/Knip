@@ -2,7 +2,7 @@
   "name": "knip",
   "version": "1.0.0",
   "description": "Knip is de naam van ons kappersproject dat wij doen op de Hogeschool Utrecht.",
-  "main": "calendar.js",
+  "main": "dayscalendar.js",
   "directories": {
     "test": "test"
   },

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="calendar.css">
     <title>Reserveringssysteem</title>
 </head>
 <body>
@@ -10,8 +11,6 @@
 
 <button class="button" id="reserveringsknop" onclick="toggleDisplay()">Reserveren</button>
 <div id="reserveringsdiv">
-
-    <!-- <table id="agenda" style="width:100px"> -->
 <table id="agenda">
     <tr id="tableheader">
         <th colspan="2" class="days" style="text-align: center">
@@ -35,7 +34,6 @@
         </th>
     </tr>
     <tr>
-        <!--  <th style="width: 300px">   -->
         <th class="days">
             Agenda:
         </th>
@@ -173,257 +171,8 @@
 
 </div>
 </body>
-<style>
-    table, th, td {
-        border: 1px solid #DDDDDD;
-        border-collapse: collapse;
-    }
-    th, td {
-        padding: 5px;
-        text-align: center;
-    }
-    #agenda th {
-        background-color: #F3F3F3;
-        border: 1px solid #C0C0C0;
-        text-align: center;
-        font-weight: normal;
-    }
-    td:hover {
-       background-color: #eee;
-    }
-    #closeButton {
-        margin-left: 62px;
-        text-align: start;
-        width: 15px;
-    }
-    #closeButton:hover {
-        cursor: pointer;
-    }
-    #tableheader th {
-        background-color: #dfdfdf;
-        border-bottom: 2px solid #18314F;
-        border-right: 1px solid #dfdfdf;
-    }
-    #reserveringsdiv {
-        width: max-content;
-        border: 2px solid #18314F;
-    }
-    #reserveringsknop {
-        background-color: deepskyblue;
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-    }
-    #reserveringsknop:hover {
-        background-color: #18314F;
-        padding: 16px 33px;
-        transition: 0.5s;
-    }
-    .busy {
-        background-color: red;
-    }
-    .free {
-        background-color: green;
-    }
-    .days {
-        font-size: 18px;
-    }
-    .headerrow {
-        width: 90px;
-        height: 50px;
-        font-size: 13px;
-    }
-    .headercolumn {
-        width: 70px;
-        font-size: 18px;
-    }
-</style>
-<script>
-    //toggleDisplay();
-    //TODO: afspraken van database in de agenda zetten. INPUT
-    //TODO: VAN NUMMER NAAR AFSPRAAK EN VAN AFSPRAAK NAAR NUMMER
-    const timetable = ["9:00  -  9:30",  "9:30 - 10:00",
-                     "10:00 - 10:30", "10:30 - 11:00",
-                     "11:00 - 11:30", "11:30 - 12:00",
-                     "12:00 - 12:30", "12:30 - 13:00",
-                     "13:00 - 13:30", "13:30 - 14:00",
-                     "14:00 - 14:30", "14:30 - 15:00",
-                     "15:00 - 15:30", "15:30 - 16:00",
-                     "16:00 - 16:30", "16:30 - 17:00"];
-    var index = -1;
-    for (var i = 0; i < 80; i++){
-        if (i % 5 === 0){
-            index += 1;
-        }
-        // Alle tijden worden in de tabel gezet:
-        document.getElementById("cell" + i).innerText = timetable[index];
-    }
-    initialiseCalendar(1);
-    var today = new Date();
-    function initialiseCalendar(i) {
-        switch (i) {
-            case -1: // Vorige week.
-               // today.setDate(today.getDate() - 7);
-                break;
-            case 0: // Deze week.
-             //   today = new Date();
-                break;
-            case 1: // Volgende week.
-              //  today.setDate(today.getDate() + 7);
-                break;
-        }
 
-
-        today = new Date(2020, 10, 23, 16, 37, 10, 10);
-        console.log(today);
-        let three_days_before_yesterday = new Date(today.getTime());
-        let two_days_before_yesterday = new Date(today.getTime());
-        let day_before_yesterday = new Date(today.getTime());
-        let yesterday = new Date(today.getTime());
-        let tomorrow = new Date(today.getTime());
-        let day_after_tomorrow = new Date(today.getTime());
-        let two_days_after_tomorrow = new Date(today.getTime());
-        let three_days_after_tomorrow = new Date(today.getTime());
-        let four_days_after_tomorrow = new Date(today.getTime());
-        let five_days_after_tomorrow = new Date(today.getTime());
-
-        three_days_before_yesterday.setDate(today.getDate() - 4);
-        two_days_before_yesterday.setDate(today.getDate() - 3);
-        day_before_yesterday.setDate(today.getDate() - 2);
-        yesterday.setDate(today.getDate() - 1);
-        tomorrow.setDate(today.getDate() + 1);
-        day_after_tomorrow.setDate(today.getDate() + 2);
-        two_days_after_tomorrow.setDate(today.getDate() + 3);
-        three_days_after_tomorrow.setDate(today.getDate() + 4);
-        four_days_after_tomorrow.setDate(today.getDate() + 5);
-        five_days_after_tomorrow.setDate(today.getDate() + 6);
-
-        var dates = ["1 November", "1 Januari", "1 November", "1 November", "0 November"];
-        var days = ["Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
-        // 0/2        1/3            2/4        3/5        4/6
-        switch (today.getDay()) {
-            case 0: // zondag: dus laat de volgende week zien.
-                dates[0] = day_after_tomorrow.getDate() + " " + getMonth(day_after_tomorrow.getMonth());
-                dates[1] = two_days_after_tomorrow.getDate() + " " + getMonth(two_days_after_tomorrow.getMonth());
-                dates[2] = three_days_after_tomorrow.getDate() + " " + getMonth(three_days_after_tomorrow.getMonth());
-                dates[3] = four_days_after_tomorrow.getDate() + " " + getMonth(four_days_after_tomorrow.getMonth());
-                dates[4] = five_days_after_tomorrow.getDate() + " " + getMonth(five_days_after_tomorrow.getMonth());
-                break;
-            case 1: // maandag
-                dates[0] = tomorrow.getDate() + " " + getMonth(tomorrow.getMonth());
-                dates[1] = day_after_tomorrow.getDate() + " " + getMonth(day_after_tomorrow.getMonth());
-                dates[2] = two_days_after_tomorrow.getDate() + " " + getMonth(two_days_after_tomorrow.getMonth());
-                dates[3] = three_days_after_tomorrow.getDate() + " " + getMonth(three_days_after_tomorrow.getMonth());
-                dates[4] = four_days_after_tomorrow.getDate() + " " + getMonth(four_days_after_tomorrow.getMonth());
-                break;
-            case 2: // dinsdag
-                dates[0] = today.getDate() + " " + getMonth(today.getMonth());
-                dates[1] = tomorrow.getDate() + " " + getMonth(tomorrow.getMonth());
-                dates[2] = day_after_tomorrow.getDate() + " " + getMonth(day_after_tomorrow.getMonth());
-                dates[3] = two_days_after_tomorrow.getDate() + " " + getMonth(two_days_after_tomorrow.getMonth());
-                dates[4] = three_days_after_tomorrow.getDate() + " " + getMonth(three_days_after_tomorrow.getMonth());
-                break;
-            case 3: // woensdag
-                dates[0] = yesterday.getDate() + " " + getMonth(yesterday.getMonth());
-                dates[1] = today.getDate() + " " + getMonth(today.getMonth());
-                dates[2] = tomorrow.getDate() + " " + getMonth(tomorrow.getMonth());
-                dates[3] = day_after_tomorrow.getDate() + " " + getMonth(day_after_tomorrow.getMonth());
-                dates[4] = two_days_after_tomorrow.getDate() + " " + getMonth(two_days_after_tomorrow.getMonth());
-                break;
-            case 4: // donderdag
-                dates[0] = day_before_yesterday.getDate() + " " + getMonth(day_before_yesterday.getMonth());
-                dates[1] = yesterday.getDate() + " " + getMonth(yesterday.getMonth());
-                dates[2] = today.getDate() + " " + getMonth(today.getMonth());
-                dates[3] = tomorrow.getDate() + " " + getMonth(tomorrow.getMonth());
-                dates[4] = day_after_tomorrow.getDate() + " " + getMonth(day_after_tomorrow.getMonth());
-                break;
-            case 5: // vrijdag
-                console.log("Hi!");
-                dates[0] = two_days_before_yesterday.getDate() + " " + getMonth(two_days_before_yesterday.getMonth());
-                dates[1] = day_before_yesterday.getDate() + " " + getMonth(day_before_yesterday.getMonth());
-                dates[2] = yesterday.getDate() + " " + getMonth(yesterday.getMonth());
-                dates[3] = today.getDate() + " " + getMonth(today.getMonth());
-                dates[4] = tomorrow.getDate() + " " + getMonth(today.getMonth());
-                break;
-            case 6: // zaterdag
-                dates[0] = three_days_before_yesterday.getDate() + " " + getMonth(three_days_before_yesterday.getMonth());
-                dates[1] = two_days_before_yesterday.getDate() + " " + getMonth(two_days_before_yesterday.getMonth());
-                dates[2] = day_before_yesterday.getDate() + " " + getMonth(day_before_yesterday.getMonth());
-                dates[3] = yesterday.getDate() + " " + getMonth(yesterday.getMonth());
-                dates[4] = today.getDate() + " " + getMonth(today.getMonth());
-                break;
-        }
-    }
-
-    setDay(dates);
-    function setDay(){
-        list = document.getElementsByClassName("headerrow");
-        for (var i = 0; i < list.length; i++){
-            list.item(i).innerHTML = dates[i] + "<div class=\"days\">" + days[i] +"</div>";
-        }
-    }
-
-    /**
-     * Maakt van de maand als getal een tekst output.
-     * @param i
-     * @returns {string}
-     */
-    function getMonth(i) {
-        switch (i) {
-            case 0:
-                return "Januari";
-            case 1:
-                return "Februari";
-            case 2:
-                return "Maart";
-            case 3:
-                return "April";
-            case 4:
-                return "Mei"
-            case 5:
-                return "Juni";
-            case 6:
-                return "Juli";
-            case 7:
-                return "Augustus";
-            case 8:
-                return "September";
-            case 9:
-                return "Oktober";
-            case 10:
-                return "November";
-            case 11:
-                return "December";
-        }
-    }
-    function toggleDisplay() {
-        var x = document.getElementById("reserveringsdiv");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-    function getCurrentWeek(){
-
-    }
-
-    function loadAppointments(){
-
-    }
-
-    function makeAppointment(i){
-        // 2007-05-08 12:35:29 florisgra@gmail.com
-
-        console.log("number: " + i);
-    }
-</script>
+<script src="calendar.js"></script>
 </html>
 <!---
 
