@@ -1,0 +1,31 @@
+CREATE TABLE `reservation` (
+  `id` int(11) NOT NULL,
+  `naam` tinytext NOT NULL,
+  `email` tinytext,
+  `telefoon` tinytext,
+  `begin_datum` datetime NOT NULL,
+  `eind_datum` datetime NOT NULL,
+  `kapper_id` int(11) NOT NULL,
+  `behandelings_id` varchar(45) NOT NULL,
+  `opmerking` text NOT NULL,
+  PRIMARY KEY (`id`)
+) /*!50100 TABLESPACE `innodb_system` */ ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `behandeling` (
+  `behandeling_id` int(11) NOT NULL,
+  `naam` text NOT NULL,
+  `prijs` varchar(45) NOT NULL,
+  `tijdsduur` int(11) NOT NULL,
+  PRIMARY KEY (`behandeling_id`)
+) /*!50100 TABLESPACE `innodb_system` */ ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `kapper` (
+  `kapper_id` int(11) NOT NULL,
+  `naam` tinytext NOT NULL,
+  `gebruikersnaam` varchar(45) NOT NULL,
+  `wachtwoord` varchar(45) NOT NULL,
+  `email` text NOT NULL,
+  PRIMARY KEY (`kapper_id`),
+  UNIQUE KEY `username_UNIQUE` (`gebruikersnaam`)
+) /*!50100 TABLESPACE `innodb_system` */ ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

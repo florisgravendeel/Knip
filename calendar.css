@@ -1,0 +1,87 @@
+body {
+    font-family: Calibri;
+}
+table, th, td {
+    border: 1px solid #DDDDDD;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: center;
+}
+#agenda th {
+    background-color: #F3F3F3;
+    border: 1px solid #C0C0C0;
+    text-align: center;
+    font-weight: normal;
+}
+td:hover {
+    background-color: #eee;
+    color: red;
+    cursor: pointer;
+}
+#closeButton {
+    margin-left: 62px;
+    text-align: start;
+    width: 15px;
+}
+#closeButton:hover {
+    cursor: pointer;
+}
+#tableheader th {
+    background-color: #dfdfdf;
+    border-bottom: 2px solid #18314F;
+    border-right: 1px solid #dfdfdf;
+}
+#reserveringsdiv {
+    width: max-content;
+    border: 2px solid #18314F;
+}
+#reserveringsknop {
+    background-color: deepskyblue;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+#reserveringsknop:hover {
+    background-color: #18314F;
+    padding: 16px 33px;
+    transition: 0.5s;
+}
+/*TODO: De primaire kleur van de website bepaald de kleur van de agenda! */
+.busy {
+    background-color: #333333;
+    text-decoration: line-through;
+    border: 2px solid #222222;
+}
+.busy:hover {
+    background-color: red;
+    cursor: not-allowed;
+}
+.selected {
+    border: 2px solid green;
+    background-color: #03AC13;
+}
+.selected:hover {
+    background-color: green;
+    color: green;
+}
+        /*#3CB043;*/
+.days {
+    font-size: 18px;
+}
+.headerrow {
+    width: 90px;
+    height: 50px;
+    font-size: 13px;
+}
+.headercolumn {
+    width: 70px;
+    font-size: 18px;
+}

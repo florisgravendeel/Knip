@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="calendar.css">
     <title>Reserveringssysteem</title>
 </head>
 <body>
@@ -10,14 +11,9 @@
 
 <button class="button" id="reserveringsknop" onclick="toggleDisplay()">Reserveren</button>
 <div id="reserveringsdiv">
-
-<button type="button" onclick="alert('Hello world!')">Vorige week</button>
-<button type="button" onclick="alert('Hello world!')">Volgende week</button>
-    <!-- <table id="agenda" style="width:100px"> -->
 <table id="agenda">
-    <tr>
-        <!--  <th style="width: 300px">   -->
-        <th>
+    <tr id="tableheader">
+        <th colspan="2" class="days" style="text-align: center">
             <form action="/action_page.php">
                 Kapper:
                 <select name="kappers" id="kappers">
@@ -29,218 +25,156 @@
                 </select>
             </form>
         </th>
-        <th class="headerrow">17/11/2020 <div class="days">Dinsdag</div></th>
-        <th class="headerrow">18/11/2020 <div class="days">Woensdag</div></th>
-        <th class="headerrow">19/11/2020 <div class="days">Donderdag</div></th>
-        <th class="headerrow">20/11/2020 <div class="days">Vrijdag</div></th>
-        <th class="headerrow">21/11/2020 <div class="days">Zaterdag</div></th>
+        <th colspan="4">
+            <button id="button1" type="button" onclick="selectWeek('Vorige week')" disabled>Vorige week</button>
+            <button id="button2" type="button" onclick="selectWeek('Volgende week')">Volgende week</button>
+            <button id="button3" type="button" onclick="makeAppointment()" disabled>Reserveer nu</button>
+            <img src="images/closeicon.png" id="closeButton" onclick="toggleDisplay()">
+
+        </th>
+    </tr>
+    <tr>
+        <th class="days">
+            Agenda:
+        </th>
+        <th class="headerrow">17 November <div class="days">Dinsdag</div></th>
+        <th class="headerrow">18 November <div class="days">Woensdag</div></th>
+        <th class="headerrow">19 November <div class="days">Donderdag</div></th>
+        <th class="headerrow">20 November <div class="days">Vrijdag</div></th>
+        <th class="headerrow">21 November <div class="days">Zaterdag</div></th>
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">9:00</th>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>4</td>
-        <td>5</td>
+        <td id="cell0"></td>
+        <td id="cell1"></td>
+        <td class="busy" id="cell2"></td>
+        <td class="busy" id="cell3"></td>
+        <td class="busy" id="cell4"></td>
     </tr>
     <tr>
-        <td>6</td>
-        <td>7</td>
-        <td>8</td>
-        <td>9</td>
-        <td>10</td>
+        <td id="cell5"></td>
+        <td class="busy" id="cell6"></td>
+        <td class="busy" id="cell7"></td>
+        <td class="busy" id="cell8"></td>
+        <td id="cell9"></td>
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">10:00</th>
-        <td>11</td>
-        <td>12</td>
-        <td>13</td>
-        <td>14</td>
-        <td>15</td>
+        <td id="cell10"></td>
+        <td class="selected" id="cell11"></td>
+        <td id="cell12"></td>
+        <td id="cell13"></td>
+        <td id="cell14"></td>
     </tr>
     <tr>
-        <td>16</td>
-        <td>17</td>
-        <td>18</td>
-        <td>19</td>
-        <td>20</td>
+        <td id="cell15"></td>
+        <td id="cell16"></td>
+        <td id="cell17"></td>
+        <td id="cell18"></td>
+        <td id="cell19"></td>
+
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">11:00</th>
-        <td>21</td>
-        <td>22</td>
-        <td>23</td>
-        <td>24</td>
-        <td>25</td>
+        <td id="cell20"></td>
+        <td id="cell21"></td>
+        <td class="busy" id="cell22"></td>
+        <td id="cell23"></td>
+        <td id="cell24"></td>
+
     </tr>
     <tr>
-        <td>26</td>
-        <td>27</td>
-        <td>28</td>
-        <td>29</td>
-        <td>30</td>
+        <td id="cell25"></td>
+        <td id="cell26"></td>
+        <td class="busy" id="cell27"></td>
+        <td id="cell28"></td>
+        <td id="cell29"></td>
+
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">12:00</th>
-        <td>31</td>
-        <td>32</td>
-        <td>33</td>
-        <td>34</td>
-        <td>35</td>
+        <td id="cell30"></td>
+        <td id="cell31"></td>
+        <td class="busy" id="cell32"></td>
+        <td id="cell33"></td>
+        <td id="cell34"></td>
     </tr>
     <tr>
-        <td>36</td>
-        <td>37</td>
-        <td class="busy">Bezig</td>
-        <td>39</td>
-        <td>40</td>
+        <td id="cell35"></td>
+        <td id="cell36"></td>
+        <td class="busy" id="cell37"></td>
+        <td id="cell38"></td>
+        <td id="cell39"></td>
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">13:00</th>
-        <td>41</td>
-        <td>42</td>
-        <td>43</td>
-        <td>44</td>
-        <td>45</td>
+        <td id="cell40"></td>
+        <td id="cell41"></td>
+        <td id="cell42"></td>
+        <td id="cell43"></td>
+        <td id="cell44"></td>
     </tr>
     <tr>
-        <td>46</td>
-        <td>47</td>
-        <td>48</td>
-        <td class="free">49</td>
-        <td>50</td>
+        <td id="cell45"></td>
+        <td class="busy" id="cell46"></td>
+        <td class="busy" id="cell47"></td>
+        <td class="busy" id="cell48"></td>
+        <td id="cell49"></td>
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">14:00</th>
-        <td>51</td>
-        <td>52</td>
-        <td>53</td>
-        <td>54</td>
-        <td>55</td>
+        <td id="cell50"></td>
+        <td id="cell51"></td>
+        <td id="cell52"></td>
+        <td id="cell53"></td>
+        <td id="cell54"></td>
     </tr>
     <tr>
-        <td>56</td>
-        <td>57</td>
-        <td>58</td>
-        <td>59</td>
-        <td>60</td>
+        <td class="busy" id="cell55"></td>
+        <td class="busy" id="cell56"></td>
+        <td class="busy" id="cell57"></td>
+        <td id="cell58"></td>
+        <td id="cell59"></td>
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">15:00</th>
-        <td>61</td>
-        <td>62</td>
-        <td>63</td>
-        <td>64</td>
-        <td>65</td>
+        <td id="cell60"></td>
+        <td id="cell61"></td>
+        <td id="cell62"></td>
+        <td id="cell63"></td>
+        <td id="cell64"></td>
     </tr>
     <tr>
-        <td>66</td>
-        <td>67</td>
-        <td>68</td>
-        <td>69</td>
-        <td>70</td>
+        <td id="cell65"></td>
+        <td id="cell66"></td>
+        <td id="cell67"></td>
+        <td id="cell68"></td>
+        <td id="cell69"></td>
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">16:00</th>
-        <td>71</td>
-        <td>72</td>
-        <td>73</td>
-        <td>74</td>
-        <td>75</td>
+        <td id="cell70"></td>
+        <td id="cell71"></td>
+        <td id="cell72"></td>
+        <td id="cell73"></td>
+        <td id="cell74"></td>
     </tr>
     <tr>
-        <td>76</td>
-        <td>77</td>
-        <td>780</td>
-        <td>79</td>
-        <td onclick="makeAppointment(80)">80</td>
+        <td id="cell75"></td>
+        <td id="cell76"></td>
+        <td id="cell77"></td>
+        <td id="cell78"></td>
+        <td id="cell79"></td>
     </tr>
 
 </table>
 
 </div>
 </body>
-<style>
-    table, th, td {
-        border: 1px solid #DDDDDD;
-        border-collapse: collapse;
-    }
-    th, td {
-        padding: 5px;
-        text-align: center;
-    }
-    #agenda th {
-        background-color: #F3F3F3;
-        border: 1px solid #C0C0C0;
-        text-align: center;
-        font-weight: normal;
-    }
-    td:hover {
-       background-color: #eee;
-    }
 
-    #reserveringsknop {
-        background-color: deepskyblue;
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-    }
-    #reserveringsknop:hover {
-        background-color: #18314F;
-        padding: 16px 33px;
-        transition: 0.5s;
-    }
-    .busy {
-        background-color: red;
-    }
-    .free {
-        background-color: green;
-    }
-    .days {
-        font-size: 18px;
-    }
-    .headerrow {
-        width: 80px;
-        height: 50px;
-        font-size: 13px;
-    }
-    .headercolumn {
-        width: 70px;
-        font-size: 18px;
-    }
-</style>
-<script>
-    //toggleDisplay();
-// Ik geef 80 ik krijg terug: zaterdag 16:30
-
-    //TODO: afspraken van database in de agenda zetten. INPUT
-    //TODO: VAN NUMMER NAAR AFSPRAAK EN VAN AFSPRAAK NAAR NUMMER
-
-    function toggleDisplay() {
-        var x = document.getElementById("reserveringsdiv");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-    function makeAppointment(i){
-        console.log("number: " + i);
-    }
-</script>
+<script src="calendar.js"></script>
 </html>
 <!---
-De kapper is open van 9:00 - 17:00.
-In elk halfuur kan een afspraak gepland worden.
-17-9=6
 
-12 halve uur vakken. verticaal +1 voor de dag. = 13 hoog
-5 dagen waarin de kapper open is. +1 = 6
 
 -->
