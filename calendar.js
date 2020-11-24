@@ -31,11 +31,13 @@ function selectWeek(week){
         case "Vorige week":
             enableButton(1, false);
             enableButton(2, true);
+            deselectCells();
             x = 0;
             break;
         case "Volgende week":
             enableButton(1, true);
             enableButton(2, false);
+            deselectCells();
             x = 5;
             break;
         default:
@@ -112,6 +114,13 @@ function getSelectionCells(){
     }
     return list;
 }
+function deselectCells(){
+    let cells = getSelectionCells();
+    for (i = 0; i < cells.length; i++){
+        document.getElementById("cell" + cells[i]).classList.remove("selected");
+    }
+}
+
 function isReservationValid(){
     var cells = getSelectionCells();
     if (cells.length === 1){
@@ -119,12 +128,12 @@ function isReservationValid(){
     } else if (cells.length === 2){
 
         let cell1 = document.getElementById("cell" + cells[0]);
-        var x = cell1.innerText;
+        let x = cell1.innerText;
         x = x.replaceAll(" ", "");
         let list1 = x.split("-");
 
         let cell2 = document.getElementById("cell" + cells[1]);
-        var y = cell2.innerText;
+        let y = cell2.innerText;
         y = y.replaceAll(" ", "");
         let list2 = y.split("-");
 
@@ -147,9 +156,15 @@ function hourToMinutes(string){
     }
 }
 
+
+
 function makeAppointment(){
+    let cells = getSelectionCells();
+    if (cells.length === 1){
+        console.log("213123");
+    }
     //getSelectionCells(); // A & B
-    console.log("Valid Reservation: " + isReservationValid());
+    // console.log("Valid Reservation: " + isReservationValid());
 
     // Is de tijd goed geselecteerd?
 
