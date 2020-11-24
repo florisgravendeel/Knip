@@ -1,14 +1,14 @@
 var dayjs = require('dayjs');
 dayjs().format()
+var now = new Date();
+var today = dayjs(now);
 
 var http = require('http');
 
 http.createServer(function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
 
-    var now = new Date();
-    var today = dayjs(now);
-    res.end(today);
+    res.end("123231231");
 }).listen(8080);
 
 

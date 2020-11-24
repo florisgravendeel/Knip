@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="calendar.css">
+    <link rel="stylesheet" href="css/calendar.css">
     <title>Reserveringssysteem</title>
 </head>
 <body>
@@ -14,7 +14,7 @@
 <table id="agenda">
     <tr id="tableheader">
         <th colspan="2" class="days" style="text-align: center">
-            <form action="/action_page.php">
+            <form onchange="loadAppointments()">
                 Kapper:
                 <select name="kappers" id="kappers">
                     <option value="anne">Anne</option>
@@ -30,7 +30,6 @@
             <button id="button2" type="button" onclick="selectWeek('Volgende week')">Volgende week</button>
             <button id="button3" type="button" onclick="makeAppointment()" disabled>Reserveer nu</button>
             <img src="images/closeicon.png" id="closeButton" onclick="toggleDisplay()">
-
         </th>
     </tr>
     <tr>

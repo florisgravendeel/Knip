@@ -1,30 +1,7 @@
-//toggleDisplay();
-
-const timetable = ["9:00  -  9:30",  "9:30 - 10:00",
-    "10:00 - 10:30", "10:30 - 11:00",
-    "11:00 - 11:30", "11:30 - 12:00",
-    "12:00 - 12:30", "12:30 - 13:00",
-    "13:00 - 13:30", "13:30 - 14:00",
-    "14:00 - 14:30", "14:30 - 15:00",
-    "15:00 - 15:30", "15:30 - 16:00",
-    "16:00 - 16:30", "16:30 - 17:00"];
-var index = -1;
-for (var i = 0; i < 80; i++){
-    if (i % 5 === 0){
-        index += 1;
-    }
-    // Alle tijden worden in de tabel gezet ->
-   document.getElementById("cell" + i).innerText = timetable[index];
-
-}
-//TODO: dit laden vanuit een server
-var dates = ["1 November", "1 Januari", "1 Februari", "1 November", "1 Maart",
-             "2 November", "2 Januari", "2 Februari", "2 November", "2 Maart"];
-
-const days = ["Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
-
-selectWeek("Vorige week");
-
+/**
+ * Selecteer welke week je wil reserveren.
+ * @param week
+ */
 function selectWeek(week){
     var x = 5;
     switch (week) {
@@ -50,10 +27,18 @@ function selectWeek(week){
     }
 }
 
+/**
+ * Disable een van de 3 knoppen van de agenda.
+ * @param i Knop 1 t/m 3
+ * @param status Knop is enabled of gedisabled.
+ */
 function enableButton(i, status){
     document.getElementById("button" + i).disabled = !status;
 }
 
+/**
+ * Maak de agenda zichtbaar of onzichtbaar.
+ */
 function toggleDisplay() {
     var x = document.getElementById("reserveringsdiv");
     if (x.style.display === "none") {
@@ -62,26 +47,24 @@ function toggleDisplay() {
         x.style.display = "none";
     }
 }
-// One line function: voegt css toe!
+
+/**
+ * Voeg CSS toe via deze functie.
+ * @param s Een string CSS
+ */
 const addCSS = s =>(d=>{d.head.appendChild(d.createElement("style")).innerHTML=s})(document);
 
 
-for (i = 0; i < 80; i++){
-    var cell = document.getElementById("cell" + i);
-    cell.style.color = "white";
-    cell.onclick = function () {
-        selectCell(this);
-    }
-    var css = "#cell" + i + ":hover { color: black !important; }";
-    addCSS(css);
-}
 
-/* Er mogen max. 2 cellen geselecteerd zijn. Reserveren kan met 1 tijdhok, maar ook met 2 tijdhokken. */
+/**
+ * Deze functie wordt omgeroepen wanneer iemand op een cell in de tabel klikt.
+ * @param tableCell De cell waarop geklikt wordt.
+ */
 function selectCell(tableCell) {
     bool = tableCell.id.includes("cell");
     if (bool) {
         if (!tableCell.classList.contains("selected") && !tableCell.classList.contains("busy")){
-            if (countSelectedCells() >= 2){
+            if (countSelectedCells() >= 2){ // Er mogen max. 2 cellen geselecteerd zijn. Reserveren kan met 1 tijdhok, maar ook met 2 tijdhokken.
                 alert("Je kan maximaal 2 tijdvakken selecteren.");
                 return;
             }
@@ -96,6 +79,10 @@ function selectCell(tableCell) {
     }
 }
 
+/**
+ * Deze functie geeft de hoeveelheid geselecteerde cellen aan.
+ * @returns {number} het aantal cellen.
+ */
 function countSelectedCells() {
     var count = 0;
     for (i = 0; i < 80; i++) {
@@ -105,6 +92,11 @@ function countSelectedCells() {
     }
     return count;
 }
+
+/**
+ * Deze functie geeft de ID's van alle geselecteerde cellen.
+ * @returns {[]} een array van de ID's
+ */
 function getSelectionCells(){
     var list = [];
     for (i = 0; i < 80; i++) {
@@ -114,6 +106,10 @@ function getSelectionCells(){
     }
     return list;
 }
+
+/**
+ * Deze functie maakt de selectie cellen ongedaan.
+ */
 function deselectCells(){
     let cells = getSelectionCells();
     for (i = 0; i < cells.length; i++){
@@ -121,6 +117,10 @@ function deselectCells(){
     }
 }
 
+/**
+ * Deze functie geeft weer of de 2 tijdvakken juist of onjuist onder elkaar staan.
+ * @returns {boolean|boolean} True bij een valide reservering.
+ */
 function isReservationValid(){
     var cells = getSelectionCells();
     if (cells.length === 1){
@@ -149,6 +149,12 @@ function isReservationValid(){
     // Check with Http request whether there already is such a appointment
     return false;
 }
+
+/**
+ * Rekent de uren om naar minuten.
+ * @param string Voorbeeld: 10:30
+ * @returns {number} Voorbeeld: 10:30 -> 630 minuten.
+ */
 function hourToMinutes(string){
     split = string.split(':');
     if (split.length === 2){
@@ -156,17 +162,249 @@ function hourToMinutes(string){
     }
 }
 
+/**
+ * Deze functie geeft weer welke dag van de week de reservering is gemaakt.
+ * @returns {string} Voorbeeld: Dinsdag
+ */
+function getRelativeDay() {
+    let cells = getSelectionCells();
+    const tuesday = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75];
+    const wednesday = [1, 6, 11, 16, 21, 26, 31, 36, 41, 46, 51, 56, 61, 66, 71, 76];
+    const thursday = [2, 7, 12, 17, 22, 27, 32, 37, 42, 47, 52, 57, 62, 67, 72, 77];
+    const friday = [3, 8, 13, 18, 23, 28, 33, 38, 43, 48, 53, 58, 63, 68, 73, 78];
+    const saturday = [4, 9, 14, 19, 24, 29, 34, 39, 44, 49, 54, 59, 64, 69, 74, 79];
 
+    if (cells.length >= 1) {
+        if (tuesday.includes(cells[0])) {
+            return "Dinsdag";
+        } else if (wednesday.includes(cells[0])) {
+            return "Woensdag";
+        } else if (thursday.includes(cells[0])) {
+            return "Donderdag";
+        } else if (friday.includes(cells[0])) {
+            return "Vrijdag";
+        } else if (saturday.includes(cells[0])) {
+            return "Zaterdag";
+        }
+    }
+}
+
+/**
+ * Deze functie geeft weer in welke van de 2 weken de reservering is gemaakt.
+ * @returns {string} Week 1 of Week 2.
+ */
+function getRelativeWeek(){
+    bool = document.getElementById("button1").disabled;
+    if (bool){
+        return "Week 1";
+    } else {
+        return "Week 2";
+    }
+}
+
+/**
+ * Deze functie zet de namen van de maanden om naar getallen.
+ * @param month Voorbeeld: November
+ * @returns {number} -> 11
+ */
+function getMonth(month){
+    switch (month){
+        case "Januari":
+            return 1;
+        case "Februari":
+            return 2;
+        case "Maart":
+            return 3;
+        case "April":
+            return 4;
+        case "Mei":
+            return 5;
+        case "Juni":
+            return 6;
+        case "Juli":
+            return 7;
+        case "Augustus":
+            return 8;
+        case "September":
+            return 9;
+        case "Oktober":
+            return 10;
+        case "November":
+            return 11;
+        case "December":
+            return 12;
+
+    }
+}
+
+/**
+ * Deze functie maakt en geeft een Timestamp van de reservering.
+ * @param str 'start' voor de begin van de Timestamp en 'end' voor het einde van de Timestamp.
+ * @returns {string} Voorbeeld: 11:00:00
+ */
+function getTime(str){
+    let cells = getSelectionCells();
+    var time = "";
+    switch (str){
+        case "start":
+            time = document.getElementById("cell" + cells[0]).innerText.split(" - ")[0];
+            break;
+        case "end":
+            if (cells.length === 2){
+                time = document.getElementById("cell" + cells[1]).innerText.split(" - ")[1];
+            } else {
+                time = document.getElementById("cell" + cells[0]).innerText.split(" - ")[1];
+            }
+            break;
+    }
+    return time + ":00";
+}
+
+/**
+ * Deze functie geeft twee DateTime's weer. Het begin en het einde.
+ * Dit wordt gebruikt voor communicatie tussen client en server.
+ */
+function getDate(){
+    var index = 0;
+    switch (getRelativeWeek()){
+        case "Week 1":
+            index = 0;
+            break;
+        case "Week 2":
+            index = 5;
+            break;
+        default:
+            break;
+    }
+    switch (getRelativeDay()){
+        case "Dinsdag":
+            index += 0;
+            break;
+        case "Woensdag":
+            index += 1;
+            break;
+        case "Donderdag":
+            index += 2;
+            break;
+        case "Vrijdag":
+            index += 3;
+            break;
+        case "Zaterdag":
+            index += 4;
+            break;
+        default:
+            break;
+    }
+    let dateArray = dates[index].split(" ");
+    let day = dateArray[0];
+    let month = getMonth(dateArray[1]);
+    let year = new Date().getFullYear();
+    let date = day + "/" + month + "/" + year;
+    let start_date = date + " " + getTime("start");
+    let end_date   = date + " " + getTime("end");
+    console.log(getBarber() + " - Start: " + start_date + " Einde: " + end_date);
+
+}
+
+/**
+ * Geeft weer welke kapper is geselecteerd.
+ * @returns {*}
+ */
+function getBarber(){
+    barber = document.getElementById("kappers").value;
+    return barber;
+}
 
 function makeAppointment(){
-    let cells = getSelectionCells();
-    if (cells.length === 1){
-        console.log("213123");
+        getDate();
     }
-    //getSelectionCells(); // A & B
-    // console.log("Valid Reservation: " + isReservationValid());
 
-    // Is de tijd goed geselecteerd?
+function loadAppointments(){
 
-    // 2007-05-08 12:35:29 florisgra@gmail.com
+}
+
+/*
+                                             ,-.
+                                          _.|  '
+                                        .'  | /
+                                      ,'    |'
+                                     /      /
+                       _..----""---.'      /
+ _.....---------...,-""                  ,'
+ `-._  \                                /
+     `-.+_            __           ,--. .
+          `-.._     .:  ).        (`--"| \
+               7    | `" |         `...'  \
+               |     `--'     '+"        ,". ,""-
+               |   _...        .____     | |/    '
+          _.   |  .    `.  '--"   /      `./     j
+         \' `-.|  '     |   `.   /        /     /
+         '     `-. `---"      `-"        /     /
+          \       `.                  _,'     /
+           \        `                        .
+            \                                j
+             \                              /
+              `.                           .
+                +                          \
+                |                           L
+                |                           |
+                |  _ /,                     |
+                | | L)'..                   |
+                | .    | `                  |
+                '  \'   L                   '
+                 \  \   |                  j
+                  `. `__'                 /
+                _,.--.---........__      /
+               ---.,'---`         |   -j"
+                .-'  '....__      L    |
+              ""--..    _,-'       \ l||
+                  ,-'  .....------. `||'
+               _,'                /
+             ,'                  /
+            '---------+-        /
+                     /         /
+                   .'         /
+                 .'          /
+               ,'           /
+             _'....----""""" mh
+
+Code initialiseren:
+ */
+
+toggleDisplay();
+
+const timetable =
+        ["9:00  -  9:30",  "9:30 - 10:00",
+         "10:00 - 10:30", "10:30 - 11:00",
+        "11:00 - 11:30", "11:30 - 12:00",
+        "12:00 - 12:30", "12:30 - 13:00",
+        "13:00 - 13:30", "13:30 - 14:00",
+        "14:00 - 14:30", "14:30 - 15:00",
+        "15:00 - 15:30", "15:30 - 16:00",
+        "16:00 - 16:30", "16:30 - 17:00"];
+var index = -1;
+for (var i = 0; i < 80; i++){
+    if (i % 5 === 0){
+        index += 1;
+    }
+    // Allen tijden worden in de tabel gezet ->
+    document.getElementById("cell" + i).innerText = timetable[index];
+
+}
+//TODO: dit laden vanuit een server
+var dates = ["17 November", "18 November", "19 November", "20 November", "21 Maart",
+    "24 November", "25 November", "26 November", "27 November", "28 November"];
+
+const days = ["Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
+
+selectWeek("Vorige week");
+
+for (i = 0; i < 80; i++){
+    var cell = document.getElementById("cell" + i);
+    cell.style.color = "white";
+    cell.onclick = function () {
+        selectCell(this);
+    }
+    var css = "#cell" + i + ":hover { color: black !important; }";
+    addCSS(css);
 }
