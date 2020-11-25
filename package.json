@@ -6,9 +6,7 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {
-    "dayjs": "^1.9.6"
-  },
+  "dependencies": {},
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

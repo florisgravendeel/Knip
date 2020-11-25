@@ -392,7 +392,7 @@ for (var i = 0; i < 80; i++){
 
 }
 //TODO: dit laden vanuit een server
-var dates = ["17 November", "18 November", "19 November", "20 November", "21 Maart",
+var dates = ["17 November", "18 November", "19 November", "20 November", "21 November",
     "24 November", "25 November", "26 November", "27 November", "28 November"];
 
 const days = ["Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
