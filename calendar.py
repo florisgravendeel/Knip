@@ -1,10 +1,11 @@
-
 import time
 import locale
 import datetime
 
 def getCalendarDates():
-    locale.setlocale(locale.LC_TIME, "nl")  # Zet de taal op z'n Hollands
+    #locale.setlocale(locale.LC_TIME, "nl")
+        # Zet de taal op z'n Hollands
+    locale.setlocale(locale.LC_ALL, 'nl_NL')
 
     days = []
     weekday = (time.strftime("%A"))  # Voorbeeld: maandag
