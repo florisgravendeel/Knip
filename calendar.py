@@ -4,7 +4,7 @@ import datetime
 
 def getCalendarDates():
     #locale.setlocale(locale.LC_TIME, "nl")
-        # Zet de taal op z'n Hollands
+    # Zet de taal op z'n Hollands
     locale.setlocale(locale.LC_ALL, 'nl_NL')
 
     days = []
@@ -87,3 +87,5 @@ def format_dates(dates):
 
 if __name__ == '__main__':
     getCalendarDates()
+
+    print(get_date(0))
