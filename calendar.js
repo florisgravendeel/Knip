@@ -391,9 +391,68 @@ for (var i = 0; i < 80; i++){
     document.getElementById("cell" + i).innerText = timetable[index];
 
 }
+
+function getOpeningHours() {
+    const url='http://127.0.0.1:5000/weekdagen';
+    Http.open("GET", url);
+    Http.send();
+
+    Http.onreadystatechange = (e) => {
+        console.log(Http.responseText)
+    }
+    return undefined;
+}
+
 //TODO: dit laden vanuit een server
-var dates = ["17 November", "18 November", "19 November", "20 November", "21 November",
-    "24 November", "25 November", "26 November", "27 November", "28 November"];
+const dates =
+    ["17 Januari", "18 Januari", "19 Januari", "20 Januari", "21 Januari",
+    "24 Januari", "25 Januari", "26 Januari", "27 Januari", "28 Januari"];
+//getOpeningHours();
+
+
+/*const Http = new XMLHttpRequest();
+const url='http://127.0.0.1:5000/weekdagen';
+Http.open("GET", url);
+Http.send();
+
+Http.onreadystatechange = (e) => {
+    console.log(Http.responseText)
+}
+var text = '{"opening_hours":["24 november","25 november","26 november","27 november","28 november","1 december","2 december","3 december","4 december","5 december"]}';
+let object = JSON.parse(text);
+console.log(object.opening_hours);
+*/
+
+function getJSON(url) {
+    const Http = new XMLHttpRequest();
+    Http.open("GET", url);
+    Http.send();
+
+    Http.onreadystatechange = (e) => {
+        return Http.responseText
+    }
+}
+
+loadDoc("http://127.0.0.1:5000/weekdagen", myFunction2);
+
+function loadDoc(url, cFunction) {
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            cFunction(this);
+        }
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send();
+}
+
+function myFunction1(xhttp) {
+    // action goes here
+    xhttp.responseText
+}
+
+
 
 const days = ["Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
 
