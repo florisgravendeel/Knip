@@ -3,58 +3,81 @@ import locale
 import datetime
 
 class CustomerCalendar(object):
+
+    # full_date_format 21/12/20
+    # day_month_format 24 november
     @staticmethod
     def getOpeningHours():
         # Zet de taal op z'n Hollands
         locale.setlocale(locale.LC_ALL, 'nl_NL')
 
-        days = []
+        day_month_array = []
+        full_date_array = []
         weekday = (time.strftime("%A"))  # Voorbeeld: maandag
         if weekday == "maandag":
-            array = format_dates(get_dates(1, 5))
-            days.extend(array)
+            dates = get_dates(1, 5)
+            day_month_array = format_to_day_month_list(dates)
+            full_date_array = format_to_full_date_list(dates)
 
-            array = format_dates(get_dates(8, 12))
-            days.extend(array)
+            dates = get_dates(8, 12)
+            day_month_array.extend(format_to_day_month_list(dates))
+            full_date_array.extend(format_to_full_date_list(dates))
         elif weekday == "dinsdag":
-            array = format_dates(get_dates(0, 4))
-            days.extend(array)
+            dates = get_dates(0, 4)
+            day_month_array = format_to_day_month_list(dates)
+            full_date_array = format_to_full_date_list(dates)
 
-            array = format_dates(get_dates(7, 11))
-            days.extend(array)
+            dates = get_dates(7, 11)
+            day_month_array.extend(format_to_day_month_list(dates))
+            full_date_array.extend(format_to_full_date_list(dates))
         elif weekday == "woensdag":
-            array = format_dates(get_dates(-1, 3))
-            days.extend(array)
+            dates = get_dates(-1, 3)
 
-            array = format_dates(get_dates(6, 10))
-            days.extend(array)
+            day_month_array = format_to_day_month_list(dates)
+            full_date_array = format_to_full_date_list(dates)
+
+            dates = get_dates(6, 10)
+            day_month_array.extend(format_to_day_month_list(dates))
+            full_date_array.extend(format_to_full_date_list(dates))
         elif weekday == "donderdag":
-            array = format_dates(get_dates(-2, 2))
-            days.extend(array)
+            dates = get_dates(-2, 2)
 
-            array = format_dates(get_dates(5, 9))
-            days.extend(array)
+            day_month_array = format_to_day_month_list(dates)
+            full_date_array = format_to_full_date_list(dates)
+
+            dates = get_dates(5, 9)
+            day_month_array.extend(format_to_day_month_list(dates))
+            full_date_array.extend(format_to_full_date_list(dates))
 
         elif weekday == "vrijdag":
-            array = format_dates(get_dates(-3, 1))
-            days.extend(array)
+            dates = get_dates(-3, 1)
 
-            array = format_dates(get_dates(4, 8))
-            days.extend(array)
+            day_month_array = format_to_day_month_list(dates)
+            full_date_array = format_to_full_date_list(dates)
+
+            dates = get_dates(4, 8)
+            day_month_array.extend(format_to_day_month_list(dates))
+            full_date_array.extend(format_to_full_date_list(dates))
         elif weekday == "zaterdag":
-            array = format_dates(get_dates(-4, 0))
-            days.extend(array)
+            dates = get_dates(-4, 0)
+            day_month_array = format_to_day_month_list(dates)
+            full_date_array = format_to_full_date_list(dates)
 
-            array = format_dates(get_dates(3, 7))
-            days.extend(array)
+            dates = get_dates(3, 7)
+            day_month_array.extend(format_to_day_month_list(dates))
+            full_date_array.extend(format_to_full_date_list(dates))
 
         elif weekday == "zondag":
-            array = format_dates(get_dates(2, 6))
-            days.extend(array)
+            dates = get_dates(2, 6)
+            day_month_array = format_to_day_month_list(dates)
+            full_date_array = format_to_full_date_list(dates)
 
-            array = format_dates(get_dates(9, 13))
-            days.extend(array)
-        return days
+            dates = get_dates(9, 13)
+            day_month_array.extend(format_to_day_month_list(dates))
+            full_date_array.extend(format_to_full_date_list(dates))
+
+        calender_dict = {"day_month_format": day_month_array, "full_date_format": full_date_array}
+        return calender_dict
 
 def get_date(i):
     date_original = datetime.datetime.now() # debug: datetime.date(2020, 11, 23)
@@ -71,15 +94,25 @@ def get_dates(min, max):
         dates.append(get_date(x))
     return dates
 
-def format_date(date):
+def format_to_full_date(date):
+    format_date1 = (date.strftime("%d/%m/%y"))  #(date.strftime("%x"))
+    return format_date1
+
+def format_to_full_date_list(dates):
+    output = []
+    for date in dates:
+        output.append(format_to_full_date(date))
+    return output
+
+def format_to_day_month(date):
     format_date1 = (date.strftime("%d %B"))
     if format_date1[0] == "0":
         # Haalt de overbodige nullen weg. 05 december -> 5 december
         format_date1 = format_date1[1:len(format_date1)]
     return format_date1
 
-def format_dates(dates):
+def format_to_day_month_list(dates):
     output = []
     for date in dates:
-        output.append(format_date(date))
+        output.append(format_to_day_month(date))
     return output

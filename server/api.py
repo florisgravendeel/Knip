@@ -28,24 +28,19 @@ def get():
                 for i, value in enumerate(row)) for row in cur.fetchall()]
     return jsonify({'myCollection': r})
 
-@app.route("/weekdagen")
+@app.route("/openingstijden")
 def get_opening_hours():
-    return jsonify({'opening_hours': CustomerCalendar.getOpeningHours()})
+    return jsonify({'opening_hours_dm': CustomerCalendar.getOpeningHours()["day_month_format"], 'opening_hours_fd': CustomerCalendar.getOpeningHours()["full_date_format"]})
 
 @app.route('/behandeling')
 def behandeling():
     cur = mysql.connect().cursor()
     cur.execute('select * from reservation')
     r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-    #print(len(r))
-    for x in range(len(r)):
-        print(r[x])
-
     return jsonify({'reserveringen': r})
 
 if __name__ == '__main__':
     app.run()
-
     #cur = mysql.connect().cursor()
     #cur.execute('select * from reservation')
     #r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]

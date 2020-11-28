@@ -38,3 +38,7 @@ CREATE TABLE `reservation` (
   CONSTRAINT `foreignkey_kapper` FOREIGN KEY (`kapper_id`) REFERENCES `kapper` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `foreingkey_behandeling` FOREIGN KEY (`behandelings_id`) REFERENCES `behandeling` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) /*!50100 TABLESPACE `innodb_system` */ ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+server: wesleyv.mysql.database.azure.com
+user: wesleyvuong@wesleyv
+remember pass: + USA 8 & 4 drip { > , music FRUIT EGG 9 COFFEE } EGG
