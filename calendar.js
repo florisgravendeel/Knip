@@ -392,54 +392,21 @@ for (var i = 0; i < 80; i++){
 
 }
 
-function getOpeningHours() {
-    const url='http://127.0.0.1:5000/weekdagen';
-    Http.open("GET", url);
-    Http.send();
-
-    Http.onreadystatechange = (e) => {
-        console.log(Http.responseText)
-    }
-    return undefined;
-}
-
 //TODO: dit laden vanuit een server
-const dates =
-    ["17 Januari", "18 Januari", "19 Januari", "20 Januari", "21 Januari",
-    "24 Januari", "25 Januari", "26 Januari", "27 Januari", "28 Januari"];
-//getOpeningHours();
+let dates =
+    ['1 december', '2 december', '3 december', '4 december', '5 december', '8 december', '9 december', '10 december', '11 december', '12 december']
 
 
-/*const Http = new XMLHttpRequest();
-const url='http://127.0.0.1:5000/weekdagen';
-Http.open("GET", url);
-Http.send();
-
-Http.onreadystatechange = (e) => {
-    console.log(Http.responseText)
+function getOpeningHours(){
+    return fetch(`http://127.0.0.1:5000/openingstijden`)
+        .then(x => x.json());
 }
-var text = '{"opening_hours":["24 november","25 november","26 november","27 november","28 november","1 december","2 december","3 december","4 december","5 december"]}';
-let object = JSON.parse(text);
-console.log(object.opening_hours);
-*/
-
-function getJSON(url) {
-    const Http = new XMLHttpRequest();
-    Http.open("GET", url);
-    Http.send();
-
-    Http.onreadystatechange = (e) => {
-        return Http.responseText
-    }
-}
-
-loadDoc("http://127.0.0.1:5000/weekdagen", myFunction2);
 
 function loadDoc(url, cFunction) {
     var xhttp;
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if (this.readyState === 4 && this.status === 200) {
             cFunction(this);
         }
     };
@@ -447,12 +414,22 @@ function loadDoc(url, cFunction) {
     xhttp.send();
 }
 
-function myFunction1(xhttp) {
-    // action goes here
-    xhttp.responseText
+function setOpeningHours(xhttp) {
+    let text = xhttp.responseText;
+    let jObject = JSON.parse(text);
+    dates = jObject.opening_hours_dm;
 }
 
+const getData1 = async () => {
+    try {
+        const response = await fetch("http://127.0.0.1:5000/openingstijden")
+        const data = await response.json()
+        dates = data.opening_hours_dm;
 
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 const days = ["Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
 
