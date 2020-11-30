@@ -20,6 +20,7 @@ function selectWeek(week){
         default:
             break;
     }
+    const days = ["Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
     // Agenda-header inladen:
     list = document.getElementsByClassName("headerrow");
     for (var i = 0; i < list.length; i++){
@@ -392,15 +393,28 @@ for (var i = 0; i < 80; i++){
 
 }
 
-//TODO: dit laden vanuit een server
-let dates =
-    ['1 december', '2 december', '3 december', '4 december', '5 december', '8 december', '9 december', '10 december', '11 december', '12 december']
+let dates;
+    //= ['1 december', '2 december', '3 december', '4 december', '5 december', '8 december', '9 december', '10 december', '11 december', '12 december']
+
+async function getDatesfromServer() {
+    try {
+        const response = await fetch("http://127.0.0.1:5000/openingstijden")
+        const data = await response.json()
+        dates = data.opening_hours_dm;
+        selectWeek("Vorige week");
+    } catch (err) {
+        console.log(err)
+    }
+}
+getDatesfromServer();
 
 
 function getOpeningHours(){
     return fetch(`http://127.0.0.1:5000/openingstijden`)
         .then(x => x.json());
 }
+
+//loadDoc("http://127.0.0.1:5000/openingstijden", setOpeningHours())
 
 function loadDoc(url, cFunction) {
     var xhttp;
@@ -417,23 +431,11 @@ function loadDoc(url, cFunction) {
 function setOpeningHours(xhttp) {
     let text = xhttp.responseText;
     let jObject = JSON.parse(text);
-    dates = jObject.opening_hours_dm;
+    console.log(jObject.opening_hours_dm);
+    console.log(" test 1 2 3 ");
 }
 
-const getData1 = async () => {
-    try {
-        const response = await fetch("http://127.0.0.1:5000/openingstijden")
-        const data = await response.json()
-        dates = data.opening_hours_dm;
 
-    } catch (err) {
-        console.log(err)
-    }
-}
-
-const days = ["Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
-
-selectWeek("Vorige week");
 
 for (i = 0; i < 80; i++){
     var cell = document.getElementById("cell" + i);
