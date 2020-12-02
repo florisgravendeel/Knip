@@ -309,8 +309,8 @@ function getDate(){
  * @returns {*}
  */
 function getBarber(){
-    barber = document.getElementById("kappers").value;
-    return barber;
+    //barber = document.getElementById("kappers").value;
+    return "barber";
 }
 
 /**
@@ -455,6 +455,11 @@ for (i = 0; i < 80; i++){
     cell.onclick = function () {
         selectCell(this);
     }
-    var css = "#cell" + i + ":hover { color: black !important; }";
+    var css = "#cell" + i + ":hover { " +
+        "color: black !important; " +
+        "}" +
+        "#cell" + i + "{ " +
+        "font-size: 15.35px; !important " +
+        "}";
     addCSS(css);
 }
