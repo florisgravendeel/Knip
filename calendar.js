@@ -55,8 +55,6 @@ function toggleDisplay() {
  */
 const addCSS = s =>(d=>{d.head.appendChild(d.createElement("style")).innerHTML=s})(document);
 
-
-
 /**
  * Deze functie wordt omgeroepen wanneer iemand op een cell in de tabel klikt.
  * @param tableCell De cell waarop geklikt wordt.
@@ -64,7 +62,7 @@ const addCSS = s =>(d=>{d.head.appendChild(d.createElement("style")).innerHTML=s
 function selectCell(tableCell) {
     bool = tableCell.id.includes("cell");
     if (bool) {
-        if (!tableCell.classList.contains("selected") && !tableCell.classList.contains("busy")){
+        if (!tableCell.classList.contains("selected") && !tableCell.classList.contains("unavailable")){
             if (countSelectedCells() >= 2){ // Er mogen max. 2 cellen geselecteerd zijn. Reserveren kan met 1 tijdhok, maar ook met 2 tijdhokken.
                 alert("Je kan maximaal 2 tijdvakken selecteren.");
                 return;
@@ -210,29 +208,29 @@ function getRelativeWeek(){
  */
 function getMonth(month){
     switch (month){
-        case "Januari":
+        case "januari":
             return 1;
-        case "Februari":
+        case "februari":
             return 2;
-        case "Maart":
+        case "maart":
             return 3;
-        case "April":
+        case "april":
             return 4;
-        case "Mei":
+        case "mei":
             return 5;
-        case "Juni":
+        case "juni":
             return 6;
-        case "Juli":
+        case "juli":
             return 7;
-        case "Augustus":
+        case "augustus":
             return 8;
-        case "September":
+        case "september":
             return 9;
-        case "Oktober":
+        case "oktober":
             return 10;
-        case "November":
+        case "november":
             return 11;
-        case "December":
+        case "december":
             return 12;
 
     }
@@ -304,7 +302,6 @@ function getDate(){
     let start_date = date + " " + getTime("start");
     let end_date   = date + " " + getTime("end");
     console.log(getBarber() + " - Start: " + start_date + " Einde: " + end_date);
-
 }
 
 /**
@@ -315,6 +312,43 @@ function getBarber(){
     barber = document.getElementById("kappers").value;
     return barber;
 }
+
+/**
+ * Verwijderd alle afspraken van de agenda, waardoor je start met een blanco agenda.
+ */
+function removeAllUnavailableHours() {
+    for (i=0; i < 80; i++){
+        setCelltoUnavailable([i], false);
+    }
+}
+/**
+ * Deze functie zet een bepaald tijdvak (cell) op 'unavailable', waardoor je niet meer kan reserveren op het gegeven tijdvak.
+ * @param number cell 0-79
+ * @param bool true = 'unavailable' false = 'available'
+ */
+function setCelltoUnavailable(number, bool) {
+    let className = "unavailable";
+    let cell = document.getElementById("cell" + number)
+    if (bool) {
+        if (!cell.classList.contains(className)) {
+            cell.classList.add(className);
+        }
+    } else {
+        if (cell.classList.contains(className)) {
+            cell.classList.remove(className);
+        }
+    }
+}
+/**
+ * Deze functie zet bepaalde tijdvakken op 'bezig' op basis van een lijst cellnummers.
+ * @param cells 0-79 (array)
+ */
+function setCellsToUnavailable(cells){
+    for (i=0; i < cells.length; i++){
+        setCelltoUnavailable(cells[i], true);
+    }
+}
+
 
 function makeAppointment(){
         getDate();
@@ -370,19 +404,18 @@ function loadAppointments(){
              _'....----""""" mh
 
 Code initialiseren:
+toggleDisplay();
  */
 
-toggleDisplay();
-
 const timetable =
-        ["9:00  -  9:30",  "9:30 - 10:00",
+         ["9:00 -  9:30",  "9:30 - 10:00",
          "10:00 - 10:30", "10:30 - 11:00",
-        "11:00 - 11:30", "11:30 - 12:00",
-        "12:00 - 12:30", "12:30 - 13:00",
-        "13:00 - 13:30", "13:30 - 14:00",
-        "14:00 - 14:30", "14:30 - 15:00",
-        "15:00 - 15:30", "15:30 - 16:00",
-        "16:00 - 16:30", "16:30 - 17:00"];
+         "11:00 - 11:30", "11:30 - 12:00",
+         "12:00 - 12:30", "12:30 - 13:00",
+         "13:00 - 13:30", "13:30 - 14:00",
+         "14:00 - 14:30", "14:30 - 15:00",
+         "15:00 - 15:30", "15:30 - 16:00",
+         "16:00 - 16:30", "16:30 - 17:00"];
 var index = -1;
 for (var i = 0; i < 80; i++){
     if (i % 5 === 0){
@@ -408,35 +441,14 @@ async function getDatesfromServer() {
 }
 getDatesfromServer();
 
-
-function getOpeningHours(){
-    return fetch(`http://127.0.0.1:5000/openingstijden`)
-        .then(x => x.json());
-}
-
-//loadDoc("http://127.0.0.1:5000/openingstijden", setOpeningHours())
-
-function loadDoc(url, cFunction) {
-    var xhttp;
-    xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            cFunction(this);
-        }
-    };
-    xhttp.open("GET", url, true);
-    xhttp.send();
-}
-
-function setOpeningHours(xhttp) {
-    let text = xhttp.responseText;
-    let jObject = JSON.parse(text);
-    console.log(jObject.opening_hours_dm);
-    console.log(" test 1 2 3 ");
-}
+let busyHours = [0,1,5,3,12,22,33,42,44,45,52,53,60,66,78,79];
 
 
 
+removeAllUnavailableHours();
+setCellsToUnavailable(busyHours);
+
+// Voeg CSS/JS toe aan de tijdvakken (HTML: cell0 - cell79)
 for (i = 0; i < 80; i++){
     var cell = document.getElementById("cell" + i);
     cell.style.color = "white";

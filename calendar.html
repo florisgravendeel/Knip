@@ -3,58 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/calendar.css">
+    <link rel="stylesheet" href="css/buttons.css" type="text/css">
     <title>Reserveringssysteem</title>
 </head>
 <body>
-<h2>Reserveringstabel</h2>
-<p>Simpele weergave:</p>
+<h2>Dit is ons team!</h2>
+<p>Door wie zou je geknipt willen worden?</p>
 
-<button class="button" id="reserveringsknop" onclick="toggleDisplay()">Reserveren</button>
+<div style="display: flex;">
+    <div id="square1" class="square" style="background-color: red">Optie 1</div>
+
+    <div id="square2" class="square" style="background-color: blue" >Optie 2</div>
+
+    <div id="square3" class="square" style="background-color: yellow" >Optie 3</div>
+
+    <div id="square4" class="square" style="background-color: purple" >Optie 4</div>
+</div>
+
+<h2>Wanneer zou je langs willen komen?</h2>
+<p>Kies een tijd en datum hieronder in de agenda:</p>
+
 <div id="reserveringsdiv">
 <table id="agenda">
     <tr id="tableheader">
         <th colspan="2" class="days" style="text-align: center">
-            <form onchange="loadAppointments()">
-                Kapper:
-                <select name="kappers" id="kappers">
-                    <option value="anne">Anne</option>
-                    <option value="richard">Richard</option>
-                    <option value="emma">Emma</option>
-                    <option value="luuk">Luuk</option>
-                    <option value="tijn">Tijn</option>
-                </select>
-            </form>
+            <button id="button1" class="minimal" type="button" onclick="selectWeek('Vorige week')" disabled>Vorige week</button>
         </th>
-        <th colspan="4">
-            <button id="button1" type="button" onclick="selectWeek('Vorige week')" disabled>Vorige week</button>
-            <button id="button2" type="button" onclick="selectWeek('Volgende week')">Volgende week</button>
-            <button id="button3" type="button" onclick="makeAppointment()" disabled>Reserveer nu</button>
-            <img src="images/closeicon.png" id="closeButton" onclick="toggleDisplay()">
+        <th colspan="2" class="days" style="text-align: center">
+
+        </th>
+        <th colspan="2">
+            <button id="button2" class="minimal" type="button" onclick="selectWeek('Volgende week')">Volgende week</button>
         </th>
     </tr>
     <tr>
         <th class="days">
             Agenda:
         </th>
-        <th class="headerrow">17 November <div class="days">Dinsdag</div></th>
-        <th class="headerrow">18 November <div class="days">Woensdag</div></th>
-        <th class="headerrow">19 November <div class="days">Donderdag</div></th>
-        <th class="headerrow">20 November <div class="days">Vrijdag</div></th>
-        <th class="headerrow">21 November <div class="days">Zaterdag</div></th>
+        <th class="headerrow"><div class="days">Dinsdag</div></th>
+        <th class="headerrow"><div class="days">Woensdag</div></th>
+        <th class="headerrow"><div class="days">Donderdag</div></th>
+        <th class="headerrow"><div class="days">Vrijdag</div></th>
+        <th class="headerrow"><div class="days">Zaterdag</div></th>
     </tr>
     <tr>
         <th class="headercolumn" rowspan="2">9:00</th>
         <td id="cell0"></td>
         <td id="cell1"></td>
-        <td class="busy" id="cell2"></td>
-        <td class="busy" id="cell3"></td>
-        <td class="busy" id="cell4"></td>
+        <td class="unavailable" id="cell2"></td>
+        <td class="unavailable" id="cell3"></td>
+        <td class="unavailable" id="cell4"></td>
     </tr>
     <tr>
         <td id="cell5"></td>
-        <td class="busy" id="cell6"></td>
-        <td class="busy" id="cell7"></td>
-        <td class="busy" id="cell8"></td>
+        <td class="unavailable" id="cell6"></td>
+        <td id="cell7"></td>
+        <td class="unavailable" id="cell8"></td>
         <td id="cell9"></td>
     </tr>
     <tr>
@@ -77,7 +81,7 @@
         <th class="headercolumn" rowspan="2">11:00</th>
         <td id="cell20"></td>
         <td id="cell21"></td>
-        <td class="busy" id="cell22"></td>
+        <td class="unavailable" id="cell22"></td>
         <td id="cell23"></td>
         <td id="cell24"></td>
 
@@ -85,7 +89,7 @@
     <tr>
         <td id="cell25"></td>
         <td id="cell26"></td>
-        <td class="busy" id="cell27"></td>
+        <td class="unavailable" id="cell27"></td>
         <td id="cell28"></td>
         <td id="cell29"></td>
 
@@ -94,14 +98,14 @@
         <th class="headercolumn" rowspan="2">12:00</th>
         <td id="cell30"></td>
         <td id="cell31"></td>
-        <td class="busy" id="cell32"></td>
+        <td class="unavailable" id="cell32"></td>
         <td id="cell33"></td>
         <td id="cell34"></td>
     </tr>
     <tr>
         <td id="cell35"></td>
         <td id="cell36"></td>
-        <td class="busy" id="cell37"></td>
+        <td class="unavailable" id="cell37"></td>
         <td id="cell38"></td>
         <td id="cell39"></td>
     </tr>
@@ -115,9 +119,9 @@
     </tr>
     <tr>
         <td id="cell45"></td>
-        <td class="busy" id="cell46"></td>
-        <td class="busy" id="cell47"></td>
-        <td class="busy" id="cell48"></td>
+        <td class="unavailable" id="cell46"></td>
+        <td class="unavailable" id="cell47"></td>
+        <td class="unavailable" id="cell48"></td>
         <td id="cell49"></td>
     </tr>
     <tr>
@@ -129,9 +133,9 @@
         <td id="cell54"></td>
     </tr>
     <tr>
-        <td class="busy" id="cell55"></td>
-        <td class="busy" id="cell56"></td>
-        <td class="busy" id="cell57"></td>
+        <td class="unavailable" id="cell55"></td>
+        <td class="unavailable" id="cell56"></td>
+        <td id="cell57"></td>
         <td id="cell58"></td>
         <td id="cell59"></td>
     </tr>
@@ -165,12 +169,11 @@
         <td id="cell78"></td>
         <td id="cell79"></td>
     </tr>
-
 </table>
 
 </div>
 </body>
-
+<button id="button3" class="minimal" type="button" onclick="makeAppointment()" disabled>Reserveer nu</button>
 <script src="calendar.js"></script>
 </html>
 <!---
