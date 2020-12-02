@@ -4,6 +4,10 @@ html, body {
     scroll-behavior: smooth;
 }
 
+h3 {
+    text-align: center;
+}
+
 body * {
     transition: 0.4s;
 }
@@ -21,6 +25,8 @@ section {
 .logo {
     display: grid;
     justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 20px;
 }
 
 .landing-wrapper {
@@ -34,7 +40,7 @@ section {
     grid-area: landing-left;
     padding-top: 50px;
     padding-bottom: 50px;
-    margin-left: 150px;
+    margin-left: 40px;
 }
 
 .landing-right {
@@ -56,21 +62,34 @@ section {
 }
 
 .styles-wrapper {
+    padding-top: 50px;
+    padding-bottom: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
         'styles pricelist';
 }
 
+.team-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 230px);
+    justify-content: center;
+    text-align: center;
+}
+
 .styles {
     display: grid;
     grid-template-columns: repeat(auto-fit, 130px);
-    justify-content: center;
+    justify-content: right;
 }
 
 .preview {
     width:  120px;
     height: 120px;
+}
+
+.priceList {
+    margin-left: 40px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -87,4 +106,10 @@ section {
         'landing-right';
     }
 
+    .styles-wrapper {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        'priceList'
+        'styles';
+    }
 }
