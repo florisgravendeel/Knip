@@ -1,5 +1,5 @@
 body {
-    font-family: Calibri;
+    font-family: Calibri, sans-serif;
 }
 table, th, td {
     border: 1px solid #DDDDDD;
@@ -34,6 +34,8 @@ td:hover {
     border-right: 1px solid #dfdfdf;
 }
 #reserveringsdiv {
+    margin-left: auto;
+    margin-right: auto;
     width: max-content;
     border: 2px solid #18314F;
 }
@@ -55,12 +57,12 @@ td:hover {
     transition: 0.5s;
 }
 /*TODO: De primaire kleur van de website bepaald de kleur van de agenda! */
-.busy {
+.unavailable {
     background-color: #333333;
     text-decoration: line-through;
     border: 2px solid #222222;
 }
-.busy:hover {
+.unavailable:hover {
     background-color: red;
     cursor: not-allowed;
 }
@@ -84,4 +86,10 @@ td:hover {
 .headercolumn {
     width: 70px;
     font-size: 18px;
+}
+.square {
+    margin: 20px;
+    text-align: center;
+    width: 80px;
+    height: 80px;
 }
