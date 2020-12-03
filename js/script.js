@@ -1,6 +1,6 @@
 //Adds event listeners to the circles
 
-let teamSelector = document.getElementsByClassName('team')
+let teamSelector = document.getElementsByClassName('team-wrapper')
 for (let i = 0; teamSelector.length > i; i++) {
     teamSelector[i].addEventListener('click', function(){
         let mode = this.dataset.mode
@@ -11,19 +11,19 @@ for (let i = 0; teamSelector.length > i; i++) {
 function setTeam(mode){
 
     if (mode === 'team1') {
-        document.getElementById('theme-style').href = 'css/default.css'
+        console.log('Geen voorkeur');
     }
 
     if (mode === 'team2') {
-        document.getElementById('theme-style').href = 'css/blue.css'
+        console.log('Alexander');
     }
 
     if (mode === 'team3') {
-        document.getElementById('theme-style').href = 'css/green.css'
+        console.log('Selena');
     }
 
     if (mode === 'team4') {
-        document.getElementById('theme-style').href = 'css/purple.css'
+        console.log('Oceanos');
     }
 
     localStorage.setItem('theme', mode)

@@ -12,7 +12,7 @@ body * {
     transition: 0.4s;
 }
 
-section {
+.homePage {
     border-bottom: black 1px solid;
     overflow: auto;
 }
