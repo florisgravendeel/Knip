@@ -445,7 +445,7 @@ let busyHours = [0,1,5,3,12,22,33,42,44,45,52,53,60,66,78,79];
 
 
 
-removeAllUnavailableHours();
+//removeAllUnavailableHours();
 setCellsToUnavailable(busyHours);
 
 // Voeg CSS/JS toe aan de tijdvakken (HTML: cell0 - cell79)
