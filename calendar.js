@@ -309,8 +309,8 @@ function getDate(){
  * @returns {*}
  */
 function getBarber(){
-    barber = document.getElementById("kappers").value;
-    return barber;
+    //barber = document.getElementById("kappers").value;
+    return "barber";
 }
 
 /**
@@ -445,7 +445,7 @@ let busyHours = [0,1,5,3,12,22,33,42,44,45,52,53,60,66,78,79];
 
 
 
-removeAllUnavailableHours();
+//removeAllUnavailableHours();
 setCellsToUnavailable(busyHours);
 
 // Voeg CSS/JS toe aan de tijdvakken (HTML: cell0 - cell79)
@@ -455,6 +455,11 @@ for (i = 0; i < 80; i++){
     cell.onclick = function () {
         selectCell(this);
     }
-    var css = "#cell" + i + ":hover { color: black !important; }";
+    var css = "#cell" + i + ":hover { " +
+        "color: black !important; " +
+        "}" +
+        "#cell" + i + "{ " +
+        "font-size: 15.35px; !important " +
+        "}";
     addCSS(css);
 }
