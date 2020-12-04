@@ -442,11 +442,35 @@ async function getDatesfromServer() {
 getDatesfromServer();
 
 let busyHours = [0,1,5,3,12,22,33,42,44,45,52,53,60,66,78,79];
-
-
-
-//removeAllUnavailableHours();
 setCellsToUnavailable(busyHours);
+
+async function sendDataToServer(naam){
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", 'http://127.0.0.1:5000/test123', true);
+
+    //Send the proper header information along with the request
+    xhr.setRequestHeader('Content-type', 'application/json')
+
+    xhr.onreadystatechange = function() { // Call a function when the state changes.
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            // Request finished. Do processing here.
+        }
+    }
+    const params = {
+        naam: naam,
+        email: "karelmail@nede.be",
+        telefoon: "0688992244",
+        begin_datum: "2020-12-04 10:30:00",
+        eind_datum: "2020-12-04 11:00:00",
+        kapper_id: "4",
+        behandelings_id: "3",
+        opmerking: "Hoi"
+    }
+    xhr.send(JSON.stringify(params))
+}
+
+removeAllUnavailableHours();
+sendDataToServer();
 
 // Voeg CSS/JS toe aan de tijdvakken (HTML: cell0 - cell79)
 for (i = 0; i < 80; i++){
