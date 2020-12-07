@@ -4,6 +4,39 @@ html, body {
     scroll-behavior: smooth;
 }
 
+/* Dit is Section 1 - gemaakt door Finn*/
+/*_________________ Finn's Gedeelte _________________*/
+/* ============ Fancy Button ============ */
+
+#fancy-button-treatment {
+    display: inline-block;
+
+    height: 40px;
+    width: 100px;
+    
+    border-radius: 20px;
+    border: 1px solid black;
+}
+
+/* ============ Treatments ============ */
+
+/* ======== Grid ========*/
+.treatmentcontainer{
+    display: grid;
+    grid-template-columns: auto;
+    
+    padding: 2px;
+}
+
+#id-treatment-container {
+    display: block
+}
+
+
+
+/* Dit is Section 2 - gemaakt door Wesley*/
+/* _________________ Wesley's Gedeelte _________________ */
+
 h3 {
     text-align: center;
 }
@@ -113,3 +146,7 @@ body * {
         'styles';
     }
 }
+
+/* _________________ Floris' Gedeelte _________________ */
+
+/* _________________ Max's Gedeelte _________________ */
