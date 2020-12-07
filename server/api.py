@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flaskext.mysql import MySQL
 from flask_cors import CORS
 
@@ -44,7 +44,7 @@ def get_appointments():
     eind_datum = time_dict[9]
     cur = mysql.connect().cursor()
     cur.execute(
-        "SELECT date_format(begin_datum, '%d-%m-%Y %H:%i:%S') as begin_datum, date_format(eind_datum,'%d-%m-%Y %H:%i:%S') as eind_datum,kapper_id FROM website.reservation WHERE begin_datum >= '" + begin_datum + "' and eind_datum <= '" + eind_datum + "';")
+        "SELECT date_format(begin_datum, '%d-%m-%Y %H:%i:%S') as begin_datum, date_format(eind_datum,'%d-%m-%Y %H:%i:%S') as eind_datum,kapper_id FROM website.reservering WHERE begin_datum >= '" + begin_datum + "' and eind_datum <= '" + eind_datum + "';")
     afspraken = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 
     cur.execute("SELECT id,naam FROM website.kapper;")
@@ -53,13 +53,17 @@ def get_appointments():
     cur.close()
     reserveringen = CustomerReservation.getAppointments(afspraken, kappers)
     return jsonify({'reserveringen': reserveringen})
-
-
 #    return jsonify({'reserveringen': r})
+
+@app.route('/nieuweafspraak', methods=["POST"])
+def create_appointment():
+    response = CustomerReservation.create_appointment(mysql.connect(), request.get_json())
+    return response
 
 @app.route('/behandeling')
 def behandeling():
     cur = mysql.connect().cursor()
+
     cur.execute("select * from reservation;")
     r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
     cur.close()
@@ -68,6 +72,8 @@ def behandeling():
 
 if __name__ == '__main__':
     app.run()
+
+
 
 
 

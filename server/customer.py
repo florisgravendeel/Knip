@@ -144,3 +144,23 @@ class CustomerReservation(object):
         # kapper naam
         # lijst reserveringen
         return 1
+
+    @staticmethod
+    def create_appointment(connection, json_data):
+        cursor = connection.cursor()
+        naam = json_data['naam']
+        email = json_data['email']
+        telefoon = json_data['telefoon']
+        begin_datum = json_data['begin_datum']
+        eind_datum = json_data['eind_datum']
+        kapper_id = json_data['kapper_id']
+        behandeling_id = json_data['behandelings_id']
+        opmerking = json_data['opmerking']
+
+        query = "INSERT INTO website.reservering (`naam`, `email`, `telefoon`, `begin_datum`, `eind_datum`, `kapper_id`, `behandelings_id`, `opmerking`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s);"
+        args = (naam, email, telefoon, begin_datum, eind_datum, kapper_id, behandeling_id, opmerking)
+
+        cursor.execute(query, args)
+        connection.commit()
+        cursor.close()
+        return "Successfully committed"
