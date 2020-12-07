@@ -7,8 +7,7 @@
     <!-- Default Style Sheet -->
 
     <link rel="stylesheet" type="text/css" href="css/default.css">
-
-</head>
+re</head>
 <body>
 
 <!--Section 1 -->
@@ -86,9 +85,157 @@
     <div class="main-container">
 
         <div class="reserveer-wrapper">
+            <h2>Stap 3: Kies een tijd en dag om een afspraak te maken</h2>
+            <div id="reserveringsdiv">
+                <table id="agenda">
+                    <tr id="tableheader">
+                        <th colspan="2" class="days" style="text-align: center">
+                            <button id="button1" class="minimal" type="button" onclick="selectWeek('Vorige week')" disabled>Vorige week</button>
+                        </th>
+                        <th colspan="2" class="days" style="text-align: center">
 
+                        </th>
+                        <th colspan="2">
+                            <button id="button2" class="minimal" type="button" onclick="selectWeek('Volgende week')">Volgende week</button>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="days">
+                            Agenda:
+                        </th>
+                        <th class="headerrow"><div class="days">Dinsdag</div></th>
+                        <th class="headerrow"><div class="days">Woensdag</div></th>
+                        <th class="headerrow"><div class="days">Donderdag</div></th>
+                        <th class="headerrow"><div class="days">Vrijdag</div></th>
+                        <th class="headerrow"><div class="days">Zaterdag</div></th>
+                    </tr>
+                    <tr>
+                        <th class="headercolumn" rowspan="2">9:00</th>
+                        <td id="cell0"></td>
+                        <td id="cell1"></td>
+                        <td class="unavailable" id="cell2"></td>
+                        <td class="unavailable" id="cell3"></td>
+                        <td class="unavailable" id="cell4"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell5"></td>
+                        <td class="unavailable" id="cell6"></td>
+                        <td id="cell7"></td>
+                        <td class="unavailable" id="cell8"></td>
+                        <td id="cell9"></td>
+                    </tr>
+                    <tr>
+                        <th class="headercolumn" rowspan="2">10:00</th>
+                        <td id="cell10"></td>
+                        <td class="selected" id="cell11"></td>
+                        <td id="cell12"></td>
+                        <td id="cell13"></td>
+                        <td id="cell14"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell15"></td>
+                        <td id="cell16"></td>
+                        <td id="cell17"></td>
+                        <td id="cell18"></td>
+                        <td id="cell19"></td>
+
+                    </tr>
+                    <tr>
+                        <th class="headercolumn" rowspan="2">11:00</th>
+                        <td id="cell20"></td>
+                        <td id="cell21"></td>
+                        <td class="unavailable" id="cell22"></td>
+                        <td id="cell23"></td>
+                        <td id="cell24"></td>
+
+                    </tr>
+                    <tr>
+                        <td id="cell25"></td>
+                        <td id="cell26"></td>
+                        <td class="unavailable" id="cell27"></td>
+                        <td id="cell28"></td>
+                        <td id="cell29"></td>
+
+                    </tr>
+                    <tr>
+                        <th class="headercolumn" rowspan="2">12:00</th>
+                        <td id="cell30"></td>
+                        <td id="cell31"></td>
+                        <td class="unavailable" id="cell32"></td>
+                        <td id="cell33"></td>
+                        <td id="cell34"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell35"></td>
+                        <td id="cell36"></td>
+                        <td class="unavailable" id="cell37"></td>
+                        <td id="cell38"></td>
+                        <td id="cell39"></td>
+                    </tr>
+                    <tr>
+                        <th class="headercolumn" rowspan="2">13:00</th>
+                        <td id="cell40"></td>
+                        <td id="cell41"></td>
+                        <td id="cell42"></td>
+                        <td id="cell43"></td>
+                        <td id="cell44"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell45"></td>
+                        <td class="unavailable" id="cell46"></td>
+                        <td class="unavailable" id="cell47"></td>
+                        <td class="unavailable" id="cell48"></td>
+                        <td id="cell49"></td>
+                    </tr>
+                    <tr>
+                        <th class="headercolumn" rowspan="2">14:00</th>
+                        <td id="cell50"></td>
+                        <td id="cell51"></td>
+                        <td id="cell52"></td>
+                        <td id="cell53"></td>
+                        <td id="cell54"></td>
+                    </tr>
+                    <tr>
+                        <td class="unavailable" id="cell55"></td>
+                        <td class="unavailable" id="cell56"></td>
+                        <td id="cell57"></td>
+                        <td id="cell58"></td>
+                        <td id="cell59"></td>
+                    </tr>
+                    <tr>
+                        <th class="headercolumn" rowspan="2">15:00</th>
+                        <td id="cell60"></td>
+                        <td id="cell61"></td>
+                        <td id="cell62"></td>
+                        <td id="cell63"></td>
+                        <td id="cell64"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell65"></td>
+                        <td id="cell66"></td>
+                        <td id="cell67"></td>
+                        <td id="cell68"></td>
+                        <td id="cell69"></td>
+                    </tr>
+                    <tr>
+                        <th class="headercolumn" rowspan="2">16:00</th>
+                        <td id="cell70"></td>
+                        <td id="cell71"></td>
+                        <td id="cell72"></td>
+                        <td id="cell73"></td>
+                        <td id="cell74"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell75"></td>
+                        <td id="cell76"></td>
+                        <td id="cell77"></td>
+                        <td id="cell78"></td>
+                        <td id="cell79"></td>
+                    </tr>
+                </table>
+            </div>
         </div>
-
+        <button id="button3" class="greenminimal" type="button" onclick="makeAppointment()">Reserveer nu</button>
     </div>
 
 </section>
@@ -101,8 +248,53 @@
 
         <div class="reserveer-wrapper">
 
-        </div>
+            <h1>Uw afspraak staat ingepland om {tijd} op {dag} (/{week})</h1>
+            <h2>Stap 4: Persoonlijke gegevens achterlaten</h2>
 
+
+            <div class="container">
+                <!form action="/action_page.php"->
+                <div class="row">
+                    <div class="col-25">
+                        <label for="naam">Naam:*</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="name" name="name" placeholder="Naam">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="email">Email:*</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="email" name="email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="telefoonnummer">Telefoonnummer:*</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="telefoonnummer" name="telefoonnummer" maxlength="11" placeholder="Telefoonnummer">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="opmerking">Opmerking:</label>
+                    </div>
+                    <div class="col-75">
+                        <textarea id="opmerking" name="opmerking" placeholder="Laat hier een opmerking achter over de afspraak..." style="height:150px"></textarea>
+                    </div>
+                </div>
+                <p>Invullen van naam, email en telefoonnummer is vereist.*</p>
+                <small>Telefoonnummer formaat:  06 12345678  of  010 12345678</small>
+                <!-- maximale lengte van input 11 getallen. strippen van spaties voor db-->
+                <div class="row">
+                    <input type="submit" value="Verzend">
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
 
 </section>
@@ -111,6 +303,6 @@
 <!-- Script -->
 
 <script type="text/javascript" src="js/script.js"></script>
-
+<script src="js/calendar.js"></script>
 </body>
 </html>

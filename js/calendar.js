@@ -470,7 +470,7 @@ async function sendDataToServer(naam){
 }
 
 removeAllUnavailableHours();
-sendDataToServer();
+//sendDataToServer();
 
 // Voeg CSS/JS toe aan de tijdvakken (HTML: cell0 - cell79)
 for (i = 0; i < 80; i++){
