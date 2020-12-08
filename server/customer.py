@@ -1,6 +1,9 @@
 import time
 import locale
 import datetime
+from datetime import date, timedelta
+
+from flask import jsonify
 
 
 class CustomerCalendar(object):
@@ -126,24 +129,29 @@ def format_to_day_month_list(dates):
 
 
 class CustomerReservation(object):
-    timetable = ["9:00 -  9:30", "9:30 - 10:00",
-                 "10:00 - 10:30", "10:30 - 11:00",
-                 "11:00 - 11:30", "11:30 - 12:00",
-                 "12:00 - 12:30", "12:30 - 13:00",
-                 "13:00 - 13:30", "13:30 - 14:00",
-                 "14:00 - 14:30", "14:30 - 15:00",
-                 "15:00 - 15:30", "15:30 - 16:00",
-                 "16:00 - 16:30", "16:30 - 17:00"]
 
     @staticmethod
-    def get_appointments(afspraken, kappers):
-        reservering = {
-            ""
-        }
-        # kapper id
-        # kapper naam
-        # lijst reserveringen
-        return 1
+    def get_appointments(connection):
+        dates_dictionary = CustomerCalendar.get_opening_hours()['sql_date_format']
+        start_date = dates_dictionary[0]
+        end_date = dates_dictionary[9]
+        end_date = CustomerReservation.add_one_day(end_date)
+
+        cursor = connection.cursor()
+        cursor.execute(
+            "SELECT date_format(begin_datum, '%d-%m-%Y %H:%i:%S') as begin_datum, date_format(eind_datum,'%d-%m-%Y %H:%i:%S') as eind_datum,kapper_id FROM website.reservering WHERE begin_datum between '" + start_date + "' and '" + end_date + "';")
+        object_array = [dict((cursor.description[i][0], value) for i, value in enumerate(row)) for row in
+                        cursor.fetchall()]
+        cursor.close()
+        l1 = []
+        l2 = []
+        for obj in object_array:
+            appointment = Appointment(obj, start_date, end_date)
+            if appointment.is_in_first_week():
+                l1 += appointment.get_location()
+            else:
+                l2 += appointment.get_location()
+        return jsonify({'reserveringen': [l1, l2] })
 
     @staticmethod
     def create_appointment(connection, json_data):
@@ -164,3 +172,139 @@ class CustomerReservation(object):
         connection.commit()
         cursor.close()
         return "Successfully committed"
+
+    @staticmethod
+    def add_one_day(string):
+        date = string.split("/")
+        year = int(date[0])
+        month = int(date[1])
+        day = int(date[2])
+        output = str(datetime.datetime(year, month, day) + timedelta(days=1))
+        output = output.replace("-", "/").split(" ")[0]
+        return output
+
+
+class Appointment:
+    timetable = ["9:00 -  9:30", "9:30 - 10:00",
+                 "10:00 - 10:30", "10:30 - 11:00",
+                 "11:00 - 11:30", "11:30 - 12:00",
+                 "12:00 - 12:30", "12:30 - 13:00",
+                 "13:00 - 13:30", "13:30 - 14:00",
+                 "14:00 - 14:30", "14:30 - 15:00",
+                 "15:00 - 15:30", "15:30 - 16:00",
+                 "16:00 - 16:30", "16:30 - 17:00"]
+
+    timetable2 = ["9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"]
+
+    tuesday = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75]
+    wednesday = [1, 6, 11, 16, 21, 26, 31, 36, 41, 46, 51, 56, 61, 66, 71, 76]
+    thursday = [2, 7, 12, 17, 22, 27, 32, 37, 42, 47, 52, 57, 62, 67, 72, 77]
+    friday = [3, 8, 13, 18, 23, 28, 33, 38, 43, 48, 53, 58, 63, 68, 73, 78]
+    saturday = [4, 9, 14, 19, 24, 29, 34, 39, 44, 49, 54, 59, 64, 69, 74, 79]
+
+    def __init__(self, data, c_start_date, c_end_date):
+
+        self.appointment_start_time = Period(data['begin_datum'])
+        self.appointment_end_time = Period(data['eind_datum'])
+
+        self.calendar_start_date = self.string_to_date(c_start_date)
+        self.calendar_end_date = self.string_to_date(c_end_date)
+
+    def is_in_first_week(self):
+        date_z = self.appointment_start_time.date
+        date_x = self.calendar_start_date
+        date_y = self.calendar_end_date
+
+        a = date_x - date_z
+        b = date_z - date_y
+        minimal = min(a.days, b.days)
+        if minimal == a.days:
+            return False
+        else:
+            return True
+
+    def is_half_hour(self):
+        total_minutes = self.appointment_end_time.time_to_minutes() - self.appointment_start_time.time_to_minutes()
+        if total_minutes <= 30:
+            return True
+        else:
+            return False
+
+    def get_location(self):
+        x = 0
+        appointment = self.appointment_start_time.get_time() + " - " + self.appointment_end_time.get_time()
+
+        if self.is_half_hour():
+            for index in range(len(self.timetable)):
+                if appointment == self.timetable[index]:
+                    x = index
+                    break
+            weekday = self.appointment_start_time.date.weekday()
+            if weekday == 0:  # Monday
+                pass
+            elif weekday == 1:  # Tuesday
+                return [self.tuesday[x]]
+            elif weekday == 2:  # Wednesday
+                return [self.wednesday[x]]
+            elif weekday == 3:  # Thursday
+                return [self.thursday[x]]
+            elif weekday == 4:  # Friday
+                return [self.friday[x]]
+            elif weekday == 5:  # Saturday
+                return [self.saturday[x]]
+            elif weekday == 6:  # Sunday
+                pass
+        else:
+            end_date = ""
+            start_date = appointment.split(" - ")[0]
+            for index in range(len(self.timetable2)):
+                if start_date == self.timetable2[index]:
+                    end_date = self.timetable2[index+1]
+                    break
+            full_date = start_date + " - " + end_date
+
+            for index in range(len(self.timetable)):
+                if full_date == self.timetable[index]:
+                    x = index
+                    break
+            weekday = self.appointment_start_time.date.weekday()
+            if weekday == 0:  # Monday
+                pass
+            elif weekday == 1:  # Tuesday
+                return [self.tuesday[x], self.tuesday[x+1]]
+            elif weekday == 2:  # Wednesday
+                return [self.wednesday[x], self.wednesday[x+1]]
+            elif weekday == 3:  # Thursday
+                return [self.thursday[x], self.thursday[x+1]]
+            elif weekday == 4:  # Friday
+                return [self.friday[x], self.friday[x+1]]
+            elif weekday == 5:  # Saturday
+                return [self.saturday[x], self.saturday[x+1]]
+            elif weekday == 6:  # Sunday
+                pass
+
+    def string_to_date(self, string):
+        string_array = string.split("/")
+        day = int(string_array[2])
+        month = int(string_array[1])
+        year = int(string_array[0])
+        return date(year, month, day)
+
+class Period:
+
+    def __init__(self, string):
+        str_array = string.split(" ")
+        date_array = str_array[0].split("-")
+        time_array = str_array[1].split(":")
+        self.date = date(int(date_array[2]), int(date_array[1]), int(date_array[0]))
+        self.hours = int(time_array[0])
+        self.minutes = int(time_array[1])
+
+    def time_to_minutes(self):
+        return self.hours * 60 + self.minutes
+
+    def get_time(self):
+        if self.minutes == 0:
+            return str(self.hours) + ":00"
+        else:
+            return str(self.hours) + ":" + str(self.minutes)
