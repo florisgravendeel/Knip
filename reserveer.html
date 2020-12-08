@@ -235,7 +235,6 @@ re</head>
                 </table>
             </div>
         </div>
-        <button id="button3" class="greenminimal" type="button" onclick="makeAppointment()">Reserveer nu</button>
     </div>
 
 </section>
@@ -243,17 +242,11 @@ re</head>
 <!--Section 4 -->
 
 <section>
-
     <div class="main-container">
-
         <div class="reserveer-wrapper">
-
             <h1>Uw afspraak staat ingepland om {tijd} op {dag} (/{week})</h1>
             <h2>Stap 4: Persoonlijke gegevens achterlaten</h2>
-
-
             <div class="container">
-                <!form action="/action_page.php"->
                 <div class="row">
                     <div class="col-25">
                         <label for="naam">Naam:*</label>
@@ -286,19 +279,17 @@ re</head>
                         <textarea id="opmerking" name="opmerking" placeholder="Laat hier een opmerking achter over de afspraak..." style="height:150px"></textarea>
                     </div>
                 </div>
-                <p>Invullen van naam, email en telefoonnummer is vereist.*</p>
-                <small>Telefoonnummer formaat:  06 12345678  of  010 12345678</small>
-                <!-- maximale lengte van input 11 getallen. strippen van spaties voor db-->
+                <div class="required-fields">
+                    <p>Velden met een sterretje zijn vereist.*</p>
+                </div>
                 <div class="row">
-                    <input type="submit" value="Verzend">
+                    <button id="button3" class="greenminimal" type="button" onclick="makeAppointment()">Reserveer nu</button>
                 </div>
                 </form>
             </div>
         </div>
     </div>
-
 </section>
-
 
 <!-- Script -->
 

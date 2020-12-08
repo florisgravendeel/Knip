@@ -310,7 +310,7 @@ label {
     display: inline-block;
 }
 
-input[type=submit] {
+input[type=button] {
     background-color: #4CAF50;
     color: white;
     padding: 12px 20px;
@@ -321,8 +321,9 @@ input[type=submit] {
     float: right;
 }
 
-input[type=submit]:hover {
-    background-color: #45a049;
+button{
+    float:right;
+    margin-right:4px;
 }
 
 .container {
@@ -336,11 +337,12 @@ input[type=submit]:hover {
     float: left;
     width: 25%;
     margin-top: 6px;
+
 }
 
 .col-75 {
     float: left;
-    width: 75%;
+    width: 72.5%;
     margin-top: 6px;
 }
 
@@ -354,28 +356,28 @@ input[type=submit]:hover {
 
 .container .row .col-25 label{
     font-weight: bold;
+    font-size:16px;
+    margin-right:2.5px;
+}
+
+.container .row .col-75 input{
     font-size:15px;
-
+    
 }
 
-.container .row .col-25{
-
-    text-align:left;
-}
-small{
-
-    padding:5px;
-
+textarea{
+    font-size:16px;
 }
 
-h2, h1{
-
+.main-container .reserveer-wrapper h2, h1{
     text-align:center;
 }
+
 /* onder 600px media query */
+
 @media screen and (max-width: 600px) {
-    .col-25, .col-75, input[type=submit] {
-        width: 100%;
+    .col-25, .col-75, input[type=button] {
+        width: 94%;
         margin-top: 0;
     }
 }
