@@ -37,7 +37,7 @@ html, body {
 /* Dit is Section 2 - gemaakt door Wesley*/
 /* _________________ Wesley's Gedeelte _________________ */
 
-h3 {
+h3, h2, h1 {
     text-align: center;
 }
 
