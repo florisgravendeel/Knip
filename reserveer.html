@@ -13,11 +13,49 @@
 
 <!--Section 1 -->
 
-<section>
+<section id="section-one">
 
     <div class="main-container">
 
-        <div class="reserveer-wrapper">
+        <div class="behandeling-wrapper">
+
+            <div class="gender-button-centering">
+
+                <button onclick="TreatmentMale()" id="fancy-button-treatment">Man</button>
+                <button onclick="TreatmentFemale()" id="fancy-button-treatment">Vrouw</button>
+                <button onclick="TreatmentKid()" id="fancy-button-treatment">Kind</button>
+
+            </div>
+
+            <div class="treatment-container" id="id-treatment-container">
+                <div onclick="HidingKnippen()" id="treatment-titles" style="border-top: 1px solid;">
+                    <t1>Knippen</t1>
+                </div>
+                <div id="cutting-treatments" class="treatment-flexbox-items">
+                    <div>
+                        <ul class="treatments-unordered-list">
+                            <li id="treatments-list-items">Treatment <button id="treatment-choose-btn">deze</button></li>
+                            <li id="treatments-list-items">Treatment <button id="treatment-choose-btn">deze</button></li>
+                            <li id="treatments-list-items">Treatment <button id="treatment-choose-btn">deze</button></li>
+                            <li id="treatments-list-items">Treatment <button id="treatment-choose-btn">deze</button></li>
+                        </ul>        	
+                    </div>
+                </div>
+
+                <div onclick="HidingVerfen()" id="treatment-titles">
+                    <t1>Verfen</t1>
+                </div>
+                <div id="painting-treatments" class="treatment-flexbox-items">
+                    tralalal verfen tralalal
+                </div>
+
+                <div onclick="HidingVerzorgen()" id="treatment-titles">
+                    <t1>Verzorgen</t1>
+                </div>
+                <div id="verzorgen-treatments" class="treatment-flexbox-items">
+                    verzorgingen
+                </div>
+            </div>
 
         </div>
 

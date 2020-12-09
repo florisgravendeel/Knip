@@ -29,3 +29,65 @@ function setTeam(mode){
     localStorage.setItem('theme', mode)
 
 }
+
+// ============ Finn de Jong ============ //
+// Button Functionality voor geslacht/kind 
+function HidingTest(){
+    var TreatmentContainer = document.getElementById("id-treatment-container");
+    if(TreatmentContainer.style.display === "none"){
+        TreatmentContainer.style.display = "block";
+        console.log("Display is nu BLOCK")
+    }
+    else{
+        TreatmentContainer.style.display = "none";
+        console.log("Display is nu NONE")
+    }
+}
+
+function TreatmentMale(){
+    var TM = document.getElementById("");
+}
+
+function TreatmentFemale(){
+    
+}
+
+function TreatmentKids(){
+
+}
+
+function HidingKnippen(){
+    var treatmentknippenlist = document.getElementById("cutting-treatments");
+    if(treatmentknippenlist.style.display === "none"){
+        treatmentknippenlist.style.display = "block"
+        console.log("Hij is er!")
+    }
+    else{
+        treatmentknippenlist.style.display = "none"
+        console.log("En hij is weg!")
+    }
+}
+
+function HidingVerfen(){
+    var treatmentknippenlist = document.getElementById("painting-treatments");
+    if(treatmentknippenlist.style.display === "none"){
+        treatmentknippenlist.style.display = "block"
+        console.log("Hij is er!")
+    }
+    else{
+        treatmentknippenlist.style.display = "none"
+        console.log("En hij is weg!")
+    }
+}
+
+function HidingVerzorgen(){
+    var treatmentknippenlist = document.getElementById("verzorgen-treatments");
+    if(treatmentknippenlist.style.display === "none"){
+        treatmentknippenlist.style.display = "block"
+        console.log("Hij is er!")
+    }
+    else{
+        treatmentknippenlist.style.display = "none"
+        console.log("En hij is weg!")
+    }
+}
