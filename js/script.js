@@ -1,6 +1,6 @@
 //Adds event listeners to the circles
 
-let teamSelector = document.getElementsByClassName('team-wrapper')
+let teamSelector = document.getElementsByClassName('team')
 for (let i = 0; teamSelector.length > i; i++) {
     teamSelector[i].addEventListener('click', function(){
         let mode = this.dataset.mode

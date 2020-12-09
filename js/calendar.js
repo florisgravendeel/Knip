@@ -1,5 +1,5 @@
 /**
- * Selecteer welke week je wil reserveren.
+ * Selecteer welke week zichtbaar moet worden in de agenda.
  * @param week
  */
 function selectWeek(week){
@@ -9,12 +9,14 @@ function selectWeek(week){
             enableButton(1, false);
             enableButton(2, true);
             deselectCells();
+            loadAppointments("week1");
             x = 0;
             break;
         case "Volgende week":
             enableButton(1, true);
             enableButton(2, false);
             deselectCells();
+            loadAppointments("week2");
             x = 5;
             break;
         default:
@@ -328,7 +330,7 @@ function removeAllUnavailableHours() {
  */
 function setCelltoUnavailable(number, bool) {
     let className = "unavailable";
-    let cell = document.getElementById("cell" + number)
+    let cell = document.getElementById("cell" + number);
     if (bool) {
         if (!cell.classList.contains(className)) {
             cell.classList.add(className);
@@ -344,20 +346,76 @@ function setCelltoUnavailable(number, bool) {
  * @param cells 0-79 (array)
  */
 function setCellsToUnavailable(cells){
-    for (i=0; i < cells.length; i++){
+    for (i = 0; i < cells.length; i++){
         setCelltoUnavailable(cells[i], true);
     }
 }
+/**
+ * Deze functie maakt verbinding met de server, om vervolgens een afspraak in de database te zetten.
+ * @returns {Promise<void>}
+ */
+async function makeAppointment(){
+    getDate();
+    return;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", 'http://127.0.0.1:5000/test123', true);
 
+    //Send the proper header information along with the request
+    xhr.setRequestHeader('Content-type', 'application/json')
 
-function makeAppointment(){
-        getDate();
+    xhr.onreadystatechange = function() { // Call a function when the state changes.
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            // Request finished. Do processing here.
+        }
     }
-
-function loadAppointments(){
-
+    const params = {
+        naam: "Gert",
+        email: "karelmail@nede.be",
+        telefoon: "0688992244",
+        begin_datum: "2020-12-04 10:30:00",
+        eind_datum: "2020-12-04 11:00:00",
+        kapper_id: "4",
+        behandelings_id: "3",
+        opmerking: "Hoi"
+    }
+    xhr.send(JSON.stringify(params))
+}
+// Deze functie werkt niet als er een cell is hoger dan 79 of lager dan 0.
+function loadAppointments(week){
+    removeAllUnavailableHours();
+        switch (week){
+            case "week1":
+                setCellsToUnavailable(busyHours[0]);
+                break;
+            case "week2":
+                setCellsToUnavailable(busyHours[1]);
+                break;
+            default:
+                selectWeek("Vorige week");
+                console.log("default case");
+                break;
+        }
 }
 
+/**
+ * Deze functie download de afspraken van de server en laad vervolgens de afspraken in de agenda zien.
+ * @returns {Promise<void>}
+ */
+async function getDatafromServer() {
+    try {
+        const response = await fetch("http://127.0.0.1:5000/openingstijden");
+        const data = await response.json();
+        dates = data.opening_hours_dm;
+
+        const response2 = await fetch("http://127.0.0.1:5000/reserveringen");
+        const data2 = await response2.json();
+        busyHours[0] = data2.reserveringen[0];
+        busyHours[1] = data2.reserveringen[1];
+        loadAppointments()
+    } catch (err) {
+        console.log(err)
+    }
+}
 /*
                                              ,-.
                                           _.|  '
@@ -406,7 +464,6 @@ function loadAppointments(){
 Code initialiseren:
 toggleDisplay();
  */
-
 const timetable =
          ["9:00 -  9:30",  "9:30 - 10:00",
          "10:00 - 10:30", "10:30 - 11:00",
@@ -425,52 +482,16 @@ for (var i = 0; i < 80; i++){
     document.getElementById("cell" + i).innerText = timetable[index];
 
 }
+let dates; //= ['1 december', '2 december', '3 december', '4 december', '5 december', '8 december', '9 december', '10 december', '11 december', '12 december']
+let busyHours = [[]]// = [[1,2,6,4,13,23,34,43,45,46,53,54,61,67,79,80],[0,1,5,3,12,22,33,42,44,45,52,53,60,66,78,79]];
+getDatafromServer();
 
-let dates;
-    //= ['1 december', '2 december', '3 december', '4 december', '5 december', '8 december', '9 december', '10 december', '11 december', '12 december']
 
-async function getDatesfromServer() {
-    try {
-        const response = await fetch("http://127.0.0.1:5000/openingstijden")
-        const data = await response.json()
-        dates = data.opening_hours_dm;
-        selectWeek("Vorige week");
-    } catch (err) {
-        console.log(err)
-    }
-}
-getDatesfromServer();
 
-let busyHours = [0,1,5,3,12,22,33,42,44,45,52,53,60,66,78,79];
-setCellsToUnavailable(busyHours);
 
-async function sendDataToServer(naam){
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", 'http://127.0.0.1:5000/test123', true);
-
-    //Send the proper header information along with the request
-    xhr.setRequestHeader('Content-type', 'application/json')
-
-    xhr.onreadystatechange = function() { // Call a function when the state changes.
-        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-            // Request finished. Do processing here.
-        }
-    }
-    const params = {
-        naam: naam,
-        email: "karelmail@nede.be",
-        telefoon: "0688992244",
-        begin_datum: "2020-12-04 10:30:00",
-        eind_datum: "2020-12-04 11:00:00",
-        kapper_id: "4",
-        behandelings_id: "3",
-        opmerking: "Hoi"
-    }
-    xhr.send(JSON.stringify(params))
-}
 
 removeAllUnavailableHours();
-sendDataToServer();
+//sendDataToServer();
 
 // Voeg CSS/JS toe aan de tijdvakken (HTML: cell0 - cell79)
 for (i = 0; i < 80; i++){
@@ -480,10 +501,10 @@ for (i = 0; i < 80; i++){
         selectCell(this);
     }
     var css = "#cell" + i + ":hover { " +
-        "color: black !important; " +
+        "color: black; " +
         "}" +
         "#cell" + i + "{ " +
-        "font-size: 15.35px; !important " +
+        "font-size: 15.35px;" +
         "}";
     addCSS(css);
 }

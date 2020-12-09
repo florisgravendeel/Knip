@@ -59,8 +59,6 @@ td:hover {
     cursor: not-allowed;
 }
 .selected {
-    /*
-     */
     border: 1px solid green;
     background-color: #03AC13;
 }
@@ -163,9 +161,3 @@ button[disabled]:active {
     box-shadow: none;
     color: #3f3f3f;
 }
-/*
-
-  -webkit-box-shadow: none;
-  text-shadow: none;
-  border: 0;
- */
