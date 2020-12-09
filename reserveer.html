@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Kapper Knip - Reserveer</title>
 
     <!-- Default Style Sheet -->
 
     <link rel="stylesheet" type="text/css" href="css/default.css">
-re</head>
+
+</head>
 <body>
 
 <!--Section 1 -->
@@ -17,6 +18,58 @@ re</head>
     <div class="main-container">
 
         <div class="reserveer-wrapper">
+
+            <h2>Stap 1: Selecteer de gewenste behandeling.</h2>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="section-one">
+
+    <div class="main-container">
+
+        <div class="behandeling-wrapper">
+
+            <div class="gender-button-centering">
+
+                <button onclick="TreatmentMale()" id="fancy-button-treatment">Man</button>
+                <button onclick="TreatmentFemale()" id="fancy-button-treatment">Vrouw</button>
+                <button onclick="TreatmentKid()" id="fancy-button-treatment">Kind</button>
+
+            </div>
+
+            <div class="treatment-container" id="id-treatment-container">
+                <div onclick="HidingKnippen()" id="treatment-titles" style="border-top: 1px solid;">
+                    <t1>Knippen</t1>
+                </div>
+                <div id="cutting-treatments" class="treatment-flexbox-items">
+                    <div>
+                        <ul class="treatments-unordered-list">
+                            <li id="treatments-list-items">Treatment <button id="treatment-choose-btn">deze</button></li>
+                            <li id="treatments-list-items">Treatment <button id="treatment-choose-btn">deze</button></li>
+                            <li id="treatments-list-items">Treatment <button id="treatment-choose-btn">deze</button></li>
+                            <li id="treatments-list-items">Treatment <button id="treatment-choose-btn">deze</button></li>
+                        </ul>        	
+                    </div>
+                </div>
+
+                <div onclick="HidingVerfen()" id="treatment-titles">
+                    <t1>Verfen</t1>
+                </div>
+                <div id="painting-treatments" class="treatment-flexbox-items">
+                    tralalal verfen tralalal
+                </div>
+
+                <div onclick="HidingVerzorgen()" id="treatment-titles">
+                    <t1>Verzorgen</t1>
+                </div>
+                <div id="verzorgen-treatments" class="treatment-flexbox-items">
+                    verzorgingen
+                </div>
+            </div>
 
         </div>
 
@@ -29,6 +82,8 @@ re</head>
 <section>
 
     <div class="main-container">
+
+        <h2>Stap 2: Selecteer de gewenste kapper voor de behandeling.</h2>
 
         <div class="team-wrapper">
 
@@ -249,7 +304,7 @@ re</head>
             <div class="container">
                 <div class="row">
                     <div class="col-25">
-                        <label for="naam">Naam:*</label>
+                        <label for="name">Naam:*</label>
                     </div>
                     <div class="col-75">
                         <input type="text" id="name" name="name" placeholder="Naam">
@@ -276,7 +331,7 @@ re</head>
                         <label for="opmerking">Opmerking:</label>
                     </div>
                     <div class="col-75">
-                        <textarea id="opmerking" name="opmerking" placeholder="Laat hier een opmerking achter over de afspraak..." style="height:150px"></textarea>
+                        <textarea id="opmerking" name="opmerking" placeholder="Laat hier een opmerking achter over de afspraak." style="height:150px"></textarea>
                     </div>
                 </div>
                 <div class="required-fields">
@@ -293,7 +348,9 @@ re</head>
 
 <!-- Script -->
 
-<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/scriptmax.js"></script>
+
 <script src="js/calendar.js"></script>
+
 </body>
 </html>

@@ -1,3 +1,6 @@
+* {
+    font-family: Calibri, "helvetica neue", helvetica, arial, serif;
+}
 html, body {
     padding: 0;
     margin: 0;
@@ -6,6 +9,22 @@ html, body {
 
 /* Dit is Section 1 - gemaakt door Finn*/
 /*_________________ Finn's Gedeelte _________________*/
+
+/* ============ Section 1 ============ */
+
+#section-one {
+    border-bottom: 1px solid;
+}
+
+/* ============ Wrapper ============ */
+
+.behandeling-wrapper{
+    display: grid;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 30px;    
+}
+
 /* ============ Fancy Button ============ */
 
 #fancy-button-treatment {
@@ -16,28 +35,72 @@ html, body {
     
     border-radius: 20px;
     border: 1px solid black;
+    
+    text-align: center;
+}
+
+/* ======== Buttons ========*/
+
+#treatment-choose-btn {
+    margin-left: 65%;
+
+    display: inline-block;
+    
+    border-radius: 20px;
+    border: 1px solid black;
+    
+    text-align: center;
+}
+
+.gender-button-centering{
+    margin: auto;
 }
 
 /* ============ Treatments ============ */
 
-/* ======== Grid ========*/
-.treatmentcontainer{
-    display: grid;
-    grid-template-columns: auto;
-    
-    padding: 2px;
+
+
+/* ======== List Styling ========*/
+
+.treatments-unordered-list {
+    padding-left: 3px;
 }
 
-#id-treatment-container {
-    display: block
+#treatment-list-styling{
+    list-style-type: none;
 }
 
+#treatments-list-items {
+    list-style-type: none;
+    margin-top: 5px;
+}
+
+/* ======== Flexbox ========*/
+.treatment-container{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+.treatment-container > div{
+    background-color: snow;
+    width: 400px;
+    padding: 5px;
+
+    border-right: 1px solid;
+    border-left: 1px solid;
+    border-bottom: 1px solid;
+}
+
+#treatment-titles{
+    background-color: orange;
+}
 
 
 /* Dit is Section 2 - gemaakt door Wesley*/
 /* _________________ Wesley's Gedeelte _________________ */
 
-h3 {
+h3, h2, h1 {
     text-align: center;
 }
 
@@ -144,9 +207,6 @@ h3 {
 }
 
 /* _________________ Floris' Gedeelte _________________ */
-body {
-    font-family: Calibri, sans-serif, Verdana;
-}
 table, th, td {
     border: 1px solid #DDDDDD;
     border-collapse: collapse;
@@ -264,7 +324,7 @@ button.minimal:active {
 /* green-minimal BUTTON
 *******************************************************************************/
 button.greenminimal {
-    background: #63b863;
+    background: #57B257;
     border: 1px solid darkgreen;
     border-radius: 3px;
     color: white;
