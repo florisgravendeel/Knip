@@ -392,13 +392,12 @@ function loadAppointments(week){
                 break;
             default:
                 selectWeek("Vorige week");
-                console.log("default case");
                 break;
         }
 }
 
 /**
- * Deze functie download de afspraken van de server en laad vervolgens de afspraken in de agenda zien.
+ * Deze functie download de afspraken, openingstijden, en de behandelingen van de server en laad ze vervolgens zien.
  * @returns {Promise<void>}
  */
 async function getDatafromServer() {
@@ -411,6 +410,15 @@ async function getDatafromServer() {
         const data2 = await response2.json();
         busyHours[0] = data2.reserveringen[0];
         busyHours[1] = data2.reserveringen[1];
+
+        const response3 = await fetch("http://127.0.0.1:5000/behandelingen");
+        const data3 = await response3.json();
+        const treatmentsarray = data3.behandelingen;
+        for (i=0; i < treatmentsarray.length; i++){
+            treatments.push(new Treatment(treatmentsarray[i].id, treatmentsarray[i].naam, treatmentsarray[i].prijs, treatmentsarray[i].tijdsduur));
+        }
+        console.log(Treatment.getTreatmentsNameList());
+        // Schrijf hier je verder:
         loadAppointments()
     } catch (err) {
         console.log(err)
