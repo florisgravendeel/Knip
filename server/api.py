@@ -49,13 +49,10 @@ def create_appointment():
     return response
 
 
-@app.route('/behandeling')
+@app.route('/behandelingen', methods=["GET"])
 def behandeling():
-    cur = mysql.connect().cursor()
-    cur.execute("select * from reservation;")
-    r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-    cur.close()
-    return jsonify({'reserveringen': r})
+    response = CustomerReservation.get_treatments(mysql.connect())
+    return response
 
 
 if __name__ == '__main__':

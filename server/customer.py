@@ -151,7 +151,7 @@ class CustomerReservation(object):
                 l1 += appointment.get_location()
             else:
                 l2 += appointment.get_location()
-        return jsonify({'reserveringen': [l1, l2] })
+        return jsonify({'reserveringen': [l1, l2]})
 
     @staticmethod
     def create_appointment(connection, json_data):
@@ -183,6 +183,15 @@ class CustomerReservation(object):
         output = output.replace("-", "/").split(" ")[0]
         return output
 
+    @staticmethod
+    def get_treatments(connection):
+        cur = connection.cursor()
+        cur.execute("select * from website.behandeling;")
+        r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+        cur.close()
+        return jsonify({'behandelingen': r})
+
+
 
 class Appointment:
     timetable = ["9:00 -  9:30", "9:30 - 10:00",
@@ -194,7 +203,9 @@ class Appointment:
                  "15:00 - 15:30", "15:30 - 16:00",
                  "16:00 - 16:30", "16:30 - 17:00"]
 
-    timetable2 = ["9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"]
+    timetable2 = ["9:00", "9:30", "10:00", "10:30", "11:00", "11:30",
+                  "12:00", "12:30", "13:00", "13:30", "14:00",
+                  "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"]
 
     tuesday = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75]
     wednesday = [1, 6, 11, 16, 21, 26, 31, 36, 41, 46, 51, 56, 61, 66, 71, 76]
@@ -259,7 +270,7 @@ class Appointment:
             start_date = appointment.split(" - ")[0]
             for index in range(len(self.timetable2)):
                 if start_date == self.timetable2[index]:
-                    end_date = self.timetable2[index+1]
+                    end_date = self.timetable2[index + 1]
                     break
             full_date = start_date + " - " + end_date
 
@@ -271,15 +282,15 @@ class Appointment:
             if weekday == 0:  # Monday
                 pass
             elif weekday == 1:  # Tuesday
-                return [self.tuesday[x], self.tuesday[x+1]]
+                return [self.tuesday[x], self.tuesday[x + 1]]
             elif weekday == 2:  # Wednesday
-                return [self.wednesday[x], self.wednesday[x+1]]
+                return [self.wednesday[x], self.wednesday[x + 1]]
             elif weekday == 3:  # Thursday
-                return [self.thursday[x], self.thursday[x+1]]
+                return [self.thursday[x], self.thursday[x + 1]]
             elif weekday == 4:  # Friday
-                return [self.friday[x], self.friday[x+1]]
+                return [self.friday[x], self.friday[x + 1]]
             elif weekday == 5:  # Saturday
-                return [self.saturday[x], self.saturday[x+1]]
+                return [self.saturday[x], self.saturday[x + 1]]
             elif weekday == 6:  # Sunday
                 pass
 
@@ -289,6 +300,7 @@ class Appointment:
         month = int(string_array[1])
         year = int(string_array[0])
         return date(year, month, day)
+
 
 class Period:
 
