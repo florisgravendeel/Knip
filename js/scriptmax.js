@@ -12,9 +12,11 @@ class Team {
     }
     select(){
         this.getElement().style.backgroundColor = this.colour;
+        this.getElement().style.border = ("2px solid #000000");
     }
     deselect(){
         this.getElement().style.backgroundColor = "white";
+        this.getElement().style.border = "white";
     }
     isSelected(){
         return this.getElement().style.backgroundColor === this.colour;
@@ -75,4 +77,21 @@ function setTeam(mode){
             teams[3].select();
             break;
     }
+}
+
+// Functie onderdeel voor groen/rood border-color contact form
+// Met css aanroepen van input:valid én input:invalid
+// Doel is om de css klassen aan te roepen
+// Vraag is of dat lukt met deze functies hieronder of 
+// het te combineren valt met wat er nu al is qua functies
+// Test werkt dit?
+
+function setErrorFor(input) {
+  const formControl = input.parentElement;
+  formControl.className = 'input:valid';
+}
+
+function setSuccessFor(input) {
+  const formControl = input.parentElement;
+  formControl.className = 'input:invalid';
 }

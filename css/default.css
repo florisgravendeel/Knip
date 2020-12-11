@@ -465,9 +465,42 @@ button {
     margin-right: 2.5px;
 }
 
-.container .row .col-75 input {
-    font-size: 15px;
+.container .row .col-75 input{
+    font-size:15px;
+    justify-content: center;
+    
+}
+/* Form valid/invalid novalidate in form*/
+.form {
+    position:relative;
+}
 
+input + span{
+    position:absolute;
+    justify-content: right;
+    right: -5px;
+}
+input + span::before {
+  position: absolute;
+  bottom:10px;
+}
+
+input:invalid {
+  border: 2px solid #e74c3c;
+}
+
+input:valid {
+    border: 2px solid #2ecc71;
+}
+
+input:invalid + span::before {
+  content: '✖';
+  color: red;
+}
+
+input:valid + span::before {
+  content: '✓';
+  color: green;
 }
 
 textarea {

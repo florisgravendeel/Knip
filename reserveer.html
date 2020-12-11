@@ -302,12 +302,14 @@
             <h1>Uw afspraak staat ingepland om {tijd} op {dag} (/{week})</h1>
             <h2>Stap 4: Persoonlijke gegevens achterlaten</h2>
             <div class="container">
+                <form class="form" novalidate>
                 <div class="row">
                     <div class="col-25">
-                        <label for="name">Naam:*</label>
+                        <label for="naam">Naam:*</label>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="name" name="name" placeholder="Naam">
+                        <input type="text" id="name" name="name" maxlength="100" placeholder="Naam" required="required"/>
+                        <span></span>
                     </div>
                 </div>
                 <div class="row">
@@ -315,7 +317,8 @@
                         <label for="email">Email:*</label>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="email" name="email" placeholder="Email">
+                        <input type="text" id="email" name="email" placeholder="Email"  required="required"/>
+                        <span></span>
                     </div>
                 </div>
                 <div class="row">
@@ -323,7 +326,8 @@
                         <label for="telefoonnummer">Telefoonnummer:*</label>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="telefoonnummer" name="telefoonnummer" maxlength="12" placeholder="Telefoonnummer">
+                        <input type="text" id="telefoonnummer" name="telefoonnummer" maxlength="12" placeholder="Telefoonnummer" required="required"/>
+                        <span></span>
                     </div>
                 </div>
                 <div class="row">
@@ -340,7 +344,7 @@
                 <div class="row">
                     <button id="button3" class="greenminimal" type="button" onclick="makeAppointment()">Reserveer nu</button>
                 </div>
-                </form>
+            </form>
             </div>
         </div>
     </div>
