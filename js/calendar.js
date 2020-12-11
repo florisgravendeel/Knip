@@ -40,18 +40,6 @@ function enableButton(i, status){
 }
 
 /**
- * Maak de agenda zichtbaar of onzichtbaar.
- */
-function toggleDisplay() {
-    var x = document.getElementById("reserveringsdiv");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
-/**
  * Voeg CSS toe via deze functie.
  * @param s Een string CSS
  */
@@ -294,16 +282,16 @@ function getDate(){
             index += 4;
             break;
         default:
-            break;
+            return undefined;
     }
     let dateArray = dates[index].split(" ");
     let day = dateArray[0];
     let month = getMonth(dateArray[1]);
     let year = new Date().getFullYear();
-    let date = day + "/" + month + "/" + year;
+    let date = year + "-" + month + "-" + day;
     let start_date = date + " " + getTime("start");
     let end_date   = date + " " + getTime("end");
-    console.log(getBarber() + " - Start: " + start_date + " Einde: " + end_date);
+    return [start_date, end_date];
 }
 
 /**
@@ -350,15 +338,50 @@ function setCellsToUnavailable(cells){
         setCelltoUnavailable(cells[i], true);
     }
 }
+
+
 /**
  * Deze functie maakt verbinding met de server, om vervolgens een afspraak in de database te zetten.
  * @returns {Promise<void>}
  */
 async function makeAppointment(){
-    getDate();
-    return;
+    let id = Team.getBarberID();
+    if (id === ""){
+        alert("Selecteer een kapper!");
+        return;
+    }
+
+    let dates = getDate();
+    if (dates === undefined){
+        alert("Selecteer een datum!");
+        return;
+    }
+    let start_date = dates[0];
+    let end_date = dates[1];
+
+    let name = document.getElementById("name").value;
+    if (name.trim() === ""){
+        alert("Voer een naam in!");
+        return;
+    }
+
+    let email = document.getElementById("email").value;
+    var re_valid_email = /\S+@\S+\.\S+/;
+    if (!re_valid_email.test(email)){
+        alert("Voer een geldig email adres in!");
+        return;
+    }
+
+    let phonenumber = document.getElementById("telefoonnummer").value;
+    var re_valid_pnumber = /^((\+31)|(0031)|0)(\(0\)|)(\d{1,3})(\s|\-|)(\d{8}|\d{4}\s\d{4}|\d{2}\s\d{2}\s\d{2}\s\d{2})$/gm;
+    if (!re_valid_pnumber.test(phonenumber)){
+        alert("Voer een geldig telefoonnummer in!");
+        return;
+    }
+
+    let comment = document.getElementById("opmerking").value;
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", 'http://127.0.0.1:5000/test123', true);
+    xhr.open("POST", 'http://127.0.0.1:5000/nieuweafspraak', true);
 
     //Send the proper header information along with the request
     xhr.setRequestHeader('Content-type', 'application/json')
@@ -366,17 +389,19 @@ async function makeAppointment(){
     xhr.onreadystatechange = function() { // Call a function when the state changes.
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             // Request finished. Do processing here.
+            alert("Afspraak verstuurd!");
+            location.reload();
         }
     }
     const params = {
-        naam: "Gert",
-        email: "karelmail@nede.be",
-        telefoon: "0688992244",
-        begin_datum: "2020-12-04 10:30:00",
-        eind_datum: "2020-12-04 11:00:00",
-        kapper_id: "4",
+        naam: name,
+        email: email,
+        telefoon: phonenumber,
+        begin_datum: start_date,
+        eind_datum: end_date,
+        kapper_id: id,
         behandelings_id: "3",
-        opmerking: "Hoi"
+        opmerking: comment
     }
     xhr.send(JSON.stringify(params))
 }
@@ -417,7 +442,6 @@ async function getDatafromServer() {
         for (i=0; i < treatmentsarray.length; i++){
             treatments.push(new Treatment(treatmentsarray[i].id, treatmentsarray[i].naam, treatmentsarray[i].prijs, treatmentsarray[i].tijdsduur));
         }
-        console.log(Treatment.getTreatmentsNameList());
         // Schrijf hier je verder:
         loadAppointments()
     } catch (err) {
@@ -470,7 +494,6 @@ async function getDatafromServer() {
              _'....----""""" mh
 
 Code initialiseren:
-toggleDisplay();
  */
 const timetable =
          ["9:00 -  9:30",  "9:30 - 10:00",
@@ -493,9 +516,6 @@ for (var i = 0; i < 80; i++){
 let dates; //= ['1 december', '2 december', '3 december', '4 december', '5 december', '8 december', '9 december', '10 december', '11 december', '12 december']
 let busyHours = [[]]// = [[1,2,6,4,13,23,34,43,45,46,53,54,61,67,79,80],[0,1,5,3,12,22,33,42,44,45,52,53,60,66,78,79]];
 getDatafromServer();
-
-
-
 
 
 removeAllUnavailableHours();
