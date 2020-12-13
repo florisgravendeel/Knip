@@ -26,24 +26,24 @@ html, body {
     margin-top: 30px;
 }
 
-/* ============ Fancy Button ============ */
-
-#fancy-button-treatment {
-    display: inline-block;
-
-    height: 40px;
-    width: 100px;
-
-    border-radius: 20px;
-    border: 1px solid black;
-
+/* ============ Selected treatment ============ */
+.treatment-selected {
     text-align: center;
 }
 
+#selected-treatment-title {
+    margin-bottom: 0;
+}
+
+#selected-treatment-display {
+    margin-top: 0;
+}
+
+/* ============ Fancy Button ============ */
 /* ======== Buttons ========*/
 
-#treatment-choose-btn {
-    margin-left: 65%;
+.treatment-choose-btn {
+    margin-left: 100px;
 
     display: inline-block;
 
@@ -51,15 +51,22 @@ html, body {
     border: 1px solid black;
 
     text-align: center;
+
+    width: 100px;
 }
 
-.gender-button-centering {
-    margin: auto;
+/* ============ Geslacht display ============ */
+
+.gender-choice-display {
+    text-align: center;
+}
+
+#gender-display {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 /* ============ Treatments ============ */
-
-
 /* ======== List Styling ========*/
 
 .treatments-unordered-list {
@@ -84,7 +91,7 @@ html, body {
 
 .treatment-container > div {
     background-color: snow;
-    width: 400px;
+    width: 500px;
     padding: 5px;
 
     border-right: 1px solid;

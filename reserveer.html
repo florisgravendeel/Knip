@@ -33,41 +33,54 @@
 
         <div class="behandeling-wrapper">
 
-            <div class="gender-button-centering">
-
-                <button onclick="TreatmentMale()" id="fancy-button-treatment">Man</button>
-                <button onclick="TreatmentFemale()" id="fancy-button-treatment">Vrouw</button>
-                <button onclick="TreatmentKid()" id="fancy-button-treatment">Kind</button>
-
-            </div>
-
             <div class="treatment-container" id="id-treatment-container">
-                <div onclick="HidingKnippen()" id="treatment-titles" style="border-top: 1px solid;">
+                <div class="treatment-selected" style="border-top: 1px solid;">    
+                    <h1 id="selected-treatment-title">Geselecteerde behandeling</h1> <br>
+                    <h3 id="selected-treatment-display">Geen</h3>
+                </div>
+
+                <div onclick="HidingKnippen()" id="treatment-titles">
                     <t1>Knippen</t1>
                 </div>
                 <div id="cutting-treatments" class="treatment-flexbox-items">
                     <div>
                         <ul class="treatments-unordered-list">
-                            <li id="treatments-list-items">Treatment <button id="treatment-choose-btn">deze</button></li>
-                            <li id="treatments-list-items">Treatment <button id="treatment-choose-btn">deze</button></li>
-                            <li id="treatments-list-items">Treatment <button id="treatment-choose-btn">deze</button></li>
-                            <li id="treatments-list-items">Treatment <button id="treatment-choose-btn">deze</button></li>
+                            <li id="treatments-list-items">Knippen<button class="treatment-choose-btn" id="treatment-choosen-btn-1">Kies</button></li>
+                            <li id="treatments-list-items">Wassen, knippen, föhnen <button class="treatment-choose-btn" id="treatment-choosen-btn-2">Kies</button></li>
+                            <li id="treatments-list-items">Wassen, knippen, tangen <button class="treatment-choose-btn" id="treatment-choosen-btn-3">Kies</button></li>
+                            <li id="treatments-list-items">Pony knippen <button class="treatment-choose-btn" id="treatment-choosen-btn-4">Kies</button></li>
                         </ul>        	
                     </div>
                 </div>
 
                 <div onclick="HidingVerfen()" id="treatment-titles">
-                    <t1>Verfen</t1>
+                    <t1>Verven</t1>
                 </div>
                 <div id="painting-treatments" class="treatment-flexbox-items">
-                    tralalal verfen tralalal
+                    <div>
+                        <ul class="treatments-unordered-list">
+                            <li id="treatments-list-items">Verven <button class="treatment-choose-btn" id="treatment-choosen-btn-5">Kies</button></li>
+                            <li id="treatments-list-items">Kleuren <button class="treatment-choose-btn" id="treatment-choosen-btn-6">Kies</button></li>
+                        </ul>        	
+                    </div>
                 </div>
 
                 <div onclick="HidingVerzorgen()" id="treatment-titles">
                     <t1>Verzorgen</t1>
                 </div>
                 <div id="verzorgen-treatments" class="treatment-flexbox-items">
-                    verzorgingen
+                    <div>
+                        <ul class="treatments-unordered-list">
+                            <li id="treatments-list-items">Vlechten <button class="treatment-choose-btn" id="treatment-choosen-btn-7">Kies</button></li>
+                            <li id="treatments-list-items">Opsteken <button class="treatment-choose-btn" id="treatment-choosen-btn-8">Kies</button></li>
+                            <li id="treatments-list-items">Watergolven <button class="treatment-choose-btn" id="treatment-choosen-btn-9">Kies</button></li>
+                            <li id="treatments-list-items">Tangen <button class="treatment-choose-btn" id="treatment-choosen-btn-10">Kies</button></li>
+                            <li id="treatments-list-items">Baard scheren <button class="treatment-choose-btn" id="treatment-choosen-btn-11">Kies</button></li>
+                            <li id="treatments-list-items">Baard Trimmen <button class="treatment-choose-btn" id="treatment-choosen-btn-12">Kies</button></li>
+                            <li id="treatments-list-items">Ontharen <button class="treatment-choose-btn" id="treatment-choosen-btn-13">Kies</button></li>
+                            <li id="treatments-list-items">Epileren <button class="treatment-choose-btn" id="treatment-choosen-btn-14">Kies</button></li>
+                        </ul>        	
+                    </div>
                 </div>
             </div>
 
@@ -352,9 +365,8 @@
 
 <!-- Script -->
 
-<script type="text/javascript" src="js/scriptmax.js"></script>
-<script type="text/javascript" src="js/calendar.js"></script>
-<script type="text/javascript" src="js/treatments.js"></script>
+<script src="js/script.js"></script>
+<script src="js/calendar.js"></script>
 
 </body>
 </html>
