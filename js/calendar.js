@@ -442,8 +442,8 @@ async function getDatafromServer() {
         for (i=0; i < treatmentsarray.length; i++){
             treatments.push(new Treatment(treatmentsarray[i].id, treatmentsarray[i].naam, treatmentsarray[i].prijs, treatmentsarray[i].tijdsduur));
         }
+        loadAppointments();
         // Schrijf hier je verder:
-        loadAppointments()
     } catch (err) {
         console.log(err)
     }
@@ -518,7 +518,7 @@ let busyHours = [[]]// = [[1,2,6,4,13,23,34,43,45,46,53,54,61,67,79,80],[0,1,5,3
 getDatafromServer();
 
 
-removeAllUnavailableHours();
+//removeAllUnavailableHours();
 //sendDataToServer();
 
 // Voeg CSS/JS toe aan de tijdvakken (HTML: cell0 - cell79)
