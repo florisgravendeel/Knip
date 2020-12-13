@@ -51,7 +51,7 @@ class Team {
 let teams = [new Team("team1","forestgreen", "Wesley",3),
              new Team("team2","blueviolet", "Max", 4),
              new Team("team3","aqua", "Floris", 5),
-             new Team("team4","#00ff00", "Lieke", 6)];
+             new Team("team4","red", "Lieke", 6)];
 
 let teamSelector = document.getElementsByClassName('team')
 for (let i = 0; teamSelector.length > i; i++) {
@@ -82,16 +82,16 @@ function setTeam(mode){
 // Functie onderdeel voor groen/rood border-color contact form
 // Met css aanroepen van input:valid én input:invalid
 // Doel is om de css klassen aan te roepen
-// Vraag is of dat lukt met deze functies hieronder of 
+// Vraag is of dat lukt met deze functies hieronder of
 // het te combineren valt met wat er nu al is qua functies
 // Test werkt dit?
 
 function setErrorFor(input) {
-  const formControl = input.parentElement;
-  formControl.className = 'input:valid';
+    const formControl = input.parentElement;
+    formControl.className = 'input:valid';
 }
 
 function setSuccessFor(input) {
-  const formControl = input.parentElement;
-  formControl.className = 'input:invalid';
+    const formControl = input.parentElement;
+    formControl.className = 'input:invalid';
 }

@@ -6,10 +6,16 @@ from datetime import date, timedelta
 from flask import jsonify
 
 
+#
+# Deze klasse bevat allen functies die nodig zijn om de kalender voor de klant
+# op onze website werkende te krijgen.
+#
 class CustomerCalendar(object):
 
-    # sql_date_format 21/12/20
-    # day_month_format 24 november
+    # Deze functie geeft een 'dictionary' met daarin de openingstijden van deze week en volgende week.
+    # Er zijn twee formaten:
+    #   sql_date_format  ["21/12/20", "22/12/20"]
+    #   day_month_format ["24 november", "25 november"]
     @staticmethod
     def get_opening_hours():
         # Zet de taal op z'n Hollands
@@ -84,16 +90,20 @@ class CustomerCalendar(object):
         return calender_dict
 
 
+# Deze functie geeft een String met daarin de naam van de week in Nederlands formaat.
+# i staat voor het aantal dagen voor of na.
+# Voorbeeld: -1 is gisteren, +2 overmorgen.
 def get_date(i):
     date_original = datetime.datetime.now()  # debug: datetime.date(2020, 11, 23)
-    ## Days to add
     days_to_add = i
 
-    ## Add
+    ## De huidige dag plus of min i = nieuwe dag
     date_new = date_original + datetime.timedelta(days_to_add)
     return date_new
 
 
+# Deze functie geeft een lijst dagen in Nederlands formaat.
+# De functie telt vanaf: min, en stopt vanaf: max.
 def get_dates(min, max):
     dates = []
     for x in range(min, max + 1):
@@ -101,11 +111,13 @@ def get_dates(min, max):
     return dates
 
 
+# Deze functie formateerd de datum in een SQL formaat.
 def format_to_sql_date(date):
     format_date1 = (date.strftime("%Y/%m/%d"))  # (date.strftime("%x"))
     return format_date1
 
 
+# Deze functie formateerd de datums in een SQL formaat en geeft ze terug in een lijst.
 def format_to_sql_date_list(dates):
     output = []
     for date in dates:
@@ -113,6 +125,7 @@ def format_to_sql_date_list(dates):
     return output
 
 
+# Deze functie formateerd een datum naar een dag/maand formaat. (11/12/2020 -> 11 december)
 def format_to_day_month(date):
     format_date1 = (date.strftime("%d %B"))
     if format_date1[0] == "0":
@@ -121,6 +134,7 @@ def format_to_day_month(date):
     return format_date1
 
 
+# Deze functie formateerd een lijst de datums en geeft een lijst in dag/maand formaat.
 def format_to_day_month_list(dates):
     output = []
     for date in dates:
@@ -128,8 +142,13 @@ def format_to_day_month_list(dates):
     return output
 
 
+#
+# Deze klasse bevat functies waarmee we allen gemaakte reserveringen kunnen ophalen, verwerken en versturen.
+#
 class CustomerReservation(object):
 
+    # Deze functie weergeeft allen reserveringen van deze week en volgende week.
+    # l1: reserveringen deze week & l2: reserveringen volgende week
     @staticmethod
     def get_appointments(connection):
         dates_dictionary = CustomerCalendar.get_opening_hours()['sql_date_format']
@@ -153,6 +172,7 @@ class CustomerReservation(object):
                 l2 += appointment.get_location()
         return jsonify({'reserveringen': [l1, l2]})
 
+    # Deze functie maakt op basis van de json data een reservering aan in de database.
     @staticmethod
     def create_appointment(connection, json_data):
         cursor = connection.cursor()
@@ -173,6 +193,8 @@ class CustomerReservation(object):
         cursor.close()
         return "Successfully committed"
 
+    # Deze functie voegt 1 dag toe aan de datum in een string-formaat.
+    # Input: '2020/12/24', Output: '2020/12/25'
     @staticmethod
     def add_one_day(string):
         date = string.split("/")
@@ -183,6 +205,7 @@ class CustomerReservation(object):
         output = output.replace("-", "/").split(" ")[0]
         return output
 
+    # Deze functie weergeeft alle behandelingen in json-formaat. (id, name, price)
     @staticmethod
     def get_treatments(connection):
         cur = connection.cursor()
@@ -192,7 +215,8 @@ class CustomerReservation(object):
         return jsonify({'behandelingen': r})
 
 
-
+# Deze klasse representeerd een tijdvak in een agenda. Dit tijdvak kan een half uur of een uur zijn.
+# Het tijdvak kent een begintijd en eindtijd.
 class Appointment:
     timetable = ["9:00 -  9:30", "9:30 - 10:00",
                  "10:00 - 10:30", "10:30 - 11:00",
@@ -221,6 +245,7 @@ class Appointment:
         self.calendar_start_date = self.string_to_date(c_start_date)
         self.calendar_end_date = self.string_to_date(c_end_date)
 
+    # Deze functie geeft aan of het tijdvak in de eerste gegeven week is of in de tweede.
     def is_in_first_week(self):
         date_z = self.appointment_start_time.date
         date_x = self.calendar_start_date
@@ -234,6 +259,7 @@ class Appointment:
         else:
             return True
 
+    # Deze functie geeft aan of het tijdvak een half uur duurt.
     def is_half_hour(self):
         total_minutes = self.appointment_end_time.time_to_minutes() - self.appointment_start_time.time_to_minutes()
         if total_minutes <= 30:
@@ -241,6 +267,8 @@ class Appointment:
         else:
             return False
 
+    # Deze functie geeft het id van cell aan in de agenda.
+    # Mocht het zo zijn dat het tijdvak een uur duurt, dan zijn er 2 cell id's
     def get_location(self):
         x = 0
         appointment = self.appointment_start_time.get_time() + " - " + self.appointment_end_time.get_time()
@@ -251,19 +279,19 @@ class Appointment:
                     x = index
                     break
             weekday = self.appointment_start_time.date.weekday()
-            if weekday == 0:  # Monday
+            if weekday == 0:  # maandag
                 pass
-            elif weekday == 1:  # Tuesday
+            elif weekday == 1:  # dinsdag
                 return [self.tuesday[x]]
-            elif weekday == 2:  # Wednesday
+            elif weekday == 2:  # woensdag
                 return [self.wednesday[x]]
-            elif weekday == 3:  # Thursday
+            elif weekday == 3:  # donderdag
                 return [self.thursday[x]]
-            elif weekday == 4:  # Friday
+            elif weekday == 4:  # vrijdag
                 return [self.friday[x]]
-            elif weekday == 5:  # Saturday
+            elif weekday == 5:  # zaterdag
                 return [self.saturday[x]]
-            elif weekday == 6:  # Sunday
+            elif weekday == 6:  # zondag
                 pass
         else:
             end_date = ""
@@ -279,21 +307,22 @@ class Appointment:
                     x = index
                     break
             weekday = self.appointment_start_time.date.weekday()
-            if weekday == 0:  # Monday
+            if weekday == 0:  # maandag
                 pass
-            elif weekday == 1:  # Tuesday
+            elif weekday == 1:  # dinsdag
                 return [self.tuesday[x], self.tuesday[x + 1]]
-            elif weekday == 2:  # Wednesday
+            elif weekday == 2:  # woensdag
                 return [self.wednesday[x], self.wednesday[x + 1]]
-            elif weekday == 3:  # Thursday
+            elif weekday == 3:  # donderdag
                 return [self.thursday[x], self.thursday[x + 1]]
-            elif weekday == 4:  # Friday
+            elif weekday == 4:  # vrijdag
                 return [self.friday[x], self.friday[x + 1]]
-            elif weekday == 5:  # Saturday
+            elif weekday == 5:  # zaterdag
                 return [self.saturday[x], self.saturday[x + 1]]
-            elif weekday == 6:  # Sunday
+            elif weekday == 6:  # zondag
                 pass
 
+    # Deze functie zet een datum om in een date-object.
     def string_to_date(self, string):
         string_array = string.split("/")
         day = int(string_array[2])
@@ -302,6 +331,8 @@ class Appointment:
         return date(year, month, day)
 
 
+# Deze functie representeerd een cell in de agenda. Deze duurt altijd een half uur.
+# Een reservering kan echter wel bestaan uit meerdere cellen.
 class Period:
 
     def __init__(self, string):

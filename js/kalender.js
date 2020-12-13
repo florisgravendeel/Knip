@@ -295,15 +295,6 @@ function getDate(){
 }
 
 /**
- * Geeft weer welke kapper is geselecteerd.
- * @returns {*}
- */
-function getBarber(){
-    //barber = document.getElementById("kappers").value;
-    return "barber";
-}
-
-/**
  * Verwijderd alle afspraken van de agenda, waardoor je start met een blanco agenda.
  */
 function removeAllUnavailableHours() {
@@ -339,73 +330,11 @@ function setCellsToUnavailable(cells){
     }
 }
 
-
 /**
- * Deze functie maakt verbinding met de server, om vervolgens een afspraak in de database te zetten.
- * @returns {Promise<void>}
+ * Deze functie wordt opgeroepen bij initialiseren van de kalender.
+ * Deze functie werkt niet als er een cell is hoger dan 79 of lager dan 0!
+ * @param week String die aangeeft of het gaat om de huidige week of de week erna (relatief gesproken tot de openingstijden van de kapper)
  */
-async function makeAppointment(){
-    let id = Team.getBarberID();
-    if (id === ""){
-        alert("Selecteer een kapper!");
-        return;
-    }
-
-    let dates = getDate();
-    if (dates === undefined){
-        alert("Selecteer een datum!");
-        return;
-    }
-    let start_date = dates[0];
-    let end_date = dates[1];
-
-    let name = document.getElementById("name").value;
-    if (name.trim() === ""){
-        alert("Voer een naam in!");
-        return;
-    }
-
-    let email = document.getElementById("email").value;
-    var re_valid_email = /\S+@\S+\.\S+/;
-    if (!re_valid_email.test(email)){
-        alert("Voer een geldig email adres in!");
-        return;
-    }
-
-    let phonenumber = document.getElementById("telefoonnummer").value;
-    var re_valid_pnumber = /^((\+31)|(0031)|0)(\(0\)|)(\d{1,3})(\s|\-|)(\d{8}|\d{4}\s\d{4}|\d{2}\s\d{2}\s\d{2}\s\d{2})$/gm;
-    if (!re_valid_pnumber.test(phonenumber)){
-        alert("Voer een geldig telefoonnummer in!");
-        return;
-    }
-
-    let comment = document.getElementById("opmerking").value;
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", 'http://127.0.0.1:5000/nieuweafspraak', true);
-
-    //Send the proper header information along with the request
-    xhr.setRequestHeader('Content-type', 'application/json')
-
-    xhr.onreadystatechange = function() { // Call a function when the state changes.
-        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-            // Request finished. Do processing here.
-            alert("Afspraak verstuurd!");
-            location.reload();
-        }
-    }
-    const params = {
-        naam: name,
-        email: email,
-        telefoon: phonenumber,
-        begin_datum: start_date,
-        eind_datum: end_date,
-        kapper_id: id,
-        behandelings_id: "3",
-        opmerking: comment
-    }
-    xhr.send(JSON.stringify(params))
-}
-// Deze functie werkt niet als er een cell is hoger dan 79 of lager dan 0.
 function loadAppointments(week){
     removeAllUnavailableHours();
         switch (week){
@@ -419,34 +348,6 @@ function loadAppointments(week){
                 selectWeek("Vorige week");
                 break;
         }
-}
-
-/**
- * Deze functie download de afspraken, openingstijden, en de behandelingen van de server en laad ze vervolgens zien.
- * @returns {Promise<void>}
- */
-async function getDatafromServer() {
-    try {
-        const response = await fetch("http://127.0.0.1:5000/openingstijden");
-        const data = await response.json();
-        dates = data.opening_hours_dm;
-
-        const response2 = await fetch("http://127.0.0.1:5000/reserveringen");
-        const data2 = await response2.json();
-        busyHours[0] = data2.reserveringen[0];
-        busyHours[1] = data2.reserveringen[1];
-
-        const response3 = await fetch("http://127.0.0.1:5000/behandelingen");
-        const data3 = await response3.json();
-        const treatmentsarray = data3.behandelingen;
-        for (i=0; i < treatmentsarray.length; i++){
-            treatments.push(new Treatment(treatmentsarray[i].id, treatmentsarray[i].naam, treatmentsarray[i].prijs, treatmentsarray[i].tijdsduur));
-        }
-        loadAppointments();
-        // Schrijf hier je verder:
-    } catch (err) {
-        console.log(err)
-    }
 }
 /*
                                              ,-.
@@ -491,10 +392,8 @@ async function getDatafromServer() {
                    .'         /
                  .'          /
                ,'           /
-             _'....----""""" mh
-
-Code initialiseren:
- */
+             _'....----"""""
+*/
 const timetable =
          ["9:00 -  9:30",  "9:30 - 10:00",
          "10:00 - 10:30", "10:30 - 11:00",
@@ -516,10 +415,6 @@ for (var i = 0; i < 80; i++){
 let dates; //= ['1 december', '2 december', '3 december', '4 december', '5 december', '8 december', '9 december', '10 december', '11 december', '12 december']
 let busyHours = [[]]// = [[1,2,6,4,13,23,34,43,45,46,53,54,61,67,79,80],[0,1,5,3,12,22,33,42,44,45,52,53,60,66,78,79]];
 getDatafromServer();
-
-
-//removeAllUnavailableHours();
-//sendDataToServer();
 
 // Voeg CSS/JS toe aan de tijdvakken (HTML: cell0 - cell79)
 for (i = 0; i < 80; i++){
