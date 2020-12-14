@@ -408,6 +408,67 @@ button[disabled]:active {
     color: #3f3f3f;
 }
 
+
+/* LEGENDA onder kalender*/
+  
+  .legenda {
+    display:grid;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .legenda p {
+  text-align:center;
+  padding:0;
+  margin:0;
+  float:left;
+  padding-left:15px;
+  font-family: Calibri, "helvetica neue", helvetica, arial, serif;
+  }
+
+  .legenda input {
+  border: 2px solid #000000;
+  width:90px;
+  padding:1.5px;
+  }
+  
+  .legenda #A{
+  background-color: #03AC13;
+  float:left;
+  margin-left:10px;
+  }
+  
+  .legenda #B{
+  background-color:black;
+  float:left;
+  margin-left:10px;
+  }
+  
+  .legenda #C{
+  background-color:#DDDDDD;
+  float:left;
+  margin-left:10px;
+  }
+  
+  .legenda fieldset{
+  width:400px;
+  border: 2px solid #000000;
+  margin-top:40px;
+  margin-bottom:20px;
+  }
+  
+  .legenda legend{
+  font-size:20px;
+  }
+  
+  .legenda h2{
+  text-align:center;
+  padding-bottom:10px;
+  font-size:26px;
+  font-family: Calibri, "helvetica neue", helvetica, arial, serif;
+  }
+
+
 /* _________________ Max's Gedeelte _________________ */
 input[type=text], select, textarea {
     width: 100%;
