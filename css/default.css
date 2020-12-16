@@ -111,13 +111,18 @@ h3, h2, h1 {
     text-align: center;
 }
 
+a, a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
 .homePage {
     border-bottom: black 1px solid;
     overflow: hidden;
 }
 
 .main-container {
-    width: 1500px;
+    width: 1200px;
     margin: 0 auto;
 }
 
@@ -144,7 +149,7 @@ h3, h2, h1 {
 
 .landing-right {
     grid-area: landing-right;
-    display: flex;
+    display: grid;
     align-content: center;
     padding-top: 50px;
     padding-bottom: 50px;
@@ -208,8 +213,27 @@ h3, h2, h1 {
 
 .gallery-preview {
     float: left;
-    height: 120px;
+    height: 60px;
     padding: 10px;
+}
+
+.reserveer-button {
+    border: none;
+    color: white;
+    background-color: #4CAF50;
+    position: fixed;
+    bottom: 0;
+    right: 33px;
+    padding: 0 10px 0 10px;
+    font-size: 16px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.gallery-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 @media screen and (max-width: 1200px) {
