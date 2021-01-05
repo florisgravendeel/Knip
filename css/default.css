@@ -231,6 +231,17 @@ a, a:visited {
     justify-content: center;
 }
 
+/*
+
+Main container header 2 padding bottom fix
+
+wat:? extra padding boven plaatjes;
+*/
+
+#section-two .main-container h2{
+    padding-bottom:10px;
+}
+
 @media screen and (max-width: 1200px) {
     .main-container {
         width: 95%;
