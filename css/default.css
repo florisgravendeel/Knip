@@ -81,7 +81,7 @@ html, body {
 .treatment-container {
     display: flex;
     flex-direction: column;
-    padding-top: 10px;
+    border: 2px solid black;
 }
 
 .treatment-container > div {
@@ -89,9 +89,9 @@ html, body {
     width: 500px;
     padding: 5px;
 
-    border-right: 1px solid;
-    border-left: 1px solid;
-    border-bottom: 1px solid;
+    border-right: 2px solid;
+    border-left: 2px solid;
+    border-bottom: 2px solid;
 }
 
 #treatment-titles {
