@@ -9,6 +9,7 @@
     <!-- Default Style Sheet -->
 
     <link rel="stylesheet" type="text/css" href="css/default.css">
+    <script src="js/script.js"></script>
 
 </head>
 <body>
@@ -43,27 +44,37 @@
 
             <div class="landing-right">
 
-                <div class="gallery-column">
+                <div class="gallery-container">
 
-                    <img class="gallery-preview" src="images/gallery/g1.png">
-
-                </div>
-
-                <div class="gallery-column">
-
-                    <img class="gallery-preview" src="images/gallery/g2.jpg">
+                    <img id="expandedImg" style="width: 50%">
 
                 </div>
 
                 <div class="gallery-column">
 
-                    <img class="gallery-preview" src="images/gallery/g3.jpg">
+                    <div>
 
-                </div>
+                        <img class="gallery-preview" src="images/gallery/g1.png" onclick="imageGallery(this);">
 
-                <div class="gallery-column">
+                    </div>
 
-                    <img class="gallery-preview" src="images/gallery/g4.jpg">
+                    <div>
+
+                        <img class="gallery-preview" src="images/gallery/g2.jpg" onclick="imageGallery(this);">
+
+                    </div>
+
+                    <div>
+
+                        <img class="gallery-preview" src="images/gallery/g3.jpg" onclick="imageGallery(this);">
+
+                    </div>
+
+                    <div>
+
+                        <img class="gallery-preview" src="images/gallery/g4.jpg" onclick="imageGallery(this);">
+
+                    </div>
 
                 </div>
 
@@ -242,16 +253,6 @@
 
             </div>
 
-            <div class="team">
-
-                <img class="avatar" src="images/team/k5.png">
-
-                <h4>Sam</h4>
-
-                <p>Nieuwe hoogwaardige kwaliteit ramen en deuren aan uiterst lage prijzen...</p>
-
-            </div>
-
         </div>
 
     </div>
@@ -267,24 +268,6 @@
         <h3>Gastenboek</h3>
 
         <div class="guestbook">
-
-            <form method=post action="/cgi-bin/guestBook.pl">
-                <input type=hidden name=fields value="Name,Email,Comments">
-                Name:
-                <input type=text name=Name><br>
-                Email Address:
-                <input type=text name=Email><br>
-                Comments:
-                <br>
-                <textarea name=Comments rows=5 cols=60>
-                </textarea
-                ><br>
-                <input type=submit value="Submit">
-            </form>
-
-            <!--GUESTBOOK-OPTIONS: maxEntries=10-->
-            <!--GUESTBOOK-->
-            <!--GUESTBOOK-->
 
 
         </div>
@@ -336,6 +319,18 @@
     </div>
 
 </section>
+
+<button type="button" class="reserveer-button">
+
+    <a href="reserveer.html">
+
+        <h2>Reserveer Hier</h2>
+
+    </a>
+
+</button>
+
+<script src="js/imageGallery.js"></script>
 
 </body>
 </html>

@@ -424,7 +424,7 @@ for (i = 0; i < 80; i++){
         selectCell(this);
     }
     var css = "#cell" + i + ":hover { " +
-        "color: black; " +
+        "color: black !important; " +
         "}" +
         "#cell" + i + "{ " +
         "font-size: 15.35px;" +

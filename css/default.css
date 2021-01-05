@@ -12,11 +12,6 @@ html, body {
 /*_________________ Finn's Gedeelte _________________*/
 
 /* ============ Section 1 ============ */
-
-#section-one {
-    border-bottom: 1px solid;
-}
-
 /* ============ Wrapper ============ */
 
 .behandeling-wrapper {
@@ -105,10 +100,15 @@ html, body {
 
 
 /* Dit is Section 2 - gemaakt door Wesley*/
+/* ============ Section 2 ============ */
 /* _________________ Wesley's Gedeelte _________________ */
-
 h3, h2, h1 {
     text-align: center;
+}
+
+a, a:visited {
+    color: inherit;
+    text-decoration: none;
 }
 
 .homePage {
@@ -117,7 +117,7 @@ h3, h2, h1 {
 }
 
 .main-container {
-    width: 1500px;
+    width: 1200px;
     margin: 0 auto;
 }
 
@@ -144,7 +144,7 @@ h3, h2, h1 {
 
 .landing-right {
     grid-area: landing-right;
-    display: flex;
+    display: grid;
     align-content: center;
     padding-top: 50px;
     padding-bottom: 50px;
@@ -208,8 +208,27 @@ h3, h2, h1 {
 
 .gallery-preview {
     float: left;
-    height: 120px;
+    height: 60px;
     padding: 10px;
+}
+
+.reserveer-button {
+    border: none;
+    color: white;
+    background-color: #4CAF50;
+    position: fixed;
+    bottom: 0;
+    right: 33px;
+    padding: 0 10px 0 10px;
+    font-size: 16px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.gallery-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 @media screen and (max-width: 1200px) {
@@ -234,6 +253,7 @@ h3, h2, h1 {
     }
 }
 
+/* ============ Section 3 ============ */
 /* _________________ Floris' Gedeelte _________________ */
 table, th, td {
     border: 1px solid #DDDDDD;
@@ -408,9 +428,9 @@ button[disabled]:active {
     color: #3f3f3f;
 }
 
-
+/* ============ Section 3B ============ */
 /* LEGENDA onder kalender*/
-  
+
   .legenda {
     display:grid;
     align-content: center;
@@ -421,6 +441,7 @@ button[disabled]:active {
   text-align:center;
   padding:0;
   margin:0;
+  font-weight: bold;
   float:left;
   padding-left:15px;
   font-family: Calibri, "helvetica neue", helvetica, arial, serif;
@@ -464,12 +485,29 @@ button[disabled]:active {
   .legenda h2{
   text-align:center;
   padding-bottom:10px;
-  font-size:26px;
+  font-size: 1.5em;
   font-family: Calibri, "helvetica neue", helvetica, arial, serif;
   }
 
+/* Afspraak tijd */
 
+  .reserveer-wrapper p{
+    font-family: Calibri, "helvetica neue", helvetica, arial, serif;
+    font-weight:bold;
+    font-size:1.5em;
+  }
+
+  .reserveer-wrapper .container{
+    margin-bottom:25px;
+  }
+
+  .afspraakdag .normaal p{
+    text-align: center;
+  }
+
+/* ============ Section 4 ============ */
 /* _________________ Max's Gedeelte _________________ */
+
 input[type=text], select, textarea {
     width: 100%;
     padding: 12px;
@@ -575,7 +613,7 @@ textarea {
     font-size: 16px;
 }
 
-.main-container .reserveer-wrapper h2, h1 {
+.main-container .reserveer-wrapper h2, h1, p {
     text-align: center;
 }
 

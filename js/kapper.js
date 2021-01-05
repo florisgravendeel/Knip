@@ -78,20 +78,3 @@ function setTeam(mode){
             break;
     }
 }
-
-// Functie onderdeel voor groen/rood border-color contact form
-// Met css aanroepen van input:valid én input:invalid
-// Doel is om de css klassen aan te roepen
-// Vraag is of dat lukt met deze functies hieronder of
-// het te combineren valt met wat er nu al is qua functies
-// Test werkt dit?
-
-function setErrorFor(input) {
-    const formControl = input.parentElement;
-    formControl.className = 'input:valid';
-}
-
-function setSuccessFor(input) {
-    const formControl = input.parentElement;
-    formControl.className = 'input:invalid';
-}
