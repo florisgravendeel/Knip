@@ -28,13 +28,14 @@
             <h2>Stap 1: Selecteer de gewenste behandeling.</h2>
 
 
-            <div class="treatment-container" id="id-treatment-container">
+            <div class="treatment-container" id="id-treatment-container" class="dropdown-arrow-animation">
                 <div class="treatment-selected" style="border-top: 1px solid;">    
                     <h1 id="selected-treatment-title">Geselecteerde behandeling</h1> <br>
                     <h3 id="selected-treatment-display">Geen</h3>
                 </div>
 
                 <div onclick="HidingKnippen()" id="treatment-titles">
+                    <i class="behandeling-arrow" id="dropdownarrow-knippen"></i>
                     <t1>Knippen</t1>
                 </div>
                 <div id="cutting-treatments" class="treatment-flexbox-items">
@@ -49,6 +50,7 @@
                 </div>
 
                 <div onclick="HidingVerfen()" id="treatment-titles">
+                    <i class="behandeling-arrow" id="dropdownarrow-verfen"></i>
                     <t1>Verven</t1>
                 </div>
                 <div id="painting-treatments" class="treatment-flexbox-items">
@@ -61,6 +63,7 @@
                 </div>
 
                 <div onclick="HidingVerzorgen()" id="treatment-titles">
+                    <i class="behandeling-arrow" id="dropdownarrow-verzorgen"></i>
                     <t1>Verzorgen</t1>
                 </div>
                 <div id="verzorgen-treatments" class="treatment-flexbox-items">
