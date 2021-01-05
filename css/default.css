@@ -50,17 +50,6 @@ html, body {
     width: 100px;
 }
 
-/* ============ Geslacht display ============ */
-
-.gender-choice-display {
-    text-align: center;
-}
-
-#gender-display {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
 /* ============ Treatments ============ */
 #painting-treatments{
     display: none;
