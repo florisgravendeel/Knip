@@ -2,10 +2,11 @@
     font-family: Calibri, "helvetica neue", helvetica, arial, serif;
 }
 
-html, body {
+html, body, ul {
     padding: 0;
     margin: 0;
     scroll-behavior: smooth;
+    list-style-type: none;
 }
 
 /* Dit is Section 1 - gemaakt door Finn*/
@@ -50,25 +51,16 @@ html, body {
     width: 100px;
 }
 
-/* ============ Geslacht display ============ */
-
-.gender-choice-display {
-    text-align: center;
-}
-
-#gender-display {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
 /* ============ Treatments ============ */
-#painting-treatments{
+#painting-treatments {
     display: none;
 }
-#cutting-treatments{
+
+#cutting-treatments {
     display: none;
 }
-#verzorgen-treatments{
+
+#verzorgen-treatments {
     display: none;
 }
 
@@ -98,7 +90,7 @@ html, body {
 
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
-  }
+}
 
 /* ======== Flexbox ========*/
 .treatment-container {
@@ -125,8 +117,50 @@ html, body {
 /* Dit is Section 2 - gemaakt door Wesley*/
 /* ============ Section 2 ============ */
 /* _________________ Wesley's Gedeelte _________________ */
-h3, h2, h1 {
+
+:root {
+    --blue: #00C2BA;
+    --darkBlue: #037A90;
+    --pink: #FF8FCF;
+    --darkPink: #CE96FB;
+}
+
+p {
+    color: white;
+    font-size: 21px;
+}
+
+ul {
+    text-decoration: none;
     text-align: center;
+    line-height: 33px;
+    color: white;
+    font-size: 20px
+}
+
+h4, h3, h2, h1 {
+    text-align: center;
+}
+
+h3 {
+    color: black;
+}
+
+h4 {
+    color: white;
+}
+
+.sectionPink {
+    background-color: var(--pink);
+    padding: 1px 1px;
+}
+
+.sectionPinkAlt {
+    background-color: var(--darkPink);
+}
+
+.sectionBlueAlt {
+    background-color: var(--darkBlue);
 }
 
 a, a:visited {
@@ -135,7 +169,7 @@ a, a:visited {
 }
 
 .homePage {
-    border-bottom: black 1px solid;
+    border-bottom: black 3px solid;
     overflow: hidden;
 }
 
@@ -159,10 +193,11 @@ a, a:visited {
 }
 
 .landing-left {
+    background-color: var(--darkBlue);
+    border: black 3px solid;
     grid-area: landing-left;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    margin-left: 40px;
+    padding: 10px 40px 10px 40px;
+    margin: auto;
 }
 
 .landing-right {
@@ -180,30 +215,30 @@ a, a:visited {
     justify-content: center;
     text-align: center;
     padding-bottom: 50px;
-    gap: 100px;
+    gap: 50px;
+}
+
+.services-wrapper > div {
+    background-color: var(--blue);
+    border: black 3px solid;
+    padding: 20px 20px;
 }
 
 .styles-wrapper {
-    padding-top: 50px;
     padding-bottom: 50px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
-        'styles pricelist';
+        'pricelist pricelist pricelist';
 }
 
-.team-wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 230px);
-    justify-content: center;
-    text-align: center;
-    gap: 10px;
-}
-
-.styles {
+.styles-wrapper > div {
+    background-color: var(--blue);
+    border: black 3px solid;
     display: grid;
     grid-template-columns: repeat(auto-fit, 130px);
-    justify-content: right;
+    justify-content: center;
 }
 
 .preview {
@@ -215,8 +250,24 @@ a, a:visited {
     margin-left: 40px;
 }
 
+.team-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 230px);
+    justify-content: center;
+    text-align: center;
+    gap: 33px;
+}
+
+.team-wrapper > div {
+    border: black 3px solid;
+    background-color: var(--blue);
+    margin-bottom: 50px;
+    margin-top: 50px;
+    padding: 30px 10px 0px 10px;
+}
+
 .avatar {
-    border: 2px solid #d3d9d9;
+    border: 3px solid black;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -236,13 +287,13 @@ a, a:visited {
 }
 
 .reserveer-button {
-    border: none;
+    border: black 3px solid;
     color: white;
-    background-color: #4CAF50;
+    background-color: var(--darkBlue);
     position: fixed;
     bottom: 0;
     right: 33px;
-    padding: 0 10px 0 10px;
+    padding: 0 15px 0 15px;
     font-size: 16px;
     display: inline-block;
     cursor: pointer;
@@ -254,6 +305,20 @@ a, a:visited {
     justify-content: center;
 }
 
+.footer-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.footer-wrapper > div {
+    border: black 3px solid;
+    background-color: var(--darkBlue);
+    width: 300px;
+    margin: 10px;
+    text-align: center;
+}
+
 /*
 
 Main container header 2 padding bottom fix
@@ -261,8 +326,8 @@ Main container header 2 padding bottom fix
 wat:? extra padding boven plaatjes;
 */
 
-#section-two .main-container h2{
-    padding-bottom:10px;
+#section-two .main-container h2 {
+    padding-bottom: 10px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -283,7 +348,6 @@ wat:? extra padding boven plaatjes;
         grid-template-columns: 1fr;
         grid-template-areas:
         'priceList'
-        'styles';
     }
 }
 
@@ -465,79 +529,79 @@ button[disabled]:active {
 /* ============ Section 3B ============ */
 /* LEGENDA onder kalender*/
 
-  .legenda {
-    display:grid;
+.legenda {
+    display: grid;
     align-content: center;
     justify-content: center;
-  }
+}
 
-  .legenda p {
-  text-align:center;
-  padding:0;
-  margin:0;
-  font-weight: bold;
-  float:left;
-  padding-left:15px;
-  font-family: Calibri, "helvetica neue", helvetica, arial, serif;
-  }
+.legenda p {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    float: left;
+    padding-left: 15px;
+    font-family: Calibri, "helvetica neue", helvetica, arial, serif;
+}
 
-  .legenda input {
-  border: 2px solid #000000;
-  width:90px;
-  padding:1.5px;
-  }
-  
-  .legenda #A{
-  background-color: #03AC13;
-  float:left;
-  margin-left:10px;
-  }
-  
-  .legenda #B{
-  background-color:black;
-  float:left;
-  margin-left:10px;
-  }
-  
-  .legenda #C{
-  background-color:#DDDDDD;
-  float:left;
-  margin-left:10px;
-  }
-  
-  .legenda fieldset{
-  width:400px;
-  border: 2px solid #000000;
-  margin-top:40px;
-  margin-bottom:20px;
-  }
-  
-  .legenda legend{
-  font-size:20px;
-  }
-  
-  .legenda h2{
-  text-align:center;
-  padding-bottom:10px;
-  font-size: 1.5em;
-  font-family: Calibri, "helvetica neue", helvetica, arial, serif;
-  }
+.legenda input {
+    border: 2px solid #000000;
+    width: 90px;
+    padding: 1.5px;
+}
+
+.legenda #A {
+    background-color: #03AC13;
+    float: left;
+    margin-left: 10px;
+}
+
+.legenda #B {
+    background-color: black;
+    float: left;
+    margin-left: 10px;
+}
+
+.legenda #C {
+    background-color: #DDDDDD;
+    float: left;
+    margin-left: 10px;
+}
+
+.legenda fieldset {
+    width: 400px;
+    border: 2px solid #000000;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.legenda legend {
+    font-size: 20px;
+}
+
+.legenda h2 {
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: 1.5em;
+    font-family: Calibri, "helvetica neue", helvetica, arial, serif;
+}
 
 /* Afspraak tijd */
 
-  .reserveer-wrapper p{
+.reserveer-wrapper p {
     font-family: Calibri, "helvetica neue", helvetica, arial, serif;
-    font-weight:bold;
-    font-size:1.5em;
-  }
+    font-weight: bold;
+    font-size: 1.5em;
+}
 
-  .reserveer-wrapper .container{
-    margin-bottom:25px;
-  }
+.reserveer-wrapper .container {
+    margin-bottom: 25px;
+}
 
-  .afspraakdag .normaal p{
+.afspraakdag .normaal p {
     text-align: center;
-  }
+}
 
 /* ============ Section 4 ============ */
 /* _________________ Max's Gedeelte _________________ */
@@ -605,28 +669,30 @@ button {
     margin-right: 2.5px;
 }
 
-.container .row .col-75 input{
-    font-size:15px;
+.container .row .col-75 input {
+    font-size: 15px;
     justify-content: center;
-    
-}
-/* Form valid/invalid novalidate in form*/
-.form {
-    position:relative;
+
 }
 
-input + span{
-    position:absolute;
+/* Form valid/invalid novalidate in form*/
+.form {
+    position: relative;
+}
+
+input + span {
+    position: absolute;
     justify-content: right;
     right: -5px;
 }
+
 input + span::before {
-  position: absolute;
-  bottom:10px;
+    position: absolute;
+    bottom: 10px;
 }
 
 input:invalid {
-  border: 2px solid #e74c3c;
+    border: 2px solid #e74c3c;
 }
 
 input:valid {
@@ -634,13 +700,13 @@ input:valid {
 }
 
 input:invalid + span::before {
-  content: '✖';
-  color: red;
+    content: '✖';
+    color: red;
 }
 
 input:valid + span::before {
-  content: '✓';
-  color: green;
+    content: '✓';
+    color: green;
 }
 
 textarea {
