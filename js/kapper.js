@@ -48,10 +48,10 @@ class Team {
     }
 }
 //Adds event listeners to the circles
-let teams = [new Team("team1","forestgreen", "Wesley",3),
-             new Team("team2","blueviolet", "Max", 4),
-             new Team("team3","aqua", "Floris", 5),
-             new Team("team4","red", "Lieke", 6)];
+let teams = [new Team("team1","var(--blue)", "Wesley",3),
+             new Team("team2","var(--blue)", "Max", 4),
+             new Team("team3","var(--blue)", "Floris", 5),
+             new Team("team4","var(--blue)", "Lieke", 6)];
 
 let teamSelector = document.getElementsByClassName('team')
 for (let i = 0; teamSelector.length > i; i++) {

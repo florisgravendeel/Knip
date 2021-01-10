@@ -79,10 +79,10 @@ html, body, ul {
 #treatments-list-items {
     list-style-type: none;
     margin-top: 5px;
-    color:black;
+    color: black;
     text-align: left;
-    font-weight:bold;
-    font-size:16px;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .behandeling-arrow {
@@ -116,7 +116,7 @@ html, body, ul {
 
 #treatment-titles {
     background-color: orange;
-    font-size:22px;
+    font-size: 22px;
 }
 
 
@@ -129,11 +129,13 @@ html, body, ul {
     --darkBlue: #037A90;
     --pink: #FF8FCF;
     --darkPink: #CE96FB;
+
+    --paddingBottomTop: 90px;
 }
 
 p {
     color: white;
-    font-size: 21px;
+    font-size: 19px;
 }
 
 ul {
@@ -146,6 +148,10 @@ ul {
 
 h4, h3, h2, h1 {
     text-align: center;
+}
+
+h1 {
+    padding: 30px 0 20px 0;
 }
 
 h3 {
@@ -187,32 +193,47 @@ a, a:visited {
 .logo {
     display: grid;
     justify-content: center;
-    padding-top: 40px;
-    padding-bottom: 20px;
+    padding: var(--paddingBottomTop) 0 var(--paddingBottomTop) 0;
 }
 
 .landing-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     grid-template-areas:
-        'landing-left landing-right landing-right';
+        'landing-left landing-right';
 }
 
 .landing-left {
     background-color: var(--darkBlue);
     border: black 3px solid;
     grid-area: landing-left;
-    padding: 10px 40px 10px 40px;
-    margin: auto;
+    padding: 10px 20px 10px 20px;
+    margin: 92px auto 92px auto;
 }
 
 .landing-right {
-    grid-area: landing-right;
     display: grid;
+    grid-template-areas:
+        'expandingImage'
+        'preview-container';
     align-content: center;
     padding-top: 50px;
     padding-bottom: 50px;
     justify-content: center;
+}
+
+.expandingImage {
+    max-width: 100%;
+    height: auto;
+}
+
+.gallery-image {
+    height: 327px;
+    width: 474px;
+}
+
+.preview-container {
+    display: inline-flex;
 }
 
 .services-wrapper {
@@ -227,7 +248,7 @@ a, a:visited {
 .services-wrapper > div {
     background-color: var(--blue);
     border: black 3px solid;
-    padding: 20px 20px;
+    padding: 40px 10px 10px 10px;
 }
 
 .styles-wrapper {
@@ -268,7 +289,6 @@ a, a:visited {
     border: black 3px solid;
     background-color: var(--blue);
     margin-bottom: 50px;
-    margin-top: 50px;
     padding: 30px 10px 0px 10px;
 }
 
@@ -284,6 +304,7 @@ a, a:visited {
 .brand {
     height: 120px;
     padding-right: 50px;
+    margin-bottom: 30px;
 }
 
 .gallery-preview {
@@ -315,6 +336,7 @@ a, a:visited {
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
+    padding-bottom: var(--paddingBottomTop);
 }
 
 .footer-wrapper > div {
@@ -323,6 +345,7 @@ a, a:visited {
     width: 300px;
     margin: 10px;
     text-align: center;
+    padding-bottom: 20px;
 }
 
 /*
@@ -366,6 +389,7 @@ table, th, td {
 
 th, td {
     padding: 5px;
+    background-color: var(--darkPink);
     text-align: center;
 }
 
@@ -498,7 +522,7 @@ button.minimal:active {
 button.greenminimal {
     background: #57B257;
     border: 1px solid darkgreen;
-    border-radius:2px;
+    border-radius: 2px;
     color: white;
     font: bold 14px/1 Calibri, "helvetica neue", helvetica, arial, sans-serif; /**/
     padding: 8px 0 9px;
@@ -547,8 +571,8 @@ button[disabled]:active {
     margin: 0;
     font-weight: bold;
     float: left;
-    font-size:16px;
-    color:black;
+    font-size: 16px;
+    color: black;
     padding-left: 15px;
     font-family: Calibri, "helvetica neue", helvetica, arial, serif;
 }
@@ -578,6 +602,7 @@ button[disabled]:active {
 }
 
 .legenda fieldset {
+    background-color: #f2f2f2;
     width: 400px;
     border: 2px solid #000000;
     margin-top: 40px;
@@ -632,7 +657,7 @@ input[type=button] {
     color: white;
     padding: 12px 20px;
     margin-top: 8px;
-    border:none;
+    border: none;
     cursor: pointer;
     float: right;
 }
@@ -643,14 +668,14 @@ button {
 
 }
 
-#button3{
+#button3 {
 
     border: 2px solid black;
 }
 
-.required-fields p{
+.required-fields p {
 
-    color:black;
+    color: black;
 }
 
 .container {
