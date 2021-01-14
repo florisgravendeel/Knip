@@ -105,7 +105,7 @@ html, body, ul {
 }
 
 .treatment-container > div {
-    background-color: snow;
+    /*background-color: snow;*/
     width: 500px;
     padding: 5px;
 
@@ -115,7 +115,7 @@ html, body, ul {
 }
 
 #treatment-titles {
-    background-color: orange;
+    background-color: var(--darkblue);
     font-size: 22px;
 }
 
@@ -131,6 +131,26 @@ html, body, ul {
     /*!*--darkPink: #CE96FB;*!*/
     /*--darkPink: #191233;*/
 
+    /*kleurenschema:
+    Dark Blue: #12232E
+
+    Lighter Blue: #007CC7
+
+    Lightest Blue: #4DA8DA
+
+    Shadow of Dark Blue: #203647
+
+    Shadow of Light Blue: #EEFBFB
+
+    */
+    --darkblue: #12232E;
+    --lighterblue: #007CC7;
+    --lightestblue: #4DA8DA;
+    --shadowdarkblue: #203647;
+    --shadowlightblue: #EEFBFB;
+
+
+    /* test
     --purple: #3f4574;
     --darkPurple: #9268c2;
     --lightPurple: #98aadf;
@@ -140,14 +160,14 @@ html, body, ul {
     --pink: #d1abe5;
     --orange: #b69b9d;
     --sand: #e1cac4;
-
+    */
     --txtColor: white;
 
     --paddingBottomTop: 90px;
 }
 
 p {
-    color: black;
+    color: white;
     font-size: 19px;
 }
 
@@ -155,7 +175,7 @@ ul {
     text-decoration: none;
     text-align: center;
     line-height: 33px;
-    color: black;
+    color: white;
     font-size: 20px
 }
 
@@ -165,10 +185,15 @@ h4, h3, h2, h1 {
 
 h1 {
     padding: 30px 0 20px 0;
+    color:white;
+}
+
+h2{
+    color:white;
 }
 
 h3 {
-    color: black;
+    color: white;
 }
 
 h4 {
@@ -176,16 +201,16 @@ h4 {
 }
 
 .sectionPurple {
-    background-color: var(--purple);
+    background-color: var(--lightestblue);
     padding: 1px 1px;
 }
 
 .sectionPinkAlt {
-    background-color: var();
+    background-color: var(--darkblue);
 }
 
 .sectionBlueAlt {
-    background-color: var(--teal);
+    background-color: var(--shadowdarkblue);
 }
 
 a, a:visited {
@@ -218,10 +243,15 @@ a, a:visited {
 
 .landing-left {
     background-color: var(--darkBlue);
-    border: black 3px solid;
+    border: white 3px solid;
     grid-area: landing-left;
     padding: 10px 20px 10px 20px;
     margin: 92px auto 92px auto;
+    color:white;
+}
+
+.landing-left p{
+    color:white;
 }
 
 .landing-right {
@@ -274,7 +304,7 @@ a, a:visited {
 }
 
 .styles-wrapper > div {
-    background-color: var(--blue);
+    background-color: var(--lighterblue);
     border: black 3px solid;
     display: grid;
     grid-template-columns: repeat(auto-fit, 130px);
@@ -354,7 +384,7 @@ a, a:visited {
 
 .footer-wrapper > div {
     border: black 3px solid;
-    background-color: var(--darkBlue);
+    background-color: var(--lighterblue);
     width: 300px;
     margin: 10px;
     text-align: center;
@@ -615,7 +645,7 @@ button[disabled]:active {
 }
 
 .legenda fieldset {
-    background-color: #f2f2f2;
+    /*background-color: #f2f2f2;*/
     width: 400px;
     border: 2px solid #000000;
     margin-top: 40px;
