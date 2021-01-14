@@ -125,16 +125,29 @@ html, body, ul {
 /* _________________ Wesley's Gedeelte _________________ */
 
 :root {
-    --blue: #00C2BA;
-    --darkBlue: #037A90;
-    --pink: #FF8FCF;
-    --darkPink: #CE96FB;
+    /*--blue: #00C2BA;*/
+    /*--darkBlue: #037A90;*/
+    /*--pink: #FF8FCF;*/
+    /*!*--darkPink: #CE96FB;*!*/
+    /*--darkPink: #191233;*/
+
+    --purple: #3f4574;
+    --darkPurple: #9268c2;
+    --lightPurple: #98aadf;
+    --blue: #5e78d1;
+    --teal: #5cc4dc;
+    --porcelain: #c8d8f0;
+    --pink: #d1abe5;
+    --orange: #b69b9d;
+    --sand: #e1cac4;
+
+    --txtColor: white;
 
     --paddingBottomTop: 90px;
 }
 
 p {
-    color: white;
+    color: black;
     font-size: 19px;
 }
 
@@ -142,7 +155,7 @@ ul {
     text-decoration: none;
     text-align: center;
     line-height: 33px;
-    color: white;
+    color: black;
     font-size: 20px
 }
 
@@ -162,17 +175,17 @@ h4 {
     color: white;
 }
 
-.sectionPink {
-    background-color: var(--pink);
+.sectionPurple {
+    background-color: var(--purple);
     padding: 1px 1px;
 }
 
 .sectionPinkAlt {
-    background-color: var(--darkPink);
+    background-color: var();
 }
 
 .sectionBlueAlt {
-    background-color: var(--darkBlue);
+    background-color: var(--teal);
 }
 
 a, a:visited {

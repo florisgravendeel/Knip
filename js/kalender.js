@@ -419,7 +419,7 @@ getDatafromServer();
 // Voeg CSS/JS toe aan de tijdvakken (HTML: cell0 - cell79)
 for (i = 0; i < 80; i++){
     var cell = document.getElementById("cell" + i);
-    //cell.style.color = "white";
+    cell.style.color = "white";
     cell.onclick = function () {
         selectCell(this);
     }
