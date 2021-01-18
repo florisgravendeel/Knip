@@ -13,7 +13,7 @@
 
 <!--Section 1 -->
 
-<section class="homePage sectionPurple">
+<section class="homePage sectionBlueAlt">
 
     <div class="main-container">
 
@@ -29,15 +29,16 @@
 
 
             <div class="treatment-container" id="id-treatment-container" class="dropdown-arrow-animation">
-                <div class="treatment-selected" style="border-top: 1px solid;">    
+                <div class="treatment-selected">    
                     <h1 id="selected-treatment-title">Geselecteerde behandeling</h1> <br>
                     <h3 id="selected-treatment-display">Geen</h3>
                     <button id="selected-treatment-reset">Alles wissen</button>
+                    <t hidden id="behandelingen_array"></t>
                 </div>
 
                 <div onclick="HidingKnippen()" id="treatment-titles">
                     <i class="behandeling-arrow" id="dropdownarrow-knippen"></i>
-                    <b class="dropdowntext">Knippen</b>
+                    <b class="textcolor">Knippen</b>
                 </div>
                 <div id="cutting-treatments" class="treatment-flexbox-items">
                     <div>
@@ -52,7 +53,7 @@
 
                 <div onclick="HidingVerfen()" id="treatment-titles">
                     <i class="behandeling-arrow" id="dropdownarrow-verfen"></i>
-                    <b>Verven</b>
+                    <b class="textcolor">Verven</b>
                 </div>
                 <div id="painting-treatments" class="treatment-flexbox-items">
                     <div>
@@ -65,7 +66,7 @@
 
                 <div onclick="HidingVerzorgen()" id="treatment-titles">
                     <i class="behandeling-arrow" id="dropdownarrow-verzorgen"></i>
-                    <b>Verzorgen</b>
+                    <b class="textcolor">Verzorgen</b>
                 </div>
                 <div id="verzorgen-treatments" class="treatment-flexbox-items">
                     <div>
@@ -302,14 +303,14 @@
         </div>
 
         <div class="legenda">
-                <fieldset>
+                <fieldset class="sectionBlueNormal">
                   <h2> Legenda </h2>
                      <input disabled="" id="A">
                          <p id="AA">    Groene blokjes: Geselecteerde tijd(en)</p><br><br>
                      <input disabled="" id="B">
                          <p id="BB">   Zwarte blokjes: niet beschikbaar</p><br><br>
                      <input disabled="" id="C">
-                         <p id="CC">   Grijze blokjes: vrij om afspraak te maken</p><br><br>
+                         <p id="CC" style="font-size: 15px";>   Blauwe blokjes: vrij om afspraak te maken</p><br><br>
                  </fieldset>
             </div>
 

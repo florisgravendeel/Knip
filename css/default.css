@@ -13,6 +13,10 @@ html, body, ul {
 /*_________________ Finn's Gedeelte _________________*/
 
 /* ============ Section 1 ============ */
+.textcolor {
+    color: white;
+}
+
 /* ============ Wrapper ============ */
 
 .behandeling-wrapper {
@@ -45,7 +49,7 @@ html, body, ul {
     display: inline-block;
 
     border-radius: 20px;
-    border: 1px solid black;
+    border: 1px solid white;
 
     text-align: center;
 
@@ -79,14 +83,14 @@ html, body, ul {
 #treatments-list-items {
     list-style-type: none;
     margin-top: 5px;
-    color: black;
+    color: white;
     text-align: left;
     font-weight: bold;
     font-size: 16px;
 }
 
 .behandeling-arrow {
-    border: solid black;
+    border: solid white;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
@@ -101,7 +105,7 @@ html, body, ul {
 .treatment-container {
     display: flex;
     flex-direction: column;
-    border: 2px solid black;
+    border: 2px solid white;
 }
 
 .treatment-container > div {
@@ -211,6 +215,10 @@ h4 {
 
 .sectionBlueAlt {
     background-color: var(--shadowdarkblue);
+}
+
+.sectionBlueNormal {
+    background-color: var(--lighterblue);
 }
 
 a, a:visited {
@@ -639,7 +647,7 @@ button[disabled]:active {
 }
 
 .legenda #C {
-    background-color: #DDDDDD;
+    background-color: --lightestblue;
     float: left;
     margin-left: 10px;
 }

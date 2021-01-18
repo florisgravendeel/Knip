@@ -15,7 +15,7 @@ class Team {
         this.getElement().style.border = ("2px solid #000000");
     }
     deselect(){
-        this.getElement().style.backgroundColor = "white";
+        this.getElement().style.backgroundColor = "#203647";
         this.getElement().style.border = "white";
     }
     isSelected(){
@@ -48,10 +48,10 @@ class Team {
     }
 }
 //Adds event listeners to the circles
-let teams = [new Team("team1","var(--blue)", "Wesley",3),
-             new Team("team2","var(--blue)", "Max", 4),
-             new Team("team3","var(--blue)", "Floris", 5),
-             new Team("team4","var(--blue)", "Lieke", 6)];
+let teams = [new Team("team1","#007CC7", "Wesley",3),
+             new Team("team2","#007CC7", "Max", 4),
+             new Team("team3","#007CC7", "Floris", 5),
+             new Team("team4","#007CC7", "Lieke", 6)];
 
 let teamSelector = document.getElementsByClassName('team')
 for (let i = 0; teamSelector.length > i; i++) {
