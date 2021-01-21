@@ -20,6 +20,7 @@ class Treatment {
  * @returns {Promise<void>}
  */
 async function makeAppointment(){
+    var behandelings_id = "3";
     let id = Team.getBarberID();
     if (id === ""){
         alert("Selecteer een kapper!");
@@ -75,7 +76,7 @@ async function makeAppointment(){
         begin_datum: start_date,
         eind_datum: end_date,
         kapper_id: id,
-        behandelings_id: "3",
+        behandelings_id: behandelings_id,
         opmerking: comment
     }
     xhr.send(JSON.stringify(params))

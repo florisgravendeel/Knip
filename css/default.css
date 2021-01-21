@@ -80,7 +80,7 @@ html, body, ul {
     list-style-type: none;
 }
 
-#treatments-list-items {
+.treatments-list-items {
     list-style-type: none;
     margin-top: 5px;
     color: white;
@@ -118,7 +118,7 @@ html, body, ul {
     border-bottom: 2px solid;
 }
 
-#treatment-titles {
+.treatment-titles {
     background-color: var(--darkblue);
     font-size: 22px;
 }
@@ -440,7 +440,7 @@ table, th, td {
 
 th, td {
     padding: 5px;
-    background-color: var(--darkPink);
+    background-color: white;
     text-align: center;
 }
 
@@ -732,7 +732,7 @@ button {
 .container {
     background-color: #f2f2f2;
     padding: 22px;
-    border: 2px solid #18314F;
+    border: 3px solid black;
 }
 
 .col-25 {

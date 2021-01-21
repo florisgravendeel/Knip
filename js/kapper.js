@@ -5,6 +5,7 @@ class Team {
         this.colour = colour;
         this.name = name;
         this.id = id;
+        this.selected = false;
     }
 
     getElement(){
@@ -13,13 +14,15 @@ class Team {
     select(){
         this.getElement().style.backgroundColor = this.colour;
         this.getElement().style.border = ("2px solid #000000");
+        this.selected = true;
     }
     deselect(){
         this.getElement().style.backgroundColor = "#203647";
         this.getElement().style.border = "white";
+        this.selected = false;
     }
     isSelected(){
-        return this.getElement().style.backgroundColor === this.colour;
+        return this.selected;
     }
 
     static clearSelection(){
@@ -65,16 +68,20 @@ function setTeam(mode){
     Team.clearSelection();
     switch (mode)   {
         case "team1":
+            console.log("1");
             teams[0].select();
             break;
         case "team2":
             teams[1].select();
+            console.log("2");
             break;
         case "team3":
             teams[2].select();
+            console.log("3");
             break;
         case "team4":
             teams[3].select();
+            console.log("4");
             break;
     }
 }

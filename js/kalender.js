@@ -410,7 +410,6 @@ for (var i = 0; i < 80; i++){
     }
     // Allen tijden worden in de tabel gezet ->
     document.getElementById("cell" + i).innerText = timetable[index];
-
 }
 let dates; //= ['1 december', '2 december', '3 december', '4 december', '5 december', '8 december', '9 december', '10 december', '11 december', '12 december']
 let busyHours = [[]]// = [[1,2,6,4,13,23,34,43,45,46,53,54,61,67,79,80],[0,1,5,3,12,22,33,42,44,45,52,53,60,66,78,79]];
@@ -424,10 +423,10 @@ for (i = 0; i < 80; i++){
         selectCell(this);
     }
     var css = "#cell" + i + ":hover { " +
-        "color: black !important; " +
-        "}" +
-        "#cell" + i + "{ " +
-        "font-size: 15.35px;" +
-        "}";
+              "color: black !important;" +
+              "}" +
+              "#cell" + i + " { " +
+              "font-size: 15.35px;" +
+              "}";
     addCSS(css);
 }
