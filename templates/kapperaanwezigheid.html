@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>hi</title>
-        <link rel="stylesheet" href="css/kapperaanwezigheid.css" >
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/kapperaanwezigheid.css') }}" >
     </head>
     <body>
 
@@ -29,6 +29,6 @@
                 </div>
             </div>
         </div>
-    <script src="js/kapperaanwezigheid.js"></script>
+    <script src="{{ url_for('static', filename='js/kapperaanwezigheid.js') }}"></script>
     </body>
 </html>

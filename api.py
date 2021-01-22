@@ -18,6 +18,7 @@ mysql = MySQL(app)
 
 connection = mysql.connect()
 
+
 CORS(app)
 cors = CORS(app, resources={
     r"/*": {
@@ -45,7 +46,7 @@ def login():
         account = cursor.fetchone()
         if account:
             msg = 'Logged in successfully !'
-            return render_template('profile.html', msg = msg)
+            return render_template('kapperaanwezigheid.html', msg = msg)
         else:
             msg = 'Incorrect username / password !'
     return render_template('login.html', msg = msg)
