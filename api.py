@@ -81,5 +81,30 @@ def behandeling():
     return response
 
 
+@app.route('/kappers', methods=["GET"])
+def get_kappers():
+    cur = mysql.connect().cursor()
+    cur.execute("SELECT naam, aanwezigheid FROM kapper")
+    cur.close()
+    return jsonify(cur.fetchall())
+
+@app.route('/kappers/aanwezig', methods=["POST"])
+def post_kappers():
+    cnx = mysql.connect()
+    cur = cnx.cursor()
+
+    json_data = request.get_json()
+    naam = json_data['naam']
+    aanwezigheid = int(json_data['aanwezigheid'])
+
+    print(naam)
+    print(type(aanwezigheid))
+
+    cur.execute("UPDATE kapper SET aanwezigheid = %s WHERE naam = %s", (aanwezigheid, naam))
+
+    cnx.commit()
+    cur.close()
+    return "Verzonden"
+
 if __name__ == '__main__':
     app.run()

@@ -1,0 +1,95 @@
+/* Hele file */
+html {
+    width: 100%;
+    font-size: 23px;
+}
+
+body {
+    width: 100%;
+}
+
+/* navigatiebar */
+.main-container {
+    position: fixed;
+    width: 99%;
+    margin: 0;
+    padding: 0;
+}
+
+.navigatiebar {
+    border-bottom: solid 1px black;
+}
+
+.btnStyle {
+    background-color: snow;
+    border: solid 1px black;
+
+    margin-top: 10px;
+    margin: 12px;
+
+    width: 100px;
+    height: 40px;
+}
+
+#btnAgenda {
+    margin-left: 30px;
+}
+
+#btnKappers {
+    margin-left: 20px;
+}
+
+#btnLoguit {
+    position: absolute;
+    right: 15px;
+}
+
+/* kapper aanwezigheid lijst */
+.kapper-checklist-container {
+    height: 673px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.kapper-checklist-wrapper {
+    width: 950px;
+
+    border: solid 1px black;
+    background-color: rgb(219, 219, 219);
+}
+
+.kapper-checklist-flexbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    margin: 10px;
+    padding: 4px;
+}
+
+/**/
+/* kapper item-style */
+/**/
+
+/* full item style */
+.item-style {
+    border: solid 1px black;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    background-color: snow;
+}
+
+div.generalstyling {
+    display: inline-block;
+    margin-left: 10px;
+}
+/* checkbox style */
+div.setcheckbox {
+    float: right;
+    transform: scale(1.5);
+    margin: 3px;
+    margin-right: 10px;
+    margin-top: 3px;
+}
