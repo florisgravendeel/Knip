@@ -647,7 +647,7 @@ button[disabled]:active {
 }
 
 .legenda #C {
-    background-color: --lightestblue;
+    background-color: white;
     float: left;
     margin-left: 10px;
 }
