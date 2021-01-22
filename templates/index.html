@@ -8,8 +8,7 @@
 
     <!-- Default Style Sheet -->
 
-    <link rel="stylesheet" type="text/css" href="css/default.css">
-    <script src="js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/default.css') }}">
 
 </head>
 <body>
@@ -22,7 +21,7 @@
 
         <div class="logo">
 
-            <img src="images/kniplogo.png">
+            <img src="{{ url_for('static', filename='images/kniplogo.png')}}">
 
         </div>
 
@@ -48,7 +47,7 @@
                 <div class="expandingImage">
 
                     <!-- Expanded image -->
-                    <img class="gallery-image" id="expandedImg" src="images/gallery/g3.jpg">
+                    <img class="gallery-image" id="expandedImg" src="{{ url_for('static', filename='images/gallery/g3.jpg')}}">
 
                 </div>
 
@@ -56,37 +55,37 @@
 
                     <div class="preview-image">
 
-                        <img class="gallery-preview" src="images/gallery/g1.png" onclick="imageGallerySelect(this);">
+                        <img class="gallery-preview" src="{{ url_for('static', filename='images/gallery/g1.png')}}" onclick="imageGallerySelect(this);">
 
                     </div>
 
                     <div class="preview-image">
 
-                        <img class="gallery-preview" src="images/gallery/g2.jpg" onclick="imageGallerySelect(this);">
+                        <img class="gallery-preview" src="{{ url_for('static', filename='images/gallery/g2.jpg')}}" onclick="imageGallerySelect(this);">
 
                     </div>
 
                     <div class="preview-image">
 
-                        <img class="gallery-preview" src="images/gallery/g3.jpg" onclick="imageGallerySelect(this);">
+                        <img class="gallery-preview" src="{{ url_for('static', filename='images/gallery/g3.jpg')}}" onclick="imageGallerySelect(this);">
 
                     </div>
 
                     <div class="preview-image">
 
-                        <img class="gallery-preview" src="images/gallery/g4.jpg" onclick="imageGallerySelect(this);">
+                        <img class="gallery-preview" src="{{ url_for('static', filename='images/gallery/g4.jpg')}}" onclick="imageGallerySelect(this);">
 
                     </div>
 
                     <div class="preview-image">
 
-                        <img class="gallery-preview" src="images/gallery/g5.jpg" onclick="imageGallerySelect(this);">
+                        <img class="gallery-preview" src="{{ url_for('static', filename='images/gallery/g5.jpg')}}" onclick="imageGallerySelect(this);">
 
                     </div>
 
                     <div class="preview-image">
 
-                        <img class="gallery-preview" src="images/gallery/g6.jpg" onclick="imageGallerySelect(this);">
+                        <img class="gallery-preview" src="{{ url_for('static', filename='images/gallery/g6.jpg')}}" onclick="imageGallerySelect(this);">
 
                     </div>
 
@@ -112,7 +111,7 @@
 
             <div>
 
-                <img src="images/services/s1.png" height="120">
+                <img src="{{ url_for('static', filename='images/services/s1.png')}}" height="120">
 
                 <h2>Knippen</h2>
 
@@ -122,7 +121,7 @@
 
             <div>
 
-                <img src="images/services/s3.png" height="120">
+                <img src="{{ url_for('static', filename='images/services/s3.png')}}" height="120">
 
                 <h2>Kleuren</h2>
 
@@ -132,7 +131,7 @@
 
             <div>
 
-                <img src="images/services/s2.png" height="120">
+                <img src="{{ url_for('static', filename='images/services/s2.png')}}" height="120">
 
                 <h2>Scheren</h2>
 
@@ -220,9 +219,9 @@
 
         <marquee behavior="scroll" direction="left">
 
-            <img class="brand" src="images/brand/b5.svg"/>
+            <img class="brand" src="{{ url_for('static', filename='images/brand/b5.svg')}}"/>
 
-            <img class="brand" src="images/brand/b6.png"/>
+            <img class="brand" src="{{ url_for('static', filename='images/brand/b6.png')}}"/>
 
         </marquee>
 
@@ -243,7 +242,7 @@
 
             <div>
 
-                <img class="avatar" src="images/team/k1.png">
+                <img class="avatar" src="{{ url_for('static', filename='images/team/k1.png')}}"/>
 
                 <h2>Wesley</h2>
 
@@ -253,7 +252,7 @@
 
             <div>
 
-                <img class="avatar" src="images/team/k2.png">
+                <img class="avatar" src="{{ url_for('static', filename='images/team/k2.png')}}"/>
 
                 <h2>Floris</h2>
 
@@ -263,7 +262,7 @@
 
             <div>
 
-                <img class="avatar" src="images/team/k3.png">
+                <img class="avatar" src="{{ url_for('static', filename='images/team/k3.png')}}"/>
 
                 <h2>Max</h2>
 
@@ -273,7 +272,7 @@
 
             <div>
 
-                <img class="avatar" src="images/team/k6.png">
+                <img class="avatar" src="{{ url_for('static', filename='images/team/k6.png')}}"/>
 
                 <h2>Finn</h2>
 
@@ -359,7 +358,7 @@
 
 <button type="button" class="reserveer-button">
 
-    <a href="reserveer.html">
+    <a href="../reserveer.html">
 
         <h2>Reserveer Hier</h2>
 
@@ -367,7 +366,7 @@
 
 </button>
 
-<script src="js/imageGallery.js"></script>
+<script src="{{ url_for('static', filename='js/imageGallery.js')}}"></script>
 
 </body>
 </html>
